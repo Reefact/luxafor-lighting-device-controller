@@ -5,11 +5,16 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuxaforDevicesController", "LuxaforDevicesController\LuxaforDevicesController.csproj", "{D67859CE-0E78-4D1B-9E10-4E3D6FF4DD58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuxaforDevicesController.UnitTests", "LuxaforDevicesController.UnitTests\LuxaforDevicesController.UnitTests.csproj", "{9BD6CA8F-8F76-4851-9D43-95A94FDF7FF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuxaforDevicesController.UnitTests", "LuxaforDevicesController.UnitTests\LuxaforDevicesController.UnitTests.csproj", "{9BD6CA8F-8F76-4851-9D43-95A94FDF7FF9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{97C68052-FD61-4882-8116-C302E561587A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A81C5869-D67D-44AE-9C87-3203CF889B51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9B3D5C1-927B-4FB5-9123-FD894DE7C7A2}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
