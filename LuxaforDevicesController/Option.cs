@@ -13,7 +13,7 @@ public sealed class Option : ValueType<Option> {
 
     #region Statics members declarations
 
-    public static readonly Option Any = new(0);
+    public static readonly Option UnUsed = new(0);
 
     public static Option From(ChangingTime changingTime) {
         return new Option(changingTime.ToByte());

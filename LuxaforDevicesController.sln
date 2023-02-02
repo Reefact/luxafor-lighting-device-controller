@@ -14,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9B3D5C1-927B-4FB5-9123-FD894DE7C7A2}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		LICENSE = LICENSE
+		..\..\..\OneDrive\Bureau\luxafor-protocol.xlsx = ..\..\..\OneDrive\Bureau\luxafor-protocol.xlsx
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global

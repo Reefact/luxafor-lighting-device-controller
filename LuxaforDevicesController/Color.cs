@@ -14,7 +14,7 @@ public sealed class Color : ValueType<Color> {
 
     #region Statics members declarations
 
-    public static readonly Color Any = new(0, 0, 0);
+    public static readonly Color UnUsed = new(0, 0, 0);
 
     public static Color From(System.Drawing.Color color) {
         return new Color(color.R, color.G, color.B);

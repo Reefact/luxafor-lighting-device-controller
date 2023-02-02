@@ -19,7 +19,7 @@ namespace LuxaforDevicesController {
 
             CommandMode mode = CommandMode.From(basicColor);
 
-            return new Command(CommandCode.BasicColor, mode, Color.Any, Option.Any, Option.Any, Option.Any, TimeSpan.Zero);
+            return new Command(CommandCode.SetBasicColor, mode, Color.UnUsed, Option.UnUsed, Option.UnUsed, Option.UnUsed, TimeSpan.Zero);
         }
 
         public static Command CreateSetColorWithoutFadeCommand(TargetedLeds targetedLeds, Color color) {
@@ -28,7 +28,7 @@ namespace LuxaforDevicesController {
 
             CommandMode mode = CommandMode.From(targetedLeds);
 
-            return new Command(CommandCode.ColorWithoutFade, mode, color, Option.Any, Option.Any, Option.Any, TimeSpan.Zero);
+            return new Command(CommandCode.SetColorWithoutFade, mode, color, Option.UnUsed, Option.UnUsed, Option.UnUsed, TimeSpan.Zero);
         }
 
         public static Command CreateSetColorWithFadeCommand(TargetedLeds targetedLeds, Color color, ChangingTime changingTime) {
@@ -39,7 +39,7 @@ namespace LuxaforDevicesController {
             CommandMode mode    = CommandMode.From(targetedLeds);
             Option      option1 = Option.From(changingTime);
 
-            return new Command(CommandCode.ColorWithFade, mode, color, option1, Option.Any, Option.Any, TimeSpan.Zero);
+            return new Command(CommandCode.SetColorWithFade, mode, color, option1, Option.UnUsed, Option.UnUsed, TimeSpan.Zero);
         }
 
         public static Command CreateActivateStrobeCommand(TargetedLeds targetedLeds, Color color, Speed speed, Repeat repeat) {
@@ -53,7 +53,7 @@ namespace LuxaforDevicesController {
             Option      option3           = Option.From(repeat);
             TimeSpan    estimatedDuration = TimeSpan.FromSeconds(speed.ToByte() * 0.065 * repeat.ToByte());
 
-            return new Command(CommandCode.Strobe, mode, color, option1, Option.Any, option3, estimatedDuration);
+            return new Command(CommandCode.ActivateStrobe, mode, color, option1, Option.UnUsed, option3, estimatedDuration);
         }
 
         public static Command CreateActivateWaveCommand(WaveType waveType, Color color, Speed speed, Repeat repeat) {
@@ -66,7 +66,7 @@ namespace LuxaforDevicesController {
             Option      option2 = Option.From(repeat);
             Option      option3 = Option.From(speed);
 
-            return new Command(CommandCode.Wave, mode, color, Option.Any, option2, option3, TimeSpan.Zero);
+            return new Command(CommandCode.ActivateWave, mode, color, Option.UnUsed, option2, option3, TimeSpan.Zero);
         }
 
         public static Command CreateActivateBuiltInPatternCommand(BuiltInPattern pattern, Repeat repeat) {
@@ -76,7 +76,7 @@ namespace LuxaforDevicesController {
             CommandMode mode  = CommandMode.From(pattern);
             Color       color = new(repeat.ToByte(), 0, 0);
 
-            return new Command(CommandCode.BuiltInPatterns, mode, color, Option.Any, Option.Any, Option.Any, TimeSpan.Zero);
+            return new Command(CommandCode.ActivateBuiltInPatterns, mode, color, Option.UnUsed, Option.UnUsed, Option.UnUsed, TimeSpan.Zero);
         }
 
         #endregion
@@ -107,12 +107,12 @@ namespace LuxaforDevicesController {
 
         /// <inheritdoc />
         public override string ToString() {
-            if (Code == CommandCode.BasicColor) { return ToSimpleColorString(); }
-            if (Code == CommandCode.ColorWithoutFade) { return ToStaticsColorWithoutFaceString(); }
-            if (Code == CommandCode.ColorWithFade) { return ToChangeColorWithFadeString(); }
-            if (Code == CommandCode.Strobe) { return ToStrobString(); }
-            if (Code == CommandCode.Wave) { return ToWaveString(); }
-            if (Code == CommandCode.BuiltInPatterns) { return ToBuiltInPatternsString(); }
+            if (Code == CommandCode.SetBasicColor) { return ToSimpleColorString(); }
+            if (Code == CommandCode.SetColorWithoutFade) { return ToStaticsColorWithoutFaceString(); }
+            if (Code == CommandCode.SetColorWithFade) { return ToChangeColorWithFadeString(); }
+            if (Code == CommandCode.ActivateStrobe) { return ToStrobString(); }
+            if (Code == CommandCode.ActivateWave) { return ToWaveString(); }
+            if (Code == CommandCode.ActivateBuiltInPatterns) { return ToBuiltInPatternsString(); }
 
             return "???";
         }

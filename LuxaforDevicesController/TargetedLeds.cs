@@ -17,15 +17,15 @@ public sealed class TargetedLeds : ValueType<TargetedLeds> {
 
     #region Statics members declarations
 
-    public static readonly TargetedLeds Led_1     = new(1);
-    public static readonly TargetedLeds Led_2     = new(2);
-    public static readonly TargetedLeds Led_3     = new(3);
-    public static readonly TargetedLeds Led_4     = new(4);
-    public static readonly TargetedLeds Led_5     = new(5);
-    public static readonly TargetedLeds Led_6     = new(6);
-    public static readonly TargetedLeds FrontSide = new('A');
-    public static readonly TargetedLeds BackSide  = new('B');
-    public static readonly TargetedLeds All       = new(255);
+    public static readonly TargetedLeds Led_1    = new(LuxaforProtocol.Lux.Led_1);
+    public static readonly TargetedLeds Led_2    = new(LuxaforProtocol.Lux.Led_2);
+    public static readonly TargetedLeds Led_3    = new(LuxaforProtocol.Lux.Led_3);
+    public static readonly TargetedLeds Led_4    = new(LuxaforProtocol.Lux.Led_4);
+    public static readonly TargetedLeds Led_5    = new(LuxaforProtocol.Lux.Led_5);
+    public static readonly TargetedLeds Led_6    = new(LuxaforProtocol.Lux.Led_6);
+    public static readonly TargetedLeds BackSide = new(LuxaforProtocol.Lux.BackSide);
+    public static readonly TargetedLeds TabSide  = new(LuxaforProtocol.Lux.TabSide);
+    public static readonly TargetedLeds All      = new(LuxaforProtocol.Lux.All);
 
     public static TargetedLeds FromIndex(byte index) {
         if (index is < 1 or > 6) { throw new ArgumentOutOfRangeException(nameof(index)); }

@@ -13,12 +13,12 @@ public sealed class CommandCode : ValueType<CommandCode> {
 
     #region Statics members declarations
 
-    public static readonly CommandCode BasicColor       = new(0, "set basic color");
-    public static readonly CommandCode ColorWithoutFade = new(1, "set color without fade");
-    public static readonly CommandCode ColorWithFade    = new(2, "set color with fade");
-    public static readonly CommandCode Strobe           = new(3, "activate strobe");
-    public static readonly CommandCode Wave             = new(4, "activate wave");
-    public static readonly CommandCode BuiltInPatterns  = new(6, "activate built-in pattern");
+    public static readonly CommandCode SetBasicColor           = new(LuxaforProtocol.CommandCode.SimpleColourCommand, "set basic color");
+    public static readonly CommandCode SetColorWithoutFade     = new(LuxaforProtocol.CommandCode.StaticsColourWithoutFade, "set color without fade");
+    public static readonly CommandCode SetColorWithFade        = new(LuxaforProtocol.CommandCode.ChangeColourWithFade, "set color with fade");
+    public static readonly CommandCode ActivateStrobe          = new(LuxaforProtocol.CommandCode.Strob, "activate strobe");
+    public static readonly CommandCode ActivateWave            = new(LuxaforProtocol.CommandCode.Wave, "activate wave");
+    public static readonly CommandCode ActivateBuiltInPatterns = new(LuxaforProtocol.CommandCode.BuildInPatterns, "activate built-in pattern");
 
     #endregion
 
