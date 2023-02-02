@@ -3,6 +3,8 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
+using Value;
+
 #endregion
 
 namespace LuxaforDevicesController;

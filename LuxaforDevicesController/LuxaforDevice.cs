@@ -2,6 +2,12 @@
 
 #endregion
 
+#region Usings declarations
+
+using HidLibrary;
+
+#endregion
+
 namespace LuxaforDevicesController;
 
 public sealed class LuxaforDevice {
