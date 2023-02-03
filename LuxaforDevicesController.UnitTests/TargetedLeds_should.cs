@@ -16,8 +16,8 @@ namespace LuxaforDevicesController.UnitTests {
             Check.That(TargetedLeds.Led_4.ToByte()).IsEqualTo(4);
             Check.That(TargetedLeds.Led_5.ToByte()).IsEqualTo(5);
             Check.That(TargetedLeds.Led_6.ToByte()).IsEqualTo(6);
-            Check.That(TargetedLeds.BackSide.ToByte()).IsEqualTo(41);
-            Check.That(TargetedLeds.TabSide.ToByte()).IsEqualTo(42);
+            Check.That(TargetedLeds.BackSide.ToByte()).IsEqualTo(Convert.ToByte('A'));
+            Check.That(TargetedLeds.TabSide.ToByte()).IsEqualTo(Convert.ToByte('B'));
             Check.That(TargetedLeds.All.ToByte()).IsEqualTo(255);
         }
 

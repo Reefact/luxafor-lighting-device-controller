@@ -19,8 +19,8 @@ internal static partial class LuxaforProtocol {
         public const byte Led_4    = 4;
         public const byte Led_5    = 5;
         public const byte Led_6    = 6;
-        public const byte BackSide = 41;
-        public const byte TabSide  = 42;
+        public const byte BackSide = 65;
+        public const byte TabSide  = 66;
         public const byte All      = 255;
 
     }

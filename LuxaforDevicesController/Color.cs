@@ -59,4 +59,25 @@ public sealed class Color : ValueType<Color> {
         return new object[] { Red, Green, Blue };
     }
 
+    #region Nested types declarations
+
+    public static class Basic {
+
+        #region Statics members declarations
+
+        public static readonly Color Red     = new(255, 0, 0);
+        public static readonly Color Green   = new(0, 255, 0);
+        public static readonly Color Blue    = new(0, 0, 255);
+        public static readonly Color Cyan    = new(120, 120, 255);
+        public static readonly Color Magenta = new(255, 0, 255);
+        public static readonly Color Yellow  = new(255, 255, 0);
+        public static readonly Color White   = new(255, 255, 255);
+        public static readonly Color Off     = new(0, 0, 0);
+
+        #endregion
+
+    }
+
+    #endregion
+
 }
