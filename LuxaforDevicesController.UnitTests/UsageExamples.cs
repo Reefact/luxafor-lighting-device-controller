@@ -17,6 +17,21 @@
         #endregion
 
         [Fact(Skip = "Connect a Luxafor orb to the USB port, reactivate this test and verify that the sequence works.")]
+        public void french_sequence() {
+            LuxaforDevice orb = Luxafor.GetDevices().First();
+            for (var i = 0; i < 3; i++) {
+                orb.SetBasicColor(BasicColor.Blue);
+                Thread.Sleep(500);
+                orb.SetBasicColor(BasicColor.White);
+                Thread.Sleep(500);
+                orb.SetBasicColor(BasicColor.Red);
+                Thread.Sleep(500);
+                orb.SetBasicColor(BasicColor.Off);
+                Thread.Sleep(1000);
+            }
+        }
+
+        [Fact(Skip = "Connect a Luxafor orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void create_a_strobe_sequence() {
             LuxaforDevice orb = Luxafor.GetDevices().First();
             orb.SetBasicColor(BasicColor.Magenta);
