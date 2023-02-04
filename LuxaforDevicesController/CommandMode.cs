@@ -3,6 +3,8 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
+using LuxaforDevicesController.Converters;
+
 using Value;
 
 #endregion
@@ -10,7 +12,7 @@ using Value;
 namespace LuxaforDevicesController;
 
 [DebuggerDisplay("{ToString()}")]
-public sealed class CommandMode : ValueType<CommandMode> {
+internal sealed class CommandMode : ValueType<CommandMode> {
 
     #region Statics members declarations
 
@@ -25,7 +27,7 @@ public sealed class CommandMode : ValueType<CommandMode> {
     public static CommandMode From(TargetedLeds targetedLeds) {
         if (targetedLeds is null) { throw new ArgumentNullException(nameof(targetedLeds)); }
 
-        return new CommandMode(targetedLeds.ToByte());
+        return new CommandMode(targetedLeds.ToLuxCode());
     }
 
     public static CommandMode From(WaveType waveType) {
@@ -65,13 +67,13 @@ public sealed class CommandMode : ValueType<CommandMode> {
         return _value.ToString();
     }
 
-    public byte ToByte() {
-        return _value;
-    }
-
     /// <inheritdoc />
     protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality() {
         return new object[] { _value };
+    }
+
+    internal byte ToByte() {
+        return _value;
     }
 
 }

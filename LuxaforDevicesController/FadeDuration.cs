@@ -9,23 +9,20 @@ using Value;
 namespace LuxaforDevicesController;
 
 /// <summary>
-///     Represents a number of effect repetitions (wave, strobe, ...).
+///     Represents a fade duration.
 /// </summary>
 [DebuggerDisplay("{ToString()}")]
-public sealed class Repeat : ValueType<Repeat> {
+public sealed class FadeDuration : ValueType<FadeDuration> {
 
     #region Statics members declarations
 
-    public static readonly Repeat Once  = new(1);
-    public static readonly Repeat Twice = new(2);
-
     /// <summary>
-    ///     Creates a new <see cref="Repeat" /> instance.
+    ///     Create a <see cref="FadeDuration">fade duration</see> from a byte value.
     /// </summary>
-    /// <param name="value">The number of repetitions.</param>
-    /// <returns>A <see cref="Repeat" /> value.</returns>
-    public static Repeat Count(byte value) {
-        return new Repeat(value);
+    /// <param name="value"></param>
+    /// <returns>A <see cref="FadeDuration">fade duration</see>.</returns>
+    public static FadeDuration From(byte value) {
+        return new FadeDuration(value);
     }
 
     #endregion
@@ -38,7 +35,7 @@ public sealed class Repeat : ValueType<Repeat> {
 
     #region Constructors declarations
 
-    private Repeat(byte value) {
+    private FadeDuration(byte value) {
         _value = value;
     }
 
@@ -46,12 +43,7 @@ public sealed class Repeat : ValueType<Repeat> {
 
     /// <inheritdoc />
     public override string ToString() {
-        return _value switch {
-            0 => "none",
-            1 => "once",
-            2 => "twice",
-            _ => $"{_value} times"
-        };
+        return _value.ToString();
     }
 
     /// <inheritdoc />
@@ -62,5 +54,9 @@ public sealed class Repeat : ValueType<Repeat> {
     internal byte ToByte() {
         return _value;
     }
+
+    //public static explicit operator FadeDuration(byte value) {
+    //    return new FadeDuration(value);
+    //}
 
 }

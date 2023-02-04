@@ -8,11 +8,19 @@ using Value;
 
 namespace LuxaforDevicesController;
 
+/// <summary>
+///     Represents the speed of an effect (wave, strobe, ...)
+/// </summary>
 [DebuggerDisplay("{ToString()}")]
 public sealed class Speed : ValueType<Speed> {
 
     #region Statics members declarations
 
+    /// <summary>
+    ///     Create a new <see cref="Speed" /> instance.
+    /// </summary>
+    /// <param name="value">The speed value as <see cref="byte" />.</param>
+    /// <returns>A <see cref="Speed" /> value.</returns>
     public static Speed FromByte(byte value) {
         return new Speed(value);
     }
@@ -38,13 +46,13 @@ public sealed class Speed : ValueType<Speed> {
         return _value.ToString();
     }
 
-    public byte ToByte() {
-        return _value;
-    }
-
     /// <inheritdoc />
     protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality() {
         return new object[] { _value };
+    }
+
+    internal byte ToByte() {
+        return _value;
     }
 
 }

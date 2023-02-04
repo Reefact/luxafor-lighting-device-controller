@@ -1,4 +1,10 @@
-﻿namespace LuxaforDevicesController {
+﻿#region Usings declarations
+
+using LuxaforDevicesController.Protocol;
+
+#endregion
+
+namespace LuxaforDevicesController.Converters {
 
     internal static class WaveTypeConverter {
 

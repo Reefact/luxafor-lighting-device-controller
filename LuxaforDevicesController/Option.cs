@@ -9,13 +9,13 @@ using Value;
 namespace LuxaforDevicesController;
 
 [DebuggerDisplay("{ToString()}")]
-public sealed class Option : ValueType<Option> {
+internal sealed class Option : ValueType<Option> {
 
     #region Statics members declarations
 
     public static readonly Option UnUsed = new(0);
 
-    public static Option From(ChangingTime changingTime) {
+    public static Option From(FadeDuration changingTime) {
         return new Option(changingTime.ToByte());
     }
 

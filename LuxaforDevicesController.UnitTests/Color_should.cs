@@ -1,5 +1,7 @@
 #region Usings declarations
 
+using System.Drawing;
+
 using NFluent;
 
 #endregion
@@ -14,9 +16,9 @@ public class Color_should {
     [InlineData(95, 39, 241)]
     public void be_created_from_a_system_color(byte redComponent, byte greenComponent, byte blueComponent) {
         // Setup
-        System.Drawing.Color systemColor = System.Drawing.Color.FromArgb(redComponent, greenComponent, blueComponent);
+        Color systemColor = Color.FromArgb(redComponent, greenComponent, blueComponent);
         // Exercise
-        Color color = Color.From(systemColor);
+        CustomColor color = CustomColor.From(systemColor);
         // Verify
         Check.That(color.Red).IsEqualTo(redComponent);
         Check.That(color.Green).IsEqualTo(greenComponent);
@@ -29,7 +31,7 @@ public class Color_should {
     [InlineData("#FF0099", 255, 0, 153)]
     public void be_created_from_its_hexadecimal_representation(string hexadecimalValue, byte expectedRedComponent, byte expectedGreenComponent, byte expectedBlueComponent) {
         // Exercise
-        Color color = Color.From(hexadecimalValue);
+        CustomColor color = CustomColor.From(hexadecimalValue);
         // Verify
         Check.That(color.Red).IsEqualTo(expectedRedComponent);
         Check.That(color.Green).IsEqualTo(expectedGreenComponent);
@@ -42,7 +44,7 @@ public class Color_should {
     [InlineData(255, 0, 153, "#FF0099")]
     public void have_an_expressive_string_representation(byte redComponent, byte greenComponent, byte blueComponent, string expectedRepresentation) {
         // Setup
-        Color color = new(redComponent, greenComponent, blueComponent);
+        CustomColor color = new(redComponent, greenComponent, blueComponent);
         // Exercise
         var representation = color.ToString();
         // Verify

@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace LuxaforDevicesController.Protocol;
 
 [SuppressMessage("ReSharper", "IdentifierTypo")]
 internal static partial class LuxaforProtocol {

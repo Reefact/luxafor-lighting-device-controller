@@ -2,6 +2,8 @@
 
 using System.Diagnostics;
 
+using LuxaforDevicesController.Protocol;
+
 using Value;
 
 #endregion
@@ -9,7 +11,7 @@ using Value;
 namespace LuxaforDevicesController;
 
 [DebuggerDisplay("{ToString()}")]
-public sealed class CommandCode : ValueType<CommandCode> {
+internal sealed class CommandCode : ValueType<CommandCode> {
 
     #region Statics members declarations
 
@@ -43,13 +45,13 @@ public sealed class CommandCode : ValueType<CommandCode> {
         return _stringRepresentation;
     }
 
-    public byte ToByte() {
-        return _value;
-    }
-
     /// <inheritdoc />
     protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality() {
         return new object[] { _value };
+    }
+
+    internal byte ToByte() {
+        return _value;
     }
 
 }

@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace LuxaforDevicesController.Protocol;
 
 [SuppressMessage("ReSharper", "IdentifierTypo")]
 internal static partial class LuxaforProtocol {
@@ -19,7 +19,10 @@ internal static partial class LuxaforProtocol {
         public const byte Strob                    = 3;
         public const byte Wave                     = 4;
         public const byte BuildInPatterns          = 6;
-        public const byte Productivity             = 10;
+
+        // Not use by the library.
+        // ReSharper disable once UnusedMember.Global
+        public const byte Productivity = 10;
 
     }
 
