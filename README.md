@@ -32,5 +32,33 @@ Ces différents périphériques sont conçus pour être pilotés manuellement ('
 
 ## Présentation de la Librairie
 
-// to be continued 
+Cette librairie à pour but de permettre l'intégration des périphériques USB à LED à vos applications in-house sans avoir besoin de passer par le serveur Luxafor (webhook).
 
+Elle est développée en .Net Core et se base sur la librairie [HidLibrairy](https://github.com/mikeobrien/HidLibrary) qui permet d'énumérer et de communiquer avec des périphériques USB compatibles HID en .NET.
+
+Le code ci-dessous présente un exemple d'utilisation basique de la librairie pour le pilotage d'un périphérique [Luxafor Orb](https://luxafor.com/product/orb/).
+
+https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController.UnitTests/UsageExamples.cs#L20-L32
+
+La librairie permet d'exploiter l'ensemble des fonctionnalités proposées par ces périphériques à LED.
+
+https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L42
+Permet d'éteindre le périphérique.
+
+https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L47
+Permet d'allumer toutes les LEDs du périphérique dans une des couleurs de base.
+
+https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L52
+Permet d'allumer la/les LEDs sélectionnées du périphérique dans une couleur personnalisée.
+
+https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L52
+Permet d'effectuer un fondu pour la/les LEDs sélectionnées du périphérique dans une couleur personnalisée.
+
+https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L69
+Permet d'activer le mode `wave` en sélectionnant certains paramètres.
+
+https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L78
+Permet d'activer le mode `strobe` en sélectionnant certains paramètres.
+
+https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L88
+Permet d'activer le mode `built-in pattern` en sélectionnant certains paramètres.
