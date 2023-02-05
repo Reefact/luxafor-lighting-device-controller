@@ -3,13 +3,13 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
-using LuxaforDevicesController.Converters;
+using Reefact.LuxaforDevicesController.Converters;
 
 using Value;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 [DebuggerDisplay("{ToString()}")]
 internal sealed class CommandMode : ValueType<CommandMode> {

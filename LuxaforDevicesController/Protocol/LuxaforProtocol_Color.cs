@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 #endregion
 
-namespace LuxaforDevicesController.Protocol;
+namespace Reefact.LuxaforDevicesController.Protocol;
 
 /// <summary>
 ///     Gathers all constants related to the protocol of Luxafor devices.

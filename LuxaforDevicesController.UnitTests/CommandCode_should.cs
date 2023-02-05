@@ -4,7 +4,7 @@ using NFluent;
 
 #endregion
 
-namespace LuxaforDevicesController.UnitTests {
+namespace Reefact.LuxaforDevicesController.UnitTests {
 
     public class CommandCode_should {
 

@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 /// <summary>
 ///     Provides a set of predefined patterns of built-in lighting effects.

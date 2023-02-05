@@ -6,7 +6,7 @@ using Value;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 /// <summary>
 ///     Represents the speed of an effect (wave, strobe, ...)

@@ -3,13 +3,13 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
-using LuxaforDevicesController.LightningCommandFactories;
+using Reefact.LuxaforDevicesController.LightningCommandFactories;
 
 using Value;
 
 #endregion
 
-namespace LuxaforDevicesController {
+namespace Reefact.LuxaforDevicesController {
 
     /// <summary>
     ///     Represents a lighting command to a Luxafor <see cref="LuxaforDevice">device</see>.

@@ -3,13 +3,13 @@
 using System.Collections;
 using System.Diagnostics;
 
-using LuxaforDevicesController.Protocol;
+using Reefact.LuxaforDevicesController.Protocol;
 
 using Value;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 /// <summary>
 ///     Represents the LEDs targeted by a <see cref="LightningCommand">lightning command</see>. Targeted LEDs are turned

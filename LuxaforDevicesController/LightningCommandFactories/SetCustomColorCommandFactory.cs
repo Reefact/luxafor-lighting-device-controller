@@ -1,4 +1,4 @@
-﻿namespace LuxaforDevicesController.LightningCommandFactories;
+﻿namespace Reefact.LuxaforDevicesController.LightningCommandFactories;
 
 internal sealed class SetCustomColorCommandFactory : LightningCommandFactory {
 

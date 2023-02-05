@@ -2,13 +2,13 @@
 
 using System.Diagnostics;
 
-using LuxaforDevicesController.Protocol;
+using Reefact.LuxaforDevicesController.Protocol;
 
 using Value;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 [DebuggerDisplay("{ToString()}")]
 internal sealed class CommandCode : ValueType<CommandCode> {

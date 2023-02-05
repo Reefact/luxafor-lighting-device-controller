@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 /// <summary>
 ///     Provides a set of predefined basic colors.

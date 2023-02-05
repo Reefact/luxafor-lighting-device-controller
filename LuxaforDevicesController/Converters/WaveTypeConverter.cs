@@ -1,10 +1,10 @@
 ﻿#region Usings declarations
 
-using LuxaforDevicesController.Protocol;
+using Reefact.LuxaforDevicesController.Protocol;
 
 #endregion
 
-namespace LuxaforDevicesController.Converters {
+namespace Reefact.LuxaforDevicesController.Converters {
 
     internal static class WaveTypeConverter {
 

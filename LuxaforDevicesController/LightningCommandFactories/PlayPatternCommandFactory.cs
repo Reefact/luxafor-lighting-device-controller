@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 #endregion
 
-namespace LuxaforDevicesController.LightningCommandFactories;
+namespace Reefact.LuxaforDevicesController.LightningCommandFactories;
 
 internal sealed class PlayPatternCommandFactory : LightningCommandFactory {
 

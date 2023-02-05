@@ -4,7 +4,7 @@ using Value;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 /// <summary>
 ///     Represents a LED index.

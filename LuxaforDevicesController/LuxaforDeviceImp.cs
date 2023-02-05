@@ -4,7 +4,7 @@ using HidLibrary;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 internal sealed class LuxaforDeviceImp : LuxaforDevice {
 

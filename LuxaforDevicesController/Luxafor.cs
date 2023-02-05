@@ -8,7 +8,7 @@ using HidLibrary;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 /// <summary>
 ///     The entry point of the library to retrieve Luxafor <see cref="LuxaforDevice">devices</see> connected to the

@@ -7,7 +7,7 @@ using Value;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 /// <summary>
 ///     Represents a <a href="https://luxafor.com/">Luxafor</a> device color.

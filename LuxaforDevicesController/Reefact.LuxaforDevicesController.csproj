@@ -4,6 +4,16 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Sylvain Aurat</Authors>
+    <Company>Reefact</Company>
+    <PackageProjectUrl>https://github.com/Reefact/luxafor-devices-controller</PackageProjectUrl>
+    <PackageReadmeFile>README-EN.md</PackageReadmeFile>
+    <Title>Luxafor devices controller</Title>
+    <Description>A .Net library that provides a simple API to control Luxafor devices.</Description>
+    <RepositoryUrl>https://github.com/Reefact/luxafor-devices-controller</RepositoryUrl>
+    <PackageIcon>diagram.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +32,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="diagram.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README-EN.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -34,6 +57,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="diagram.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

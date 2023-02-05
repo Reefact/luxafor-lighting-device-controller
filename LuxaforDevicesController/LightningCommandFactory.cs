@@ -1,4 +1,4 @@
-﻿namespace LuxaforDevicesController;
+﻿namespace Reefact.LuxaforDevicesController;
 
 internal interface LightningCommandFactory {
 

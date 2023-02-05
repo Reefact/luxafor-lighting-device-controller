@@ -1,4 +1,4 @@
-﻿namespace LuxaforDevicesController.UnitTests {
+﻿namespace Reefact.LuxaforDevicesController.UnitTests {
 
     public class UsageExamples {
 

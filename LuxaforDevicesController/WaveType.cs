@@ -1,4 +1,4 @@
-﻿namespace LuxaforDevicesController;
+﻿namespace Reefact.LuxaforDevicesController;
 
 /// <summary>
 ///     Provides a set of predefined wave lighting effects.

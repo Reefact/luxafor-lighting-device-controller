@@ -6,7 +6,7 @@ using Value;
 
 #endregion
 
-namespace LuxaforDevicesController;
+namespace Reefact.LuxaforDevicesController;
 
 [DebuggerDisplay("{ToString()}")]
 internal sealed class Option : ValueType<Option> {
