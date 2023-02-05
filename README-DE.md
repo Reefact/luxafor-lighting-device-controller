@@ -71,7 +71,7 @@ void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration durati
 
 ### Blinken (Stroboskopeffekt)
 
-````csharp
+```csharp
 void Strobe(BasicColor basicColor, Speed speed, Repeat repeat); // Lässt alle LEDs des Geräts in einer Grundfarbe blinken.
 void Strobe(CustomColor customColor, Speed speed, Repeat repeat); // Lässt alle LEDs des Geräts in einer benutzerdefinierten Farbe blinken.
 void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat); // Lässt die LEDs des Zielgeräts in einer Grundfarbe blinken.
