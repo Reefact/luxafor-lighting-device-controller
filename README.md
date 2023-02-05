@@ -1,3 +1,5 @@
+_[English Version](README-EN.md) - [Nederlandse versie](README-NL.md) - [Svensk version](README-SE.md) - [Deutsche Version](README-DE.md) - [Versión española](README-ES.md) - [Ελληνική έκδοση](README-GR.md)_
+
 # Contrôleur de périphériques Luxafor
 
 Une bibliothèque .Net qui fournit une API simple pour contrôler les périphériques Luxafor.
