@@ -14,7 +14,7 @@
     <Description>A .Net library that provides a simple API to control Luxafor devices.</Description>
     <RepositoryUrl>https://github.com/Reefact/luxafor-devices-controller</RepositoryUrl>
     <PackageIcon>diagram.png</PackageIcon>
-    <VersionPrefix>1.0.0-alpha</VersionPrefix>
+    <VersionPrefix>0.2.0-alpha</VersionPrefix>
     <PackageReleaseNotes>Creation of the library.</PackageReleaseNotes>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>$(AssemblyVersion)</FileVersion>
