@@ -27,7 +27,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_setting_color_without_fade() {
             // Setup
-            var setTabSideRed = LightningCommand.CreateSetColorCommand(TargetedLeds.TabSide, new CustomColor(255, 0, 0));
+            var setTabSideRed = LightningCommand.CreateSetColorCommand(TargetedLeds.TabSide, new LightColor(255, 0, 0));
             // Exercise
             byte[] commandBuffer = setTabSideRed.ToBuffer();
             // Verify
@@ -37,7 +37,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_setting_color_with_fade() {
             // Setup
-            var fade = LightningCommand.CreateFadeColorCommand(TargetedLeds.Led_3, new CustomColor(0, 0, 130), FadeDuration.From(50));
+            var fade = LightningCommand.CreateFadeColorCommand(TargetedLeds.Led_3, new LightColor(0, 0, 130), FadeDuration.From(50));
             // Exercise
             byte[] commandBuffer = fade.ToBuffer();
             // Verify
@@ -47,7 +47,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_flashing() {
             // Setup
-            var strobe = LightningCommand.CreateStrobeCommand(TargetedLeds.All, new CustomColor(255, 255, 255), Speed.FromByte(25), Repeat.Count(10));
+            var strobe = LightningCommand.CreateStrobeCommand(TargetedLeds.All, new LightColor(255, 255, 255), Speed.FromByte(25), Repeat.Count(10));
             // Exercise
             byte[] commandBuffer = strobe.ToBuffer();
             // Verify
@@ -57,7 +57,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_waving() {
             // Setup
-            var wave = LightningCommand.CreateWaveCommand(WaveType.Wave_3, new CustomColor(200, 0, 200), Speed.FromByte(80), Repeat.Count(5));
+            var wave = LightningCommand.CreateWaveCommand(WaveType.Wave_3, new LightColor(200, 0, 200), Speed.FromByte(80), Repeat.Count(5));
             // Exercise
             byte[] commandBuffer = wave.ToBuffer();
             // Verify

@@ -51,8 +51,8 @@ internal sealed class LuxaforDeviceImp : LuxaforDevice {
         Send(command);
     }
 
-    public void SetColor(CustomColor customColor) {
-        var command = LightningCommand.CreateSetColorCommand(customColor);
+    public void SetColor(LightColor lightColor) {
+        var command = LightningCommand.CreateSetColorCommand(lightColor);
         Send(command);
     }
 
@@ -61,7 +61,7 @@ internal sealed class LuxaforDeviceImp : LuxaforDevice {
         Send(command);
     }
 
-    public void SetColor(TargetedLeds targetedLeds, CustomColor color) {
+    public void SetColor(TargetedLeds targetedLeds, LightColor color) {
         var command = LightningCommand.CreateSetColorCommand(targetedLeds, color);
         Send(command);
     }
@@ -72,7 +72,7 @@ internal sealed class LuxaforDeviceImp : LuxaforDevice {
     }
 
     /// <inheritdoc />
-    public void FadeColor(CustomColor color, FadeDuration duration) {
+    public void FadeColor(LightColor color, FadeDuration duration) {
         FadeColor(TargetedLeds.All, color, duration);
     }
 
@@ -81,7 +81,7 @@ internal sealed class LuxaforDeviceImp : LuxaforDevice {
         Send(command);
     }
 
-    public void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration duration) {
+    public void FadeColor(TargetedLeds targetedLeds, LightColor color, FadeDuration duration) {
         var command = LightningCommand.CreateFadeColorCommand(targetedLeds, color, duration);
         Send(command);
     }
@@ -92,8 +92,8 @@ internal sealed class LuxaforDeviceImp : LuxaforDevice {
     }
 
     /// <inheritdoc />
-    public void Strobe(CustomColor customColor, Speed speed, Repeat repeat) {
-        Strobe(TargetedLeds.All, customColor, speed, repeat);
+    public void Strobe(LightColor lightColor, Speed speed, Repeat repeat) {
+        Strobe(TargetedLeds.All, lightColor, speed, repeat);
     }
 
     public void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat) {
@@ -101,8 +101,8 @@ internal sealed class LuxaforDeviceImp : LuxaforDevice {
         Send(command);
     }
 
-    public void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat) {
-        var command = LightningCommand.CreateStrobeCommand(targetedLeds, customColor, speed, repeat);
+    public void Strobe(TargetedLeds targetedLeds, LightColor lightColor, Speed speed, Repeat repeat) {
+        var command = LightningCommand.CreateStrobeCommand(targetedLeds, lightColor, speed, repeat);
         Send(command);
     }
 
@@ -111,8 +111,8 @@ internal sealed class LuxaforDeviceImp : LuxaforDevice {
         Send(command);
     }
 
-    public void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat) {
-        var command = LightningCommand.CreateWaveCommand(waveType, customColor, speed, repeat);
+    public void Wave(WaveType waveType, LightColor lightColor, Speed speed, Repeat repeat) {
+        var command = LightningCommand.CreateWaveCommand(waveType, lightColor, speed, repeat);
         Send(command);
     }
 

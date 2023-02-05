@@ -69,14 +69,8 @@ public sealed class TargetedLeds : ValueType<TargetedLeds>, IEnumerable<LedIndex
 
     #endregion
 
-    //public static implicit operator TargetedLeds(LedIndex[] ledIndexes) {
-
-    //    string       stringRepresentation = "LEDs " + ledIndexes.Select(i => $"n° {i}").Aggregate((p, n) => $"{p}, {n}");
-    //    TargetedLeds custom               = new(0, stringRepresentation, ledIndexes);
-
-    //    return custom;
-    //}
-
+    /// <summary>Define a <see cref="LedIndex">LED index</see> as a <see cref="TargetedLeds">targeted LED</see>.</summary>
+    /// <param name="index">The <see cref="LedIndex">LED index</see>.</param>
     public static implicit operator TargetedLeds(LedIndex index) {
         if (index == LedIndex._1) { return Led_1; }
         if (index == LedIndex._2) { return Led_2; }
@@ -106,7 +100,9 @@ public sealed class TargetedLeds : ValueType<TargetedLeds>, IEnumerable<LedIndex
 
     #endregion
 
-    public bool TargetsSingleLed   => _targetedLeds.Count == 1;
+    /// <summary>Gets if the current instance targets a single LED.</summary>
+    public bool TargetsSingleLed => _targetedLeds.Count == 1;
+    /// <summary>Gets if the current instance targets several LEDs.</summary>
     public bool TargetsSeveralLeds => _targetedLeds.Count > 1;
 
     /// <inheritdoc />
@@ -119,13 +115,13 @@ public sealed class TargetedLeds : ValueType<TargetedLeds>, IEnumerable<LedIndex
         return _stringRepresentation;
     }
 
-    public byte ToLuxCode() {
-        return _luxCode;
-    }
-
     /// <inheritdoc />
     protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality() {
         return new object[] { _luxCode };
+    }
+
+    internal byte ToLuxCode() {
+        return _luxCode;
     }
 
     /// <inheritdoc />

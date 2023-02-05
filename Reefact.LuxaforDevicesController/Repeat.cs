@@ -16,7 +16,9 @@ public sealed class Repeat : ValueType<Repeat> {
 
     #region Statics members declarations
 
-    public static readonly Repeat Once  = new(1);
+    /// <summary>Execute a lightning pattern one time.</summary>
+    public static readonly Repeat Once = new(1);
+    /// <summary>Execute a lightning pattern two times.</summary>
     public static readonly Repeat Twice = new(2);
 
     /// <summary>

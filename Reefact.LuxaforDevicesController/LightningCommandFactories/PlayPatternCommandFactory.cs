@@ -30,7 +30,7 @@ internal sealed class PlayPatternCommandFactory : LightningCommandFactory {
     /// <inheritdoc />
     public LightningCommand Create() {
         CommandMode      mode                 = CommandMode.From(_pattern);
-        CustomColor      color                = new(_repeat.ToByte(), 0, 0);
+        LightColor       color                = new(_repeat.ToByte(), 0, 0);
         string           stringRepresentation = CreateStringRepresentation();
         LightningCommand command              = new(CommandCode.ActivateBuiltInPatterns, mode, color, Option.UnUsed, Option.UnUsed, Option.UnUsed, stringRepresentation);
 

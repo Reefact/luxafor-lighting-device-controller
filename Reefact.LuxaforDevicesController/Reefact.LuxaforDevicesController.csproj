@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFrameworks>net7.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -14,11 +14,14 @@
     <Description>A .Net library that provides a simple API to control Luxafor devices.</Description>
     <RepositoryUrl>https://github.com/Reefact/luxafor-devices-controller</RepositoryUrl>
     <PackageIcon>diagram.png</PackageIcon>
+    <VersionPrefix>1.0.0-alpha</VersionPrefix>
+    <PackageReleaseNotes>Creation of the library.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryType>git</RepositoryType>
+    <Configurations>Debug;Release;tt</Configurations>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="TargetedLeds.cs~RF10c95a9e.TMP" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="hidlibrary" Version="3.3.40" />
@@ -32,15 +35,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="diagram.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\README-EN.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+    </None>
+    <None Include="diagram.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
     </None>
   </ItemGroup>
 
@@ -59,11 +64,5 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="diagram.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
 
 </Project>

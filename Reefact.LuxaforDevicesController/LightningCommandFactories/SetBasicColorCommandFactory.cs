@@ -27,7 +27,7 @@ namespace Reefact.LuxaforDevicesController.LightningCommandFactories {
         public LightningCommand Create() {
             CommandMode      mode                 = CommandMode.From(_basicColor);
             string           stringRepresentation = CreateStringRepresentation();
-            LightningCommand command              = new(CommandCode.SetBasicColor, mode, CustomColor.UnUsed, Option.UnUsed, Option.UnUsed, Option.UnUsed, stringRepresentation);
+            LightningCommand command              = new(CommandCode.SetBasicColor, mode, LightColor.UnUsed, Option.UnUsed, Option.UnUsed, Option.UnUsed, stringRepresentation);
 
             return command;
         }

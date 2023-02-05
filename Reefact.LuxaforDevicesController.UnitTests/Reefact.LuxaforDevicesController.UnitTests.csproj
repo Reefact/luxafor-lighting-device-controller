@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
+
+    <Configurations>Debug;Release;tt</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LuxaforDevicesController\Reefact.LuxaforDevicesController.csproj" />
+    <ProjectReference Include="..\Reefact.LuxaforDevicesController\Reefact.LuxaforDevicesController.csproj" />
   </ItemGroup>
 
 </Project>

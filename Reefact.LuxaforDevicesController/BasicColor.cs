@@ -1,9 +1,5 @@
 ﻿#region Usings declarations
 
-#endregion
-
-#region Usings declarations
-
 using System.ComponentModel;
 
 #endregion

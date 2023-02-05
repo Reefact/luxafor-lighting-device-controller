@@ -59,27 +59,27 @@ namespace Reefact.LuxaforDevicesController {
         /// <summary>
         ///     Creates a <see cref="LightningCommand">command</see> to turn on/off all LEDs of a
         ///     <see cref="LuxaforDevice">device</see>
-        ///     in a <paramref name="customColor">custom color</paramref>.
+        ///     in a <paramref name="lightColor">custom color</paramref>.
         /// </summary>
-        /// <param name="customColor">The <see cref="CustomColor">custom color</see>.</param>
+        /// <param name="lightColor">The <see cref="LightColor">custom color</see>.</param>
         /// <returns>A <see cref="LightningCommand">command</see>.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="customColor" /> is null.</exception>
-        public static LightningCommand CreateSetColorCommand(CustomColor customColor) {
-            return CreateSetColorCommand(TargetedLeds.All, customColor);
+        /// <exception cref="ArgumentNullException"><paramref name="lightColor" /> is null.</exception>
+        public static LightningCommand CreateSetColorCommand(LightColor lightColor) {
+            return CreateSetColorCommand(TargetedLeds.All, lightColor);
         }
 
         /// <summary>
         ///     Creates a <see cref="LightningCommand">command</see> to turn on/off
         ///     <paramref name="targetedLeds">targeted LEDs</paramref>
-        ///     of a <see cref="LuxaforDevice">device</see> in a <paramref name="customColor">custom color</paramref>.
+        ///     of a <see cref="LuxaforDevice">device</see> in a <paramref name="lightColor">custom color</paramref>.
         /// </summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
-        /// <param name="customColor">The <see cref="CustomColor">custom color</see>.</param>
+        /// <param name="lightColor">The <see cref="LightColor">custom color</see>.</param>
         /// <returns>A <see cref="LightningCommand">command</see>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="targetedLeds" /> is null.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="customColor" /> is null.</exception>
-        public static LightningCommand CreateSetColorCommand(TargetedLeds targetedLeds, CustomColor customColor) {
-            SetCustomColorCommandFactory factory = new(targetedLeds, customColor);
+        /// <exception cref="ArgumentNullException"><paramref name="lightColor" /> is null.</exception>
+        public static LightningCommand CreateSetColorCommand(TargetedLeds targetedLeds, LightColor lightColor) {
+            SetCustomColorCommandFactory factory = new(targetedLeds, lightColor);
             LightningCommand             command = factory.Create();
 
             return command;
@@ -99,7 +99,7 @@ namespace Reefact.LuxaforDevicesController {
         ///     is not a valid <see cref="BasicColor">basic color</see>.
         /// </exception>
         public static LightningCommand CreateSetColorCommand(TargetedLeds targetedLeds, BasicColor basicColor) {
-            CustomColor color = CustomColor.From(basicColor);
+            LightColor color = LightColor.From(basicColor);
 
             return CreateSetColorCommand(targetedLeds, color);
         }
@@ -107,14 +107,14 @@ namespace Reefact.LuxaforDevicesController {
         /// <summary>
         ///     Create a <see cref="LightningCommand">command</see> to fade <paramref name="targetedLeds">targeted LEDs</paramref>
         ///     of a
-        ///     <see cref="LuxaforDevice">device</see> in a <paramref name="customColor">custom color</paramref>.
+        ///     <see cref="LuxaforDevice">device</see> in a <paramref name="lightColor">custom color</paramref>.
         /// </summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
-        /// <param name="customColor">The <see cref="CustomColor">custom color</see>.</param>
+        /// <param name="lightColor">The <see cref="LightColor">custom color</see>.</param>
         /// <param name="duration">The <see cref="FadeDuration">fade duration</see>.</param>
         /// <returns>A <see cref="LightningCommand">command</see>.</returns>
-        public static LightningCommand CreateFadeColorCommand(TargetedLeds targetedLeds, CustomColor customColor, FadeDuration duration) {
-            FadeColorCommandFactory factory            = new(targetedLeds, customColor, duration);
+        public static LightningCommand CreateFadeColorCommand(TargetedLeds targetedLeds, LightColor lightColor, FadeDuration duration) {
+            FadeColorCommandFactory factory            = new(targetedLeds, lightColor, duration);
             LightningCommand        fadeToColorCommand = factory.Create();
 
             return fadeToColorCommand;
@@ -130,9 +130,9 @@ namespace Reefact.LuxaforDevicesController {
         /// <param name="duration">The <see cref="FadeDuration">fade duration</see>.</param>
         /// <returns>A <see cref="LightningCommand">command</see>.</returns>
         public static LightningCommand CreateFadeColorCommand(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration) {
-            CustomColor customColor = CustomColor.From(basicColor);
+            LightColor lightColor = LightColor.From(basicColor);
 
-            return CreateFadeColorCommand(targetedLeds, customColor, duration);
+            return CreateFadeColorCommand(targetedLeds, lightColor, duration);
         }
 
         /// <summary>
@@ -140,16 +140,16 @@ namespace Reefact.LuxaforDevicesController {
         ///     <paramref name="targetedLeds">targeted LEDs</paramref> of a <see cref="LuxaforDevice">device</see>.
         /// </summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
-        /// <param name="customColor">The <see cref="CustomColor">custom color</see>.</param>
+        /// <param name="lightColor">The <see cref="LightColor">custom color</see>.</param>
         /// <param name="speed">The <see cref="Speed">strobe speed.</see></param>
         /// <param name="repeat">the number of <see cref="Repeat">repetitions</see> to be carried out.</param>
         /// <returns>A <see cref="LightningCommand">command</see>.</returns>
         /// <exception cref="ArgumentNullException">Argument <paramref name="targetedLeds" /> is null.</exception>
-        /// <exception cref="ArgumentNullException">Argument <paramref name="customColor" /> is null.</exception>
+        /// <exception cref="ArgumentNullException">Argument <paramref name="lightColor" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="speed" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="repeat" /> is null.</exception>
-        public static LightningCommand CreateStrobeCommand(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat) {
-            StrobeCommandFactory factory = new(targetedLeds, customColor, speed, repeat);
+        public static LightningCommand CreateStrobeCommand(TargetedLeds targetedLeds, LightColor lightColor, Speed speed, Repeat repeat) {
+            StrobeCommandFactory factory = new(targetedLeds, lightColor, speed, repeat);
             LightningCommand     command = factory.Create();
 
             return command;
@@ -172,9 +172,9 @@ namespace Reefact.LuxaforDevicesController {
         /// <exception cref="ArgumentNullException">Argument <paramref name="speed" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="repeat" /> is null.</exception>
         public static LightningCommand CreateStrobeCommand(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat) {
-            CustomColor customColor = CustomColor.From(basicColor);
+            LightColor lightColor = LightColor.From(basicColor);
 
-            return CreateStrobeCommand(targetedLeds, customColor, speed, repeat);
+            return CreateStrobeCommand(targetedLeds, lightColor, speed, repeat);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Reefact.LuxaforDevicesController {
         ///     <see cref="LuxaforDevice">device</see>.
         /// </summary>
         /// <param name="waveType">The <see cref="WaveType">predefined type</see> of the wave.</param>
-        /// <param name="customColor">The <see cref="CustomColor">custom color</see>.</param>
+        /// <param name="lightColor">The <see cref="LightColor">custom color</see>.</param>
         /// <param name="speed">The <see cref="Speed">strobe speed.</see></param>
         /// <param name="repeat">the number of <see cref="Repeat">repetitions</see> to be carried out.</param>
         /// <returns>A <see cref="LightningCommand">command</see>.</returns>
@@ -190,11 +190,11 @@ namespace Reefact.LuxaforDevicesController {
         ///     <paramref name="waveType" />
         ///     is not a valid <see cref="WaveType">wave type</see>.
         /// </exception>
-        /// <exception cref="ArgumentNullException">Argument <paramref name="customColor" /> is null.</exception>
+        /// <exception cref="ArgumentNullException">Argument <paramref name="lightColor" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="speed" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="repeat" /> is null.</exception>
-        public static LightningCommand CreateWaveCommand(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat) {
-            WaveCommandFactory factory = new(waveType, customColor, speed, repeat);
+        public static LightningCommand CreateWaveCommand(WaveType waveType, LightColor lightColor, Speed speed, Repeat repeat) {
+            WaveCommandFactory factory = new(waveType, lightColor, speed, repeat);
             LightningCommand   command = factory.Create();
 
             return command;
@@ -217,9 +217,9 @@ namespace Reefact.LuxaforDevicesController {
         /// <exception cref="ArgumentNullException">Argument <paramref name="speed" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="repeat" /> is null.</exception>
         public static LightningCommand CreateWaveCommand(WaveType waveType, BasicColor basicColor, Speed speed, Repeat repeat) {
-            CustomColor customColor = CustomColor.From(basicColor);
+            LightColor lightColor = LightColor.From(basicColor);
 
-            return CreateWaveCommand(waveType, customColor, speed, repeat);
+            return CreateWaveCommand(waveType, lightColor, speed, repeat);
         }
 
         /// <summary>
@@ -253,10 +253,11 @@ namespace Reefact.LuxaforDevicesController {
 
         #region Constructors declarations
 
-        internal LightningCommand(CommandCode code,    CommandMode mode,    CustomColor color,
-                                  Option      option1, Option      option2, Option      option3,
+        internal LightningCommand(CommandCode code,    CommandMode mode,    LightColor color,
+                                  Option      option1, Option      option2, Option     option3,
                                   string      stringRepresentation) {
-            _buffer               = new byte[] { 0, code.ToByte(), mode.ToByte(), color.Red, color.Green, color.Blue, option1.ToByte(), option2.ToByte(), option3.ToByte() };
+            var rgb = color.ToRgb();
+            _buffer               = new byte[] { 0, code.ToByte(), mode.ToByte(), rgb.Red, rgb.Green, rgb.Blue, option1.ToByte(), option2.ToByte(), option3.ToByte() };
             _stringRepresentation = stringRepresentation;
         }
 
