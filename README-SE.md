@@ -80,7 +80,7 @@ void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Rep
 
 #### Vågor
 
-````csharp
+```csharp
 void Wave(WaveType waveType, BasicColor basicColor, Speed speed, Repeat repeat); // Startar ett "vågmönster" som riktar sig till alla lysdioder på enheten baserat på en grundfärg.
 void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat); // Startar ett vågmönster som riktar sig till alla lysdioder på enheten baserat på en anpassad färg.
 ```
