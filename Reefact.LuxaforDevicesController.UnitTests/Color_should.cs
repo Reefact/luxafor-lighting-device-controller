@@ -14,7 +14,7 @@ public class Color_should {
     [InlineData("#FF0099", 255, 0, 153)]
     public void be_created_from_its_hexadecimal_representation(string hexadecimalValue, byte expectedRedComponent, byte expectedGreenComponent, byte expectedBlueComponent) {
         // Exercise
-        LightColor color = LightColor.From(hexadecimalValue);
+        BrightColor color = BrightColor.From(hexadecimalValue);
         // Verify
         var rgb = color.ToRgb();
         Check.That(rgb.Red).IsEqualTo(expectedRedComponent);
@@ -28,7 +28,7 @@ public class Color_should {
     [InlineData(255, 0, 153, "#FF0099")]
     public void have_an_expressive_string_representation(byte redComponent, byte greenComponent, byte blueComponent, string expectedRepresentation) {
         // Setup
-        LightColor color = new(redComponent, greenComponent, blueComponent);
+        BrightColor color = new(redComponent, greenComponent, blueComponent);
         // Exercise
         var representation = color.ToString();
         // Verify

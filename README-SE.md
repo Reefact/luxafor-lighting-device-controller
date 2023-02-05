@@ -54,35 +54,28 @@ void TurnOff(TargetedLeds targetedLeds); // Stänger av den målinriktade enhete
 ### Ange en enda färg
 
 ```csharp
-void SetColor(BasicColor basicColor); // Tänder alla enhetens lysdioder i en grundfärg.
-void SetColor(CustomColor customColor customColor); // Tänder enhetens lysdioder i en egen färg.
-void SetColor(TargetedLeds targetedLeds, BasicColor basicColor); // Tänder alla riktade lysdioder på enheten i en grundfärg.
-void SetColor(TargetedLeds targetedLeds, CustomColor color); // Slår på de riktade enheternas lysdioder i en anpassad färg.
+void SetColor(BrightColor color color); // Tänder enhetens lysdioder i en egen färg.
+void SetColor(TargetedLeds targetedLeds, BrightColor color); // Slår på de riktade enheternas lysdioder i en anpassad färg.
 ```
 
 #### Gör en övergång (blekning)
 
 ```csharp
-void FadeColor(BasicColor basicColor basicColor, FadeDuration duration); // Alla lysdioder på enheten övergår till en grundfärg.
-void FadeColor(CustomColor color, FadeDuration duration); // Övergår alla lysdioder på enheten till en anpassad färg.
-void FadeColor(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration); // Övergång till en grundfärg för enhetens målinriktade lysdioder.
-void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration duration); // Övergång av de riktade enhetens lysdioder till en anpassad färg.
+void FadeColor(BrightColor color, FadeDuration duration); // Övergår alla lysdioder på enheten till en anpassad färg.
+void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Övergång av de riktade enhetens lysdioder till en anpassad färg.
 ```
 
 #### Blink (stroboskopeffekt)
 
 ```csharp
-void Strobe(BasicColor basicColor, Speed speed speed, Repeat repeat); // Blinkar alla enhetens lysdioder i en grundfärg.
-void Strobe(CustomColor customColor customColor, Speed speed speed, Repeat repeat); // Blinkar alla lysdioder på enheten i en egen färg.
-void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed speed, Repeat repeat); // Blinkar i en grundläggande färg på enhetens LED-dioder.
-void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat); // Blinkar för de LED-lampor som är målinriktade i en anpassad färg.
+void Strobe(BrightColor color color, Speed speed speed, Repeat repeat); // Blinkar alla lysdioder på enheten i en egen färg.
+void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Blinkar för de LED-lampor som är målinriktade i en anpassad färg.
 ```
 
 #### Vågor
 
 ```csharp
-void Wave(WaveType waveType, BasicColor basicColor, Speed speed, Repeat repeat); // Startar ett "vågmönster" som riktar sig till alla lysdioder på enheten baserat på en grundfärg.
-void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat); // Startar ett vågmönster som riktar sig till alla lysdioder på enheten baserat på en anpassad färg.
+void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Startar ett vågmönster som riktar sig till alla lysdioder på enheten baserat på en anpassad färg.
 ```
 
 ### Inbyggda mönster
@@ -96,7 +89,7 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Starta ett inbyggt mönster 
 Det är möjligt att skapa egna kommandon som kallas `LightningCommand` så att de kan återanvändas i koden:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 Metoden `Send` gör det möjligt att använda dessa kommandon.

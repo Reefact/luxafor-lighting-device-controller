@@ -54,35 +54,28 @@ void TurnOff(TargetedLeds targetedLeds); // Schakel de doelapparaat-LED's uit.
 ### Stel een enkele kleur in
 
 ```csharp
-void SetColor(BasicColor basicColor); // Schakelt alle apparaat-LED's in een basiskleur in.
-void SetColor(CustomColor customColor); // Schakelt de LED's van het apparaat in een aangepaste kleur in.
-void SetColor(TargetedLeds targetedLeds, BasicColor basicColor); // Schakelt alle targetedLeds van het apparaat in een basiskleur in.
-void SetColor(TargetedLeds targetedLeds, CustomColor color); // Schakelt de doelapparaat-LED's in een aangepaste kleur in.
+void SetColor(BrightColor color); // Schakelt de LED's van het apparaat in een aangepaste kleur in.
+void SetColor(TargetedLeds targetedLeds, BrightColor color); // Schakelt de doelapparaat-LED's in een aangepaste kleur in.
 ```
 
 ### Maak een overgang (fade)
 
 ```csharp
-void FadeColor(BasicColor basicColor, FadeDuration duration); // Overgang van alle LED's op het apparaat naar een basiskleur.
-void FadeColor(CustomColor color, FadeDuration duration); // Verandert alle LED's op het apparaat in een aangepaste kleur.
-void FadeColor(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration); // Overgang van de targetedLeds van het apparaat naar een basiskleur
-void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration duration); // Overgang van de doelapparaat-LED's naar een aangepaste kleur.
+void FadeColor(BrightColor color, FadeDuration duration); // Verandert alle LED's op het apparaat in een aangepaste kleur.
+void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Overgang van de doelapparaat-LED's naar een aangepaste kleur.
 ```
 
 ### Knipperen (stroboscoop effect)
 
 ```csharp
-void Strobe(BasicColor basicColor, Speed speed, Repeat repeat); // Alle apparaat-LED's knipperen in een basiskleur.
-void Strobe(CustomColor customColor, Speed speed, Repeat repeat); // Alle LED's van het apparaat knipperen in een aangepaste kleur.
-void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat); // De targetedLeds van het apparaat knipperen in een basiskleur.
-void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat); // De doelapparaat-LED's knipperen in een aangepaste kleur.
+void Strobe(BrightColor color, Speed speed, Repeat repeat); // Alle LED's van het apparaat knipperen in een aangepaste kleur.
+void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // De doelapparaat-LED's knipperen in een aangepaste kleur.
 ```
 
 ### Golven
 
 ```csharp
-void Wave(WaveType waveType, BasicColor basicColor, Speed speed, Repeat repeat); // Start een "golf"-patroon dat zich richt op alle LED's op het apparaat op basis van een basiskleur
-void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat); // Start een golfpatroon dat zich richt op alle LED's op het apparaat op basis van een aangepaste kleur.
+void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Start een golfpatroon dat zich richt op alle LED's op het apparaat op basis van een aangepaste kleur.
 ```
 
 ### Ingebouwde patronen
@@ -96,7 +89,7 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Start een ingebouwd patroon 
 Het is mogelijk om aangepaste commando's te maken met de naam `LightningCommand`, zodat ze in de code kunnen worden hergebruikt:
 
 ```csharp
-var commando = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var commando = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 Met de methode `Zend` kunt u deze commando's gebruiken.

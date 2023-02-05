@@ -40,12 +40,13 @@ public enum BuiltInPattern {
     /// </summary>
     [Description("rainbow")] Rainbow,
     /// <summary>
-    ///     Plays a <see cref="BasicColor.Red" />, <see cref="BasicColor.Yellow" />, <see cref="BasicColor.Green" /> sequence
+    ///     Plays a <see cref="BrightColor.Red" />, <see cref="BrightColor.Yellow" />, <see cref="BrightColor.Green" />
+    ///     sequence
     ///     in the style of traffic lights.
     /// </summary>
     [Description("traffic light")] TrafficLight,
     /// <summary>
-    ///     Plays a <see cref="BasicColor.Red" /> and <see cref="BasicColor.Blue" /> strobe effect in the style of a police
+    ///     Plays a <see cref="BrightColor.Red" /> and <see cref="BrightColor.Blue" /> strobe effect in the style of a police
     ///     flashing light.
     /// </summary>
     [Description("police")] Police

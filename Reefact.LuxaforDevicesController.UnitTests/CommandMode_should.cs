@@ -9,18 +9,6 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
     public class CommandMode_should {
 
         [Fact]
-        public void have_a_byte_representation_in_accordance_with_the_Luxafor_protocol_when_from_basic_colors() {
-            Check.That(CommandMode.From(BasicColor.Red).ToByte()).IsEqualTo(Convert.ToByte('R'));
-            Check.That(CommandMode.From(BasicColor.Green).ToByte()).IsEqualTo(Convert.ToByte('G'));
-            Check.That(CommandMode.From(BasicColor.Blue).ToByte()).IsEqualTo(Convert.ToByte('B'));
-            Check.That(CommandMode.From(BasicColor.Cyan).ToByte()).IsEqualTo(Convert.ToByte('C'));
-            Check.That(CommandMode.From(BasicColor.Magenta).ToByte()).IsEqualTo(Convert.ToByte('M'));
-            Check.That(CommandMode.From(BasicColor.Yellow).ToByte()).IsEqualTo(Convert.ToByte('Y'));
-            Check.That(CommandMode.From(BasicColor.White).ToByte()).IsEqualTo(Convert.ToByte('W'));
-            Check.That(CommandMode.From(BasicColor.Off).ToByte()).IsEqualTo(Convert.ToByte('O'));
-        }
-
-        [Fact]
         public void have_a_byte_representation_in_accordance_with_the_Luxafor_when_targeting_leds() {
             Check.That(CommandMode.From(TargetedLeds.All).ToByte()).IsEqualTo(255);
             Check.That(CommandMode.From(TargetedLeds.BackSide).ToByte()).IsEqualTo(Convert.ToByte('A'));

@@ -5,15 +5,15 @@
         #region Statics members declarations
 
         private static void EndSequence(LuxaforDevice orb) {
-            orb.Strobe(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(1), Repeat.Twice);
+            orb.Strobe(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(1), Repeat.Twice);
             Thread.Sleep(200);
             orb.Send(MyCommand.SetAllYellow);
             Thread.Sleep(2000);
-            orb.SetColor(BasicColor.Off);
+            orb.SetColor(BrightColor.Black);
         }
 
         private static void StartSequence(LuxaforDevice orb) {
-            orb.SetColor(BasicColor.Off);
+            orb.SetColor(BrightColor.Black);
             orb.Send(MyCommand.StrobeYellow);
             Thread.Sleep(4000);
         }
@@ -30,7 +30,7 @@
             for (var r = 0; r < 4; r++) {
                 for (byte i = 1; i <= 6; i++) {
                     LedIndex ledIndex = LedIndex.From(i);
-                    orb.Strobe(ledIndex, BasicColor.Red, Speed.FromByte(1), Repeat.Count((byte)repeat));
+                    orb.Strobe(ledIndex, BrightColor.Red, Speed.FromByte(1), Repeat.Count((byte)repeat));
                     Thread.Sleep(sleep);
                 }
                 repeat /= 2;
@@ -45,7 +45,7 @@
             LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
-            orb.SetColor(BasicColor.Red);
+            orb.SetColor(BrightColor.Red);
             Thread.Sleep(1000);
             orb.TurnOff(TargetedLeds.TabSide);
             Thread.Sleep(1000);
@@ -61,13 +61,13 @@
             StartSequence(orb);
 
             for (var i = 0; i < 3; i++) {
-                orb.SetColor(BasicColor.Blue);
+                orb.SetColor(BrightColor.Blue);
                 Thread.Sleep(500);
-                orb.SetColor(BasicColor.White);
+                orb.SetColor(BrightColor.White);
                 Thread.Sleep(500);
-                orb.SetColor(BasicColor.Red);
+                orb.SetColor(BrightColor.Red);
                 Thread.Sleep(500);
-                orb.SetColor(BasicColor.Off);
+                orb.SetColor(BrightColor.Black);
                 Thread.Sleep(1000);
             }
 
@@ -79,23 +79,23 @@
             LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
-            orb.Strobe(LedIndex._1, BasicColor.Green, Speed.FromByte(10), Repeat.Count(5));
+            orb.Strobe(LedIndex._1, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
             Thread.Sleep(3500);
-            orb.Strobe(LedIndex._2, BasicColor.Green, Speed.FromByte(10), Repeat.Count(5));
+            orb.Strobe(LedIndex._2, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
             Thread.Sleep(3500);
-            orb.Strobe(LedIndex._3, BasicColor.Green, Speed.FromByte(10), Repeat.Count(5));
+            orb.Strobe(LedIndex._3, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
             Thread.Sleep(3500);
-            orb.Strobe(LedIndex._4, BasicColor.Green, Speed.FromByte(10), Repeat.Count(5));
+            orb.Strobe(LedIndex._4, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
             Thread.Sleep(3500);
-            orb.Strobe(LedIndex._5, BasicColor.Green, Speed.FromByte(10), Repeat.Count(5));
+            orb.Strobe(LedIndex._5, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
             Thread.Sleep(3500);
-            orb.Strobe(LedIndex._6, BasicColor.Green, Speed.FromByte(10), Repeat.Count(5));
+            orb.Strobe(LedIndex._6, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
             Thread.Sleep(3500);
-            orb.Strobe(TargetedLeds.TabSide, BasicColor.Green, Speed.FromByte(10), Repeat.Count(5));
+            orb.Strobe(TargetedLeds.TabSide, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
             Thread.Sleep(3500);
-            orb.Strobe(TargetedLeds.BackSide, BasicColor.Green, Speed.FromByte(10), Repeat.Count(5));
+            orb.Strobe(TargetedLeds.BackSide, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
             Thread.Sleep(3500);
-            orb.Strobe(TargetedLeds.All, BasicColor.Green, Speed.FromByte(10), Repeat.Count(5));
+            orb.Strobe(TargetedLeds.All, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
             Thread.Sleep(3500);
 
             EndSequence(orb);
@@ -132,11 +132,11 @@
             for (var i = 0; i < 6; i++) {
                 orb.Send(MyCommand.SetBackSideMagenta);
                 orb.Send(MyCommand.SetTabSideCyan);
-                orb.SetColor(TargetedLeds.Led_2, BasicColor.Green);
+                orb.SetColor(TargetedLeds.Led_2, BrightColor.Green);
                 Thread.Sleep(250);
                 orb.Send(MyCommand.SetBackSideCyan);
                 orb.Send(MyCommand.SetTabSideMagenta);
-                orb.SetColor(TargetedLeds.Led_5, BasicColor.Green);
+                orb.SetColor(TargetedLeds.Led_5, BrightColor.Green);
                 Thread.Sleep(250);
             }
             EndSequence(orb);
@@ -147,9 +147,9 @@
             LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
-            orb.SetColor(BasicColor.Off);
-            orb.SetColor(TargetedLeds.Led_1, BasicColor.Blue);
-            orb.SetColor(TargetedLeds.Led_4, BasicColor.Blue);
+            orb.SetColor(BrightColor.Black);
+            orb.SetColor(TargetedLeds.Led_1, BrightColor.Blue);
+            orb.SetColor(TargetedLeds.Led_4, BrightColor.Blue);
             Thread.Sleep(3000);
 
             EndSequence(orb);
@@ -161,19 +161,19 @@
             StartSequence(orb);
 
             for (var i = 0; i < 4; i++) {
-                orb.SetColor(TargetedLeds.Led_2, BasicColor.Off);
-                orb.SetColor(TargetedLeds.Led_4, BasicColor.Off);
-                orb.SetColor(TargetedLeds.Led_6, BasicColor.Off);
-                orb.SetColor(TargetedLeds.Led_1, BasicColor.Blue);
-                orb.SetColor(TargetedLeds.Led_3, BasicColor.Blue);
-                orb.SetColor(TargetedLeds.Led_5, BasicColor.Blue);
+                orb.SetColor(TargetedLeds.Led_2, BrightColor.Black);
+                orb.SetColor(TargetedLeds.Led_4, BrightColor.Black);
+                orb.SetColor(TargetedLeds.Led_6, BrightColor.Black);
+                orb.SetColor(TargetedLeds.Led_1, BrightColor.Blue);
+                orb.SetColor(TargetedLeds.Led_3, BrightColor.Blue);
+                orb.SetColor(TargetedLeds.Led_5, BrightColor.Blue);
                 Thread.Sleep(500);
-                orb.SetColor(TargetedLeds.Led_1, BasicColor.Off);
-                orb.SetColor(TargetedLeds.Led_3, BasicColor.Off);
-                orb.SetColor(TargetedLeds.Led_5, BasicColor.Off);
-                orb.SetColor(TargetedLeds.Led_2, BasicColor.Blue);
-                orb.SetColor(TargetedLeds.Led_4, BasicColor.Blue);
-                orb.SetColor(TargetedLeds.Led_6, BasicColor.Blue);
+                orb.SetColor(TargetedLeds.Led_1, BrightColor.Black);
+                orb.SetColor(TargetedLeds.Led_3, BrightColor.Black);
+                orb.SetColor(TargetedLeds.Led_5, BrightColor.Black);
+                orb.SetColor(TargetedLeds.Led_2, BrightColor.Blue);
+                orb.SetColor(TargetedLeds.Led_4, BrightColor.Blue);
+                orb.SetColor(TargetedLeds.Led_6, BrightColor.Blue);
                 Thread.Sleep(500);
             }
 
@@ -186,16 +186,16 @@
 
             #region Statics members declarations
 
-            public static readonly LightningCommand SetAllYellow       = LightningCommand.CreateSetColorCommand(BasicColor.Yellow);
-            public static readonly LightningCommand StrobeYellow       = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
-            public static readonly LightningCommand SetAllMagenta      = LightningCommand.CreateSetColorCommand(BasicColor.Magenta);
-            public static readonly LightningCommand SetBackSideMagenta = LightningCommand.CreateSetColorCommand(TargetedLeds.BackSide, BasicColor.Magenta);
-            public static readonly LightningCommand SetTabSideMagenta  = LightningCommand.CreateSetColorCommand(TargetedLeds.TabSide, BasicColor.Magenta);
-            public static readonly LightningCommand SetAllCyan         = LightningCommand.CreateSetColorCommand(BasicColor.Cyan);
-            public static readonly LightningCommand SetBackSideCyan    = LightningCommand.CreateSetColorCommand(TargetedLeds.BackSide, BasicColor.Cyan);
-            public static readonly LightningCommand SetTabSideCyan     = LightningCommand.CreateSetColorCommand(TargetedLeds.TabSide, BasicColor.Cyan);
-            public static readonly LightningCommand CustomWaveAlpha    = LightningCommand.CreateWaveCommand(WaveType.Wave_1, BasicColor.Magenta, Speed.FromByte(1), Repeat.Count(20));
-            public static readonly LightningCommand CustomWaveBeta     = LightningCommand.CreateWaveCommand(WaveType.Wave_4, BasicColor.Cyan, Speed.FromByte(1), Repeat.Count(20));
+            public static readonly LightningCommand SetAllYellow       = LightningCommand.CreateSetColorCommand(BrightColor.Yellow);
+            public static readonly LightningCommand StrobeYellow       = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+            public static readonly LightningCommand SetAllMagenta      = LightningCommand.CreateSetColorCommand(BrightColor.Magenta);
+            public static readonly LightningCommand SetBackSideMagenta = LightningCommand.CreateSetColorCommand(TargetedLeds.BackSide, BrightColor.Magenta);
+            public static readonly LightningCommand SetTabSideMagenta  = LightningCommand.CreateSetColorCommand(TargetedLeds.TabSide, BrightColor.Magenta);
+            public static readonly LightningCommand SetAllCyan         = LightningCommand.CreateSetColorCommand(BrightColor.Cyan);
+            public static readonly LightningCommand SetBackSideCyan    = LightningCommand.CreateSetColorCommand(TargetedLeds.BackSide, BrightColor.Cyan);
+            public static readonly LightningCommand SetTabSideCyan     = LightningCommand.CreateSetColorCommand(TargetedLeds.TabSide, BrightColor.Cyan);
+            public static readonly LightningCommand CustomWaveAlpha    = LightningCommand.CreateWaveCommand(WaveType.Wave_1, BrightColor.Magenta, Speed.FromByte(1), Repeat.Count(20));
+            public static readonly LightningCommand CustomWaveBeta     = LightningCommand.CreateWaveCommand(WaveType.Wave_4, BrightColor.Cyan, Speed.FromByte(1), Repeat.Count(20));
 
             #endregion
 

@@ -55,8 +55,4 @@ public sealed class FadeDuration : ValueType<FadeDuration> {
         return _value;
     }
 
-    //public static explicit operator FadeDuration(byte value) {
-    //    return new FadeDuration(value);
-    //}
-
 }

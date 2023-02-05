@@ -46,73 +46,38 @@ internal sealed class LuxaforDeviceImp : LuxaforDevice {
         Send(command);
     }
 
-    public void SetColor(BasicColor basicColor) {
-        var command = LightningCommand.CreateSetColorCommand(basicColor);
+    public void SetColor(BrightColor color) {
+        var command = LightningCommand.CreateSetColorCommand(color);
         Send(command);
     }
 
-    public void SetColor(LightColor lightColor) {
-        var command = LightningCommand.CreateSetColorCommand(lightColor);
-        Send(command);
-    }
-
-    public void SetColor(TargetedLeds targetedLeds, BasicColor basicColor) {
-        var command = LightningCommand.CreateSetColorCommand(targetedLeds, basicColor);
-        Send(command);
-    }
-
-    public void SetColor(TargetedLeds targetedLeds, LightColor color) {
+    public void SetColor(TargetedLeds targetedLeds, BrightColor color) {
         var command = LightningCommand.CreateSetColorCommand(targetedLeds, color);
         Send(command);
     }
 
     /// <inheritdoc />
-    public void FadeColor(BasicColor basicColor, FadeDuration duration) {
-        FadeColor(TargetedLeds.All, basicColor, duration);
-    }
-
-    /// <inheritdoc />
-    public void FadeColor(LightColor color, FadeDuration duration) {
+    public void FadeColor(BrightColor color, FadeDuration duration) {
         FadeColor(TargetedLeds.All, color, duration);
     }
 
-    public void FadeColor(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration) {
-        var command = LightningCommand.CreateFadeColorCommand(targetedLeds, basicColor, duration);
-        Send(command);
-    }
-
-    public void FadeColor(TargetedLeds targetedLeds, LightColor color, FadeDuration duration) {
+    public void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration) {
         var command = LightningCommand.CreateFadeColorCommand(targetedLeds, color, duration);
         Send(command);
     }
 
     /// <inheritdoc />
-    public void Strobe(BasicColor basicColor, Speed speed, Repeat repeat) {
-        Strobe(TargetedLeds.All, basicColor, speed, repeat);
+    public void Strobe(BrightColor color, Speed speed, Repeat repeat) {
+        Strobe(TargetedLeds.All, color, speed, repeat);
     }
 
-    /// <inheritdoc />
-    public void Strobe(LightColor lightColor, Speed speed, Repeat repeat) {
-        Strobe(TargetedLeds.All, lightColor, speed, repeat);
-    }
-
-    public void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat) {
-        var command = LightningCommand.CreateStrobeCommand(targetedLeds, basicColor, speed, repeat);
+    public void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat) {
+        var command = LightningCommand.CreateStrobeCommand(targetedLeds, color, speed, repeat);
         Send(command);
     }
 
-    public void Strobe(TargetedLeds targetedLeds, LightColor lightColor, Speed speed, Repeat repeat) {
-        var command = LightningCommand.CreateStrobeCommand(targetedLeds, lightColor, speed, repeat);
-        Send(command);
-    }
-
-    public void Wave(WaveType waveType, BasicColor basicColor, Speed speed, Repeat repeat) {
-        var command = LightningCommand.CreateWaveCommand(waveType, basicColor, speed, repeat);
-        Send(command);
-    }
-
-    public void Wave(WaveType waveType, LightColor lightColor, Speed speed, Repeat repeat) {
-        var command = LightningCommand.CreateWaveCommand(waveType, lightColor, speed, repeat);
+    public void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat) {
+        var command = LightningCommand.CreateWaveCommand(waveType, color, speed, repeat);
         Send(command);
     }
 

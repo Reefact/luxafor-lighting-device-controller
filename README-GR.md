@@ -54,35 +54,28 @@ void TurnOff(TargetedLeds targetedLeds); // Απενεργοποίηση των 
 ### Ορίστε ένα μόνο χρώμα
 
 ```csharp
-void SetColor(BasicColor basicColor); // Ενεργοποιεί όλες τις λυχνίες LED της συσκευής σε ένα βασικό χρώμα.
-void SetColor(CustomColor customColor customColor); // Ενεργοποιεί τις λυχνίες LED της συσκευής σε ένα προσαρμοσμένο χρώμα.
-void SetColor(TargetedLeds targetedLeds, BasicColor basicColor); // Ενεργοποιεί όλες τις στοχευμένες λυχνίες LED της συσκευής σε ένα βασικό χρώμα.
-void SetColor(TargetedLeds targetedLeds, CustomColor color); // Ενεργοποιεί τα LED της στοχευμένης συσκευής σε ένα προσαρμοσμένο χρώμα.
+void SetColor(BrightColor color color); // Ενεργοποιεί τις λυχνίες LED της συσκευής σε ένα προσαρμοσμένο χρώμα.
+void SetColor(TargetedLeds targetedLeds, BrightColor color); // Ενεργοποιεί τα LED της στοχευμένης συσκευής σε ένα προσαρμοσμένο χρώμα.
 ```
 
 ### Κάντε μια μετάβαση (fade)
 
 ```csharp
-void FadeColor(BasicColor basicColor, FadeDuration duration); // Μετάβαση όλων των LED της συσκευής σε ένα βασικό χρώμα
-void FadeColor(CustomColor color, FadeDuration duration); // Μεταβαίνει όλα τα LED της συσκευής σε ένα προσαρμοσμένο χρώμα.
-void FadeColor(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration) // Μετάβαση των στοχευμένων LED της συσκευής σε ένα βασικό χρώμα.
-void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration duration) // Μετάβαση των LED της στοχευμένης συσκευής σε ένα προσαρμοσμένο χρώμα
+void FadeColor(BrightColor color, FadeDuration duration); // Μεταβαίνει όλα τα LED της συσκευής σε ένα προσαρμοσμένο χρώμα.
+void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration) // Μετάβαση των LED της στοχευμένης συσκευής σε ένα προσαρμοσμένο χρώμα
 ```
 
 ### Blink (στροβοσκόπιο)
 
 ```csharp
-void Strobe(BasicColor basicColor, Speed speed, Repeat repeat); // Αναβοσβήνει όλα τα LED της συσκευής σε ένα βασικό χρώμα
-void Strobe(CustomColor customColor, Speed speed, Repeat repeat); // Αναβοσβήνει όλα τα LED της συσκευής σε ένα προσαρμοσμένο χρώμα.
-void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat); // Αναβοσβήνει τις στοχευμένες λυχνίες LED της συσκευής με ένα βασικό χρώμα.
-void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat); // Αναβοσβήνει τα LED της στοχευμένης συσκευής σε ένα προσαρμοσμένο χρώμα.
+void Strobe(BrightColor color, Speed speed, Repeat repeat); // Αναβοσβήνει όλα τα LED της συσκευής σε ένα προσαρμοσμένο χρώμα.
+void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Αναβοσβήνει τα LED της στοχευμένης συσκευής σε ένα προσαρμοσμένο χρώμα.
 ```
 
 ### Waves
 
 ```csharp
-void Wave(WaveType waveType, BasicColor basicColor, Speed speed, Repeat repeat); // Ξεκινά ένα μοτίβο "κύματος" που στοχεύει όλα τα LED της συσκευής με βάση ένα βασικό χρώμα.
-void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat); // Ξεκινάει ένα μοτίβο κύματος που στοχεύει όλα τα LED της συσκευής με βάση ένα προσαρμοσμένο χρώμα.
+void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Ξεκινάει ένα μοτίβο κύματος που στοχεύει όλα τα LED της συσκευής με βάση ένα προσαρμοσμένο χρώμα.
 ```
 
 ### Ενσωματωμένα μοτίβα
@@ -96,7 +89,7 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Εκκίνηση ενός ε
 Είναι δυνατή η δημιουργία προσαρμοσμένων εντολών με την ονομασία `LightningCommand` ώστε να μπορούν να επαναχρησιμοποιηθούν στον κώδικα:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(20), Repeat.Count(3)),
+var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All,BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3)),
 ```
 
 Η μέθοδος `Send` σας επιτρέπει να χρησιμοποιήσετε αυτές τις εντολές.

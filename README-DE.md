@@ -54,35 +54,28 @@ void TurnOff(TargetedLeds targetedLeds); // Schaltet die LEDs des Zielgeräts au
 ### Definieren Sie eine einzelne Farbe.
 
 ```csharp
-void SetColor(BasicColor basicColor); // Schaltet alle LEDs des Geräts in einer Grundfarbe ein.
-void SetColor(CustomColor customColor); // Schaltet die LEDs des Geräts in einer benutzerdefinierten Farbe ein.
-void SetColor(TargetedLeds targetedLeds, BasicColor basicColor); // Schaltet alle Ziel-LEDs des Geräts in einer Grundfarbe ein.
-void SetColor(TargetedLeds targetedLeds, CustomColor color); // Schaltet die LEDs des Zielgeräts in einer benutzerdefinierten Farbe ein.
+void SetColor(BrightColor color); // Schaltet die LEDs des Geräts in einer benutzerdefinierten Farbe ein.
+void SetColor(TargetedLeds targetedLeds, BrightColor color); // Schaltet die LEDs des Zielgeräts in einer benutzerdefinierten Farbe ein.
 ```
 
 ### Einen Übergang (Fade) durchführen.
 
 ```csharp
-void FadeColor(BasicColor basicColor, FadeDuration duration); // Überblenden Sie alle LEDs des Geräts in eine Grundfarbe.
-void FadeColor(CustomColor color, FadeDuration duration); // Alle LEDs des Geräts werden in eine benutzerdefinierte Farbe umgewandelt.
-void FadeColor(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration); // Führt einen Übergang der Ziel-LEDs des Geräts zu einer Grundfarbe durch.
-void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration duration); // Überblendet die LEDs des Zielgeräts in eine benutzerdefinierte Farbe.
+void FadeColor(BrightColor color, FadeDuration duration); // Alle LEDs des Geräts werden in eine benutzerdefinierte Farbe umgewandelt.
+void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Überblendet die LEDs des Zielgeräts in eine benutzerdefinierte Farbe.
 ```
 
 ### Blinken (Stroboskopeffekt)
 
 ```csharp
-void Strobe(BasicColor basicColor, Speed speed, Repeat repeat); // Lässt alle LEDs des Geräts in einer Grundfarbe blinken.
-void Strobe(CustomColor customColor, Speed speed, Repeat repeat); // Lässt alle LEDs des Geräts in einer benutzerdefinierten Farbe blinken.
-void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat); // Lässt die LEDs des Zielgeräts in einer Grundfarbe blinken.
-void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat); // Lässt die LEDs des Zielgeräts in einer benutzerdefinierten Farbe blinken.
+void Strobe(BrightColor color, Speed speed, Repeat repeat); // Lässt alle LEDs des Geräts in einer benutzerdefinierten Farbe blinken.
+void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Lässt die LEDs des Zielgeräts in einer benutzerdefinierten Farbe blinken.
 ```
 
 ### Wellen
 
 ```csharp
-void Wave(WaveType waveType, BasicColor basicColor, Speed speed, Repeat repeat); // Startet ein Wellenmuster, das alle LEDs des Geräts basierend auf einer Grundfarbe anvisiert.
-void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat); // Startet ein wellenförmiges Muster, das alle LEDs des Geräts auf der Grundlage einer benutzerdefinierten Farbe anvisiert.
+void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Startet ein wellenförmiges Muster, das alle LEDs des Geräts auf der Grundlage einer benutzerdefinierten Farbe anvisiert.
 ```
 
 ### Integrierte Muster
@@ -96,7 +89,7 @@ void PlayPattern(BuiltInPattern pattern, Repeat repeat); // Startet ein eingebet
 Es ist möglich, eigene Befehle mit dem Namen ``LightningCommand`` zu erstellen, um sie im Code wiederverwenden zu können:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 Mit der Methode `Send` können Sie diese Befehle verwenden.

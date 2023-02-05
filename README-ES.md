@@ -54,35 +54,28 @@ void TurnOff(TargetedLeds targetedLeds); // Apagar los LEDs del dispositivo apun
 ### Establecer un solo color
 
 ```csharp
-void SetColor(BasicColor basicColor); // Enciende todos los LEDs del dispositivo en un color básico.
-void SetColor(CustomColor customColor); // Enciende los LEDs del dispositivo en un color personalizado.
-void SetColor(TargetedLeds targetedLeds, BasicColor basicColor); // Enciende todos los LEDs targeted del dispositivo en un color básico.
-void SetColor(TargetedLeds targetedLeds, CustomColor color); // Enciende los LEDs del dispositivo targeted en un color personalizado.
+void SetColor(BrightColor color); // Enciende los LEDs del dispositivo en un color personalizado.
+void SetColor(TargetedLeds targetedLeds, BrightColor color); // Enciende los LEDs del dispositivo targeted en un color personalizado.
 ```
 
 ### Hacer una transición (fundido)
 
 ```csharp
-void FadeColor(BasicColor basicColor, FadeDuration duration); // Transición de todos los LEDs del dispositivo a un color básico
-void FadeColor(CustomColor color, FadeDuration duration); // Cambia todos los LEDs del dispositivo a un color personalizado
-void FadeColor(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration); // Transición de los LEDs del dispositivo a un color básico
-void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration duration); // Transición de los LEDs del dispositivo a un color personalizado
+void FadeColor(BrightColor color, FadeDuration duration); // Cambia todos los LEDs del dispositivo a un color personalizado
+void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Transición de los LEDs del dispositivo a un color personalizado
 ```
 
 ### Blink (efecto estroboscópico)
 
 ```csharp
-void Strobe(BasicColor basicColor, Speed speed, Repeat repeat); // Parpadea todos los LEDs del dispositivo en un color básico
-void Strobe(CustomColor customColor, Speed speed, Repeat repeat); // Parpadea todos los LEDs del dispositivo en un color personalizado.
-void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat); // Hace parpadear los LEDs del dispositivo en un color básico
-void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat); // Hace parpadear los LEDs del dispositivo objetivo en un color personalizado
+void Strobe(BrightColor color, Speed speed, Repeat repeat); // Parpadea todos los LEDs del dispositivo en un color personalizado.
+void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Hace parpadear los LEDs del dispositivo objetivo en un color personalizado
 ```
 
 ### Waves
 
 ```csharp
-void Wave(WaveType waveType, BasicColor basicColor, Speed speed, Repeat repeat); // Inicia un patrón de "onda" que se dirige a todos los LEDs del dispositivo en función de un color básico.
-void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat); // Inicia un patrón de onda que se dirige a todos los LEDs del dispositivo basándose en un color personalizado.
+void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Inicia un patrón de onda que se dirige a todos los LEDs del dispositivo basándose en un color personalizado.
 ```
 
 ### Patrones incorporados
@@ -96,7 +89,7 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Iniciar un patrón incorpora
 Es posible crear comandos personalizados llamados `LightningCommand` para que puedan ser reutilizados en el código:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 El método `Enviar` le permite utilizar estos comandos.

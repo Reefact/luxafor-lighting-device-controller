@@ -56,35 +56,28 @@ void TurnOff(TargetedLeds targetedLeds); // Eteint les LEDs du périphérique ci
 ### Définir une couleur unique
 
 ```csharp
-void SetColor(BasicColor basicColor); // Allume toutes les LEDs du périphérique dans une couleur basique.
-void SetColor(CustomColor customColor); // Allume les LEDs du périphérique dans une couleur personnalisée.
-void SetColor(TargetedLeds targetedLeds, BasicColor basicColor);  // Allume toutes les LEDs du périphérique ciblées dans une couleur basique.
-void SetColor(TargetedLeds targetedLeds, CustomColor color); // Allume les LEDs du périphérique ciblées dans une couleur personnalisée.
+void SetColor(BrightColor color); // Allume les LEDs du périphérique dans une couleur personnalisée.
+void SetColor(TargetedLeds targetedLeds, BrightColor color); // Allume les LEDs du périphérique ciblées dans une couleur personnalisée.
 ```
 
 ### Effectuer une transition (fondu)
 
 ```csharp
-void FadeColor(BasicColor basicColor, FadeDuration duration); // Effectue une transition de toutes les LEDs du périphérique vers une couleur basique
-void FadeColor(CustomColor color, FadeDuration duration); // Effectue une transition de toutes les LEDs du périphérique vers une couleur personnalisée
-void FadeColor(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration); // Effectue une transition des LEDs du périphérique ciblées vers une couleur basique
-void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration duration); // Effectue une transition des LEDs du périphérique ciblées vers une couleur personnalisée
+void FadeColor(BrightColor color, FadeDuration duration); // Effectue une transition de toutes les LEDs du périphérique vers une couleur personnalisée
+void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Effectue une transition des LEDs du périphérique ciblées vers une couleur personnalisée
 ```
 
 ### Clignotement (effet stroboscopique)
 
 ```csharp
-void Strobe(BasicColor basicColor, Speed speed, Repeat repeat); // Fait clignoter toutes les LEDs du périphérique dans une couleur basique
-void Strobe(CustomColor customColor, Speed speed, Repeat repeat); // Fait clignoter toutes les LEDs du périphérique dans une couleur personnalisée
-void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat); // Fait clignoter les LEDs du périphérique ciblées dans une couleur basique
-void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat); // Fait clignoter les LEDs du périphérique ciblées dans une couleur personnalisée
+void Strobe(BrightColor color, Speed speed, Repeat repeat); // Fait clignoter toutes les LEDs du périphérique dans une couleur personnalisée
+void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Fait clignoter les LEDs du périphérique ciblées dans une couleur personnalisée
 ```
 
 ### Vagues
 
 ```csharp
-void Wave(WaveType waveType, BasicColor  basicColor,  Speed speed, Repeat repeat); // Démarre un motif de type "vague" qui cible toutes les LEDs du périphérique basé sur une couleur basique
-void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat); // Démarre un motif de type "vague" qui cible toutes les LEDs du périphérique basé sur une couleur personnalisée
+void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Démarre un motif de type "vague" qui cible toutes les LEDs du périphérique basé sur une couleur personnalisée
 ```
 
 ### Motifs intégrés
@@ -98,7 +91,7 @@ void PlayPattern(BuiltInPattern pattern, Repeat repeat); // Démarre un motif in
 Il est possible de créer des commandes personnalisées appelées `LightningCommand` afin de pouvoir les réutiliser dans le code:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 La méthode `Send` permet d'utiliser ces commandes.

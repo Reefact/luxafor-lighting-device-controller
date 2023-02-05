@@ -15,7 +15,6 @@ internal sealed class CommandCode : ValueType<CommandCode> {
 
     #region Statics members declarations
 
-    public static readonly CommandCode SetBasicColor           = new(LuxaforProtocol.CommandCode.SimpleColourCommand, "set basic color");
     public static readonly CommandCode SetColorWithoutFade     = new(LuxaforProtocol.CommandCode.StaticsColourWithoutFade, "set color without fade");
     public static readonly CommandCode SetColorWithFade        = new(LuxaforProtocol.CommandCode.ChangeColourWithFade, "set color with fade");
     public static readonly CommandCode ActivateStrobe          = new(LuxaforProtocol.CommandCode.Strob, "activate strobe");

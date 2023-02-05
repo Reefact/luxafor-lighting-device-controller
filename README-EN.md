@@ -54,35 +54,27 @@ void TurnOff(TargetedLeds targetedLeds); // Turn off the targeted LEDs of the de
 ### Set a single color
 
 ```csharp
-void SetColor(BasicColor basicColor); // Turns on all device LEDs in a basic color.
-void SetColor(CustomColor customColor); // Turns on the device's LEDs in a custom color.
-void SetColor(TargetedLeds targetedLeds, BasicColor basicColor); // Turns on all the targeted LEDs of the device in a basic color.
-void SetColor(TargetedLeds targetedLeds, CustomColor color); // Turns on the targeted LEDs of the device in a custom color.
+void SetColor(BrightColor color); // Turns on the device's LEDs in a custom color.
 ```
 
 ### Make a transition (fade)
 
 ```csharp
-void FadeColor(BasicColor basicColor, FadeDuration duration); // Transition all LEDs on the device to a basic color
-void FadeColor(CustomColor color, FadeDuration duration); // Make a transition from all the LEDs of the device to a custom color
-void FadeColor(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration); // Performs a transition of the targeted LEDs of the device to a basic color
-void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration duration); // Performs a transition from the targeted device LEDs to a custom color
+void FadeColor(BrightColor color, FadeDuration duration); // Make a transition from all the LEDs of the device to a custom color
+void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Performs a transition from the targeted device LEDs to a custom color
 ```
 
 ### Flashing (strobe effect)
 
 ```csharp
-void Strobe(BasicColor basicColor, Speed speed, Repeat repeat); // Flashes all the LEDs of the device in a basic color
-void Strobe(CustomColor customColor, Speed speed, Repeat repeat); // Flashes all the LEDs of the device in a custom color
-void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat); // Flashes the targeted LEDs of the device in a basic color
-void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat); // Flashes the targeted device LEDs in a custom color
+void Strobe(BrightColor color, Speed speed, Repeat repeat); // Flashes all the LEDs of the device in a custom color
+void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Flashes the targeted device LEDs in a custom color
 ```
 
 ### Waves
 
 ```csharp
-void Wave(WaveType waveType, BasicColor basicColor, Speed speed, Repeat repeat); // Starts a "wave" pattern that targets all the LEDs of the device based on a basic color
-void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat); // Starts a wave pattern that targets all the LEDs of the device based on a custom color
+void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Starts a wave pattern that targets all the LEDs of the device based on a custom color
 ```
 
 ### Built-in patterns
@@ -96,7 +88,7 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Starts an embedded pattern t
 It is possible to create custom commands called `LightningCommand` so that they can be reused in the code:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 The `Send` method allows you to use these commands.

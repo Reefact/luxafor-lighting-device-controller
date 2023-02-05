@@ -10,7 +10,6 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
         [Fact]
         public void have_a_byte_representation_in_accordance_with_the_Luxafor_protocol() {
-            Check.That(CommandCode.SetBasicColor.ToByte()).IsEqualTo(0);
             Check.That(CommandCode.SetColorWithoutFade.ToByte()).IsEqualTo(1);
             Check.That(CommandCode.SetColorWithFade.ToByte()).IsEqualTo(2);
             Check.That(CommandCode.ActivateStrobe.ToByte()).IsEqualTo(3);

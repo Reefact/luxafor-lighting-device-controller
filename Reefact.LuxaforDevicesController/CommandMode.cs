@@ -16,14 +16,6 @@ internal sealed class CommandMode : ValueType<CommandMode> {
 
     #region Statics members declarations
 
-    public static CommandMode From(BasicColor basicColor) {
-        if (!Enum.IsDefined(typeof(BasicColor), basicColor)) { throw new InvalidEnumArgumentException(nameof(basicColor), (int)basicColor, typeof(BasicColor)); }
-
-        var basicColorAsByte = BasicColorConverter.ToByte(basicColor);
-
-        return new CommandMode(basicColorAsByte);
-    }
-
     public static CommandMode From(TargetedLeds targetedLeds) {
         if (targetedLeds is null) { throw new ArgumentNullException(nameof(targetedLeds)); }
 
