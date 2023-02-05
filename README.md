@@ -4,7 +4,7 @@ Une bibliothèque .Net qui fournit une API simple pour contrôler les périphér
 
 ## Luxafor
 
-### Présentation de la Société
+### Présentation de la société
 
 [Luxafor](https://luxafor.com) est une entreprise qui conçoit et vend des produits pour la productivité de bureau, tels que des indicateurs de disponibilité et des outils de notification. 
 
@@ -12,7 +12,7 @@ Leur produit phare est un [indicateur de disponibilité LED](https://luxafor.com
 
 L'objectif de Luxafor est de fournir aux utilisateurs un moyen simple et efficace de signaler leur disponibilité aux collègues de travail et d'améliorer la communication et la collaboration en entrepris
 
-### Présentation Rapide des Périphériques
+### Présentation rapide des périphériques
 
 Voici une liste non-exhaustive des [périphériques Luxafor](https://luxafor.com/products):
 
@@ -30,7 +30,7 @@ Voici une liste non-exhaustive des [périphériques Luxafor](https://luxafor.com
 
 Ces différents périphériques sont conçus pour être pilotés manuellement ('mécanique') pour certains, de façon semi-automatique (pilotage manuel via [logiciel](https://luxaformanual.com)) / automatique (intégration via [logiciels](https://luxaformanual.com) à des outils comme Teams, Skype, Cisco, Zappier ou via Webhook) pour d'autres. 
 
-## Présentation de la Librairie
+## Présentation de la librairie
 
 Cette librairie à pour but de permettre l'intégration des périphériques USB à LED à vos applications in-house sans avoir besoin de passer par le serveur Luxafor (webhook).
 
@@ -40,25 +40,67 @@ Le code ci-dessous présente un exemple d'utilisation basique de la librairie po
 
 https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController.UnitTests/UsageExamples.cs#L20-L32
 
-La librairie permet d'exploiter l'ensemble des fonctionnalités proposées par ces périphériques à LED.
+La ligne 21 montre comment se connecter à un unique Orb connecté au port USB de la machine.
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L42
-Permet d'éteindre le périphérique.
+Je vais présenter rapidement l'ensemble des commandes possibles à envoyer aux périphériques à partir du `LuxaforDevice`.
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L47
-Permet d'allumer toutes les LEDs du périphérique dans une des couleurs de base.
+### Eteindre
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L52
-Permet d'allumer la/les LEDs sélectionnées du périphérique dans une couleur personnalisée.
+```csharp
+void TurnOff(); // Eteint toutes les LEDs du périphérique
+void TurnOff(TargetedLeds targetedLeds); // Eteint les LEDs du périphérique ciblées
+```
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L52
-Permet d'effectuer un fondu pour la/les LEDs sélectionnées du périphérique dans une couleur personnalisée.
+### Définir une couleur unique
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L69
-Permet d'activer le mode `wave` en sélectionnant certains paramètres.
+```csharp
+void SetColor(BasicColor basicColor); // Allume toutes les LEDs du périphérique dans une couleur basique.
+void SetColor(CustomColor customColor); // Allume les LEDs du périphérique dans une couleur personnalisée.
+void SetColor(TargetedLeds targetedLeds, BasicColor basicColor);  // Allume toutes les LEDs du périphérique ciblées dans une couleur basique.
+void SetColor(TargetedLeds targetedLeds, CustomColor color); // Allume les LEDs du périphérique ciblées dans une couleur personnalisée.
+```
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L78
-Permet d'activer le mode `strobe` en sélectionnant certains paramètres.
+### Effectuer une transition (fondu)
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController/LuxaforDevice.cs#L88
-Permet d'activer le mode `built-in pattern` en sélectionnant certains paramètres.
+```csharp
+void FadeColor(BasicColor basicColor, FadeDuration duration); // Effectue une transition de toutes les LEDs du périphérique vers une couleur basique
+void FadeColor(CustomColor color, FadeDuration duration); // Effectue une transition de toutes les LEDs du périphérique vers une couleur personnalisée
+void FadeColor(TargetedLeds targetedLeds, BasicColor basicColor, FadeDuration duration); // Effectue une transition des LEDs du périphérique ciblées vers une couleur basique
+void FadeColor(TargetedLeds targetedLeds, CustomColor color, FadeDuration duration); // Effectue une transition des LEDs du périphérique ciblées vers une couleur personnalisée
+```
+
+### Clignotement (effet stroboscopique)
+
+```csharp
+void Strobe(BasicColor basicColor, Speed speed, Repeat repeat); // Fait clignoter toutes les LEDs du périphérique dans une couleur basique
+void Strobe(CustomColor customColor, Speed speed, Repeat repeat); // Fait clignoter toutes les LEDs du périphérique dans une couleur personnalisée
+void Strobe(TargetedLeds targetedLeds, BasicColor basicColor, Speed speed, Repeat repeat); // Fait clignoter les LEDs du périphérique ciblées dans une couleur basique
+void Strobe(TargetedLeds targetedLeds, CustomColor customColor, Speed speed, Repeat repeat); // Fait clignoter les LEDs du périphérique ciblées dans une couleur personnalisée
+```
+
+### Vagues
+
+```csharp
+void Wave(WaveType waveType, BasicColor  basicColor,  Speed speed, Repeat repeat); // Démarre un motif de type "vague" qui cible toutes les LEDs du périphérique basé sur une couleur basique
+void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat); // Démarre un motif de type "vague" qui cible toutes les LEDs du périphérique basé sur une couleur personnalisée
+```
+
+### Motifs intégrés
+
+```csharp
+void PlayPattern(BuiltInPattern pattern, Repeat repeat); // Démarre un motif intégré qui cible toutes les LEDs du périphérique
+```
+
+### Envoyer une commande
+
+Il est possible de créer des commandes personnalisées appelées `LightningCommand` afin de pouvoir les réutiliser dans le code:
+
+```csharp
+var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BasicColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+```
+
+La méthode `Send` permet d'utiliser ces commandes.
+
+```csharp
+void Send(LightningCommand command); // Envoye une commande au périphérique
+```
