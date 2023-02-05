@@ -16,15 +16,15 @@ El objetivo de Luxafor es proporcionar a los usuarios una forma sencilla y efica
 
 He aquí una lista no exhaustiva de [dispositivos Luxafor](https://luxafor.com/products):
 
-- Luxafor Flag: un indicador LED de disponibilidad que muestra la disponibilidad personal
-- Luxafor Bluetooth': un indicador LED de disponibilidad inalámbrico y controlado por software que muestra las notificaciones y la disponibilidad personal.
-- Luxafor Switch: un indicador de disponibilidad inalámbrico y teledirigido que muestra en tiempo real la disponibilidad de las salas de reuniones y los puestos de trabajo.
-- Luxafor Cube`: un indicador LED de disponibilidad autónomo que muestra la disponibilidad de las salas de reuniones
-- Luxafor Pomodoro-Timer`: un temporizador LED alimentado por USB que permite dividir el trabajo en espacios más pequeños (véase [Pomodoro](https://reefact.net/craftsmanship/tools/pomodoro))
-- Luxafor Orb`: un indicador LED de disponibilidad USB de gran ángulo
-- Luxafor CO2 Monitor: un sensor que analiza la calidad del aire de una habitación y le avisa cuando es necesario ventilarla.
-- Botón Luxafor Mute: enciende/apaga el micrófono con un solo toque e indica si estás disponible con el rojo/verde
-- Luxafor Colorblind Flag: luz monocroma USB LED de disponibilidad elimina las distracciones y aumenta la productividad
+- `Luxafor Flag`: un indicador LED de disponibilidad que muestra la disponibilidad personal
+- `Luxafor Bluetooth`: un indicador LED de disponibilidad inalámbrico y controlado por software que muestra las notificaciones y la disponibilidad personal.
+- `Luxafor Switch`: un indicador de disponibilidad inalámbrico y teledirigido que muestra en tiempo real la disponibilidad de las salas de reuniones y los puestos de trabajo.
+- `Luxafor Cube`: un indicador LED de disponibilidad autónomo que muestra la disponibilidad de las salas de reuniones
+- `Luxafor Pomodoro-Timer`: un temporizador LED alimentado por USB que permite dividir el trabajo en espacios más pequeños (véase [Pomodoro](https://reefact.net/craftsmanship/tools/pomodoro))
+- `Luxafor Orb`: un indicador LED de disponibilidad USB de gran ángulo
+- `Luxafor CO2 Monitor`: un sensor que analiza la calidad del aire de una habitación y le avisa cuando es necesario ventilarla.
+- `Botón Luxafor Mute`: enciende/apaga el micrófono con un solo toque e indica si estás disponible con el rojo/verde
+- `Luxafor Colorblind Flag`: luz monocroma USB LED de disponibilidad elimina las distracciones y aumenta la productividad
 
 ### Integración
 
