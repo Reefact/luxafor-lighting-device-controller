@@ -28,7 +28,7 @@ public static class Luxafor {
     /// <returns>An <see cref="IEnumerable{LuxaforDevice}">enumeration</see> of devices.</returns>
     public static IEnumerable<LuxaforDevice> GetDevices() {
         IHidEnumerator             hidEnumerator  = new HidEnumerator();
-        IEnumerable<LuxaforDevice> luxaforDevices = hidEnumerator.Enumerate(VendorId, ProductId).Select(t => new LuxaforDevice(t));
+        IEnumerable<LuxaforDevice> luxaforDevices = hidEnumerator.Enumerate(VendorId, ProductId).Select(t => new LuxaforDeviceImp(t));
 
         return luxaforDevices;
     }
@@ -42,9 +42,9 @@ public static class Luxafor {
     public static LuxaforDevice GetDevice(string devicePath) {
         if (devicePath is null) { throw new ArgumentNullException(nameof(devicePath)); }
 
-        IHidEnumerator hidEnumerator = new HidEnumerator();
-        IHidDevice     target        = hidEnumerator.GetDevice(devicePath);
-        LuxaforDevice  luxaforDevice = new(target);
+        IHidEnumerator   hidEnumerator = new HidEnumerator();
+        IHidDevice       target        = hidEnumerator.GetDevice(devicePath);
+        LuxaforDeviceImp luxaforDevice = new(target);
 
         return luxaforDevice;
     }

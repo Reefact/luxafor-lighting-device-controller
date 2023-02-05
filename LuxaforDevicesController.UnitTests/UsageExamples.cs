@@ -41,6 +41,21 @@
         }
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
+        public void turn_off_specified_leds() {
+            LuxaforDevice orb = Luxafor.GetDevices().First();
+            StartSequence(orb);
+
+            orb.SetColor(BasicColor.Red);
+            Thread.Sleep(1000);
+            orb.TurnOff(TargetedLeds.TabSide);
+            Thread.Sleep(1000);
+            orb.TurnOff(TargetedLeds.BackSide);
+            Thread.Sleep(1000);
+
+            EndSequence(orb);
+        }
+
+        [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void french_sequence() {
             LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
@@ -181,7 +196,6 @@
             public static readonly LightningCommand SetTabSideCyan     = LightningCommand.CreateSetColorCommand(TargetedLeds.TabSide, BasicColor.Cyan);
             public static readonly LightningCommand CustomWaveAlpha    = LightningCommand.CreateWaveCommand(WaveType.Wave_1, BasicColor.Magenta, Speed.FromByte(1), Repeat.Count(20));
             public static readonly LightningCommand CustomWaveBeta     = LightningCommand.CreateWaveCommand(WaveType.Wave_4, BasicColor.Cyan, Speed.FromByte(1), Repeat.Count(20));
-            public static readonly LightningCommand Off                = LightningCommand.CreateSetColorCommand(BasicColor.Off);
 
             #endregion
 
