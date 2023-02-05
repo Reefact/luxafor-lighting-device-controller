@@ -16,15 +16,15 @@ Luxafors mål är att ge användarna ett enkelt och effektivt sätt att signaler
 
 Här är en icke uttömmande förteckning över [Luxafor-apparater] (https://luxafor.com/products):
 
-- Luxafor Flag: en LED-indikator för tillgänglighet som visar personlig tillgänglighet.
-- Luxafor Bluetooth": en trådlös, mjukvarustyrd LED-indikator för tillgänglighet som visar meddelanden och personlig tillgänglighet.
-- Luxafor Switch: en trådlös, fjärrstyrd tillgänglighetsindikator som visar tillgängligheten för mötesrum och arbetsstationer i realtid.
-- Luxafor Cube`: en fristående LED-indikator som visar om mötesrummen är tillgängliga.
-- Luxafor Pomodoro-Timer`: en USB-driven LED-timer som gör det möjligt att dela upp arbetet i mindre delar (se [Pomodoro](https://reefact.net/craftsmanship/tools/pomodoro))).
-- Luxafor Orb`: en LED-indikator för USB-tillgänglighet med bred vinkel.
-- Luxafor CO2 Monitor: en sensor som analyserar luftkvaliteten i ett rum och varnar dig när det behöver ventileras.
-- Luxafor Mute-knapp: Slå på/av mikrofonen med en enda beröring och indikera om du är tillgänglig med den röda/gröna
-- Luxafor Colorblind Flag: monokrom USB LED-tillgänglighetslampa som eliminerar distraktioner och ökar produktiviteten.
+- `Luxafor Flag`: en LED-indikator för tillgänglighet som visar personlig tillgänglighet.
+- `Luxafor Bluetooth`: en trådlös, mjukvarustyrd LED-indikator för tillgänglighet som visar meddelanden och personlig tillgänglighet.
+- `Luxafor Switch`: en trådlös, fjärrstyrd tillgänglighetsindikator som visar tillgängligheten för mötesrum och arbetsstationer i realtid.
+- `Luxafor Cube`: en fristående LED-indikator som visar om mötesrummen är tillgängliga.
+- `Luxafor Pomodoro-Timer`: en USB-driven LED-timer som gör det möjligt att dela upp arbetet i mindre delar (se [Pomodoro](https://reefact.net/craftsmanship/tools/pomodoro))).
+- `Luxafor Orb`: en LED-indikator för USB-tillgänglighet med bred vinkel.
+- `Luxafor CO2 Monitor`: en sensor som analyserar luftkvaliteten i ett rum och varnar dig när det behöver ventileras.
+- `Luxafor Mute-knapp`: Slå på/av mikrofonen med en enda beröring och indikera om du är tillgänglig med den röda/gröna
+- `Luxafor Colorblind Flag`: monokrom USB LED-tillgänglighetslampa som eliminerar distraktioner och ökar produktiviteten.
 
 #### Integration
 
