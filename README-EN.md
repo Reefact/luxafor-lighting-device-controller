@@ -87,7 +87,7 @@ void Wave(WaveType waveType, CustomColor customColor, Speed speed, Repeat repeat
 
 ### Built-in patterns
 
-csharp
+```csharp
 void PlayPattern(BuiltInPattern, Repeat repeat); // Starts an embedded pattern that targets all LEDs on the device
 ```
 
