@@ -5,6 +5,7 @@
     <AssemblyName>Reefact.LuxaforLightingDeviceController</AssemblyName>
     <RootNamespace>Reefact.LuxaforLightingDeviceController</RootNamespace>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
   </PropertyGroup>
 
