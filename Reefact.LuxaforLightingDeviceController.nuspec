@@ -3,7 +3,7 @@
   <metadata>
     <id>Reefact.LuxaforLightingDeviceController</id>
     <title>Luxafor Lighting Device Controller</title>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>Sylvain AURAT</authors>
     <owners>Sylvain AURAT</owners>
     <license type="expression">Apache-2.0</license>
@@ -14,13 +14,19 @@
     <description>A .Net library that provides a simple API to control Luxafor lighting devices.</description>
     <summary>Transform your monitoring experience! With this library, create your own connectors for a total control of your alerts and notifications.</summary>
     <readme>docs\readme.md</readme>
-    <releaseNotes>NEW !!!</releaseNotes>
+    <releaseNotes>Fix nuspec dependencies.</releaseNotes>
     <copyright>©2023 Reefact</copyright>
     <language>en-US</language>
     <tags>HID library</tags>
     <dependencies>
-      <group targetFramework=".NETFramework4.6.2" />
-      <group targetFramework=".NETStandard2.0" />
+      <group targetFramework=".NETFramework4.6.2" >
+        <dependency id="hidlibrary" version="3.3.40" />
+        <dependency id="Value" version="1.1.0.1" />
+      </group>
+      <group targetFramework=".NETStandard2.0" >
+        <dependency id="hidlibrary" version="3.3.40" />
+        <dependency id="Value" version="1.1.0.1" />
+      </group>
     </dependencies>
   </metadata>
   <files>
