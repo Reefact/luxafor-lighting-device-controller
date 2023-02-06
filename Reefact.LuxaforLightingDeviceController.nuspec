@@ -3,7 +3,7 @@
   <metadata>
     <id>Reefact.LuxaforLightingDeviceController</id>
     <title>Luxafor Lighting Device Controller</title>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <authors>Sylvain AURAT</authors>
     <owners>Sylvain AURAT</owners>
     <license type="expression">Apache-2.0</license>
@@ -14,7 +14,7 @@
     <description>A .Net library that provides a simple API to control Luxafor lighting devices.</description>
     <summary>Transform your monitoring experience! With this library, create your own connectors for a total control of your alerts and notifications.</summary>
     <readme>docs\readme.md</readme>
-    <releaseNotes>Simplified LuxaforDevice interface + fix readme files + add pdb and documentation to the Nuget package.</releaseNotes>
+    <releaseNotes>Fix inclusion of pdb + xml documentation files in Nuget package for the .Net Standard assembly.</releaseNotes>
     <copyright>©2023 Reefact</copyright>
     <language>en-US</language>
     <tags>HID library</tags>
@@ -37,8 +37,8 @@
     <file src="Reefact.LuxaforLightingDeviceController.Net46\bin\Debug\Reefact.LuxaforLightingDeviceController.xml" target="lib\net462\Reefact.LuxaforLightingDeviceController.xml" />
     <file src="Reefact.LuxaforLightingDeviceController.Net46\bin\Debug\Reefact.LuxaforLightingDeviceController.pdb" target="lib\net462\Reefact.LuxaforLightingDeviceController.pdb" />
     <file src="Reefact.LuxaforLightingDeviceController.NetStandard20\bin\Debug\netstandard2.0\Reefact.LuxaforLightingDeviceController.dll" target="lib\netstandard2.0\Reefact.LuxaforLightingDeviceController.dll" />
-    <file src="Reefact.LuxaforLightingDeviceController.NetStandard20\bin\Debug\netstandard2.0\Reefact.LuxaforLightingDeviceController.dll" target="lib\netstandard2.0\Reefact.LuxaforLightingDeviceController.xml" />
-    <file src="Reefact.LuxaforLightingDeviceController.NetStandard20\bin\Debug\netstandard2.0\Reefact.LuxaforLightingDeviceController.dll" target="lib\netstandard2.0\Reefact.LuxaforLightingDeviceController.pdb" />
+    <file src="Reefact.LuxaforLightingDeviceController.NetStandard20\bin\Debug\netstandard2.0\Reefact.LuxaforLightingDeviceController.xml" target="lib\netstandard2.0\Reefact.LuxaforLightingDeviceController.xml" />
+    <file src="Reefact.LuxaforLightingDeviceController.NetStandard20\bin\Debug\netstandard2.0\Reefact.LuxaforLightingDeviceController.pdb" target="lib\netstandard2.0\Reefact.LuxaforLightingDeviceController.pdb" />
     <!-- Documentation -->
     <file src="README-EN.md" target="docs\readme.md" />
   </files>
