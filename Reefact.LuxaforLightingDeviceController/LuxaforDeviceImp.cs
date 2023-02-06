@@ -78,13 +78,13 @@ namespace Reefact.LuxaforLightingDeviceController {
             Send(command);
         }
 
-        public void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat) {
-            var command = LightingCommand.CreateWaveCommand(waveType, color, speed, repeat);
+        public void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat) {
+            var command = LightingCommand.CreatePlayWavePatternCommand(wavePattern, color, speed, repeat);
             Send(command);
         }
 
-        public void PlayPattern(BuiltInPattern pattern, Repeat repeat) {
-            var command = LightingCommand.CreatePlayPatternCommand(pattern, repeat);
+        public void PlayPattern(BuiltInPattern builtInPattern, Repeat repeat) {
+            var command = LightingCommand.CreatePlayBuiltInPatternCommand(builtInPattern, repeat);
             Send(command);
         }
 

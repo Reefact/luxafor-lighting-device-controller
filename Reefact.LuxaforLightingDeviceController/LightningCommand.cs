@@ -109,20 +109,20 @@ namespace Reefact.LuxaforLightingDeviceController {
         ///     Create a <see cref="LightingCommand">command</see> to activate a wave effect of a
         ///     <see cref="LuxaforDevice">device</see>.
         /// </summary>
-        /// <param name="waveType">The <see cref="WaveType">predefined type</see> of the wave.</param>
+        /// <param name="wavePattern">The <see cref="WavePattern">predefined type</see> of the wave.</param>
         /// <param name="color">The <see cref="BrightColor">bright color</see>.</param>
         /// <param name="speed">The <see cref="Speed">strobe speed.</see></param>
         /// <param name="repeat">the number of <see cref="Repeat">repetitions</see> to be carried out.</param>
         /// <returns>A <see cref="LightingCommand">command</see>.</returns>
         /// <exception cref="InvalidEnumArgumentException">
-        ///     <paramref name="waveType" />
-        ///     is not a valid <see cref="WaveType">wave type</see>.
+        ///     <paramref name="wavePattern" />
+        ///     is not a valid <see cref="WavePattern">wave type</see>.
         /// </exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="color" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="speed" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="repeat" /> is null.</exception>
-        public static LightingCommand CreateWaveCommand(WaveType waveType, BrightColor color, Speed speed, Repeat repeat) {
-            var             factory = new WaveCommandFactory(waveType, color, speed, repeat);
+        public static LightingCommand CreatePlayWavePatternCommand(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat) {
+            var             factory = new PlayWavePatternCommandFactory(wavePattern, color, speed, repeat);
             LightingCommand command = factory.Create();
 
             return command;
@@ -132,17 +132,17 @@ namespace Reefact.LuxaforLightingDeviceController {
         ///     Create a <see cref="LightingCommand">command</see> to play a built-in pattern of a
         ///     <see cref="LuxaforDevice">device</see>.
         /// </summary>
-        /// <param name="pattern">The <see cref="BuiltInPattern">predefined built-in pattern</see> to activate.</param>
+        /// <param name="builtInPattern">The <see cref="BuiltInPattern">predefined built-in pattern</see> to activate.</param>
         /// <param name="repeat">the number of <see cref="Repeat">repetitions</see> to be carried out.</param>
         /// <returns>A <see cref="LightingCommand">command</see>.</returns>
         /// <exception cref="InvalidEnumArgumentException">
-        ///     <paramref name="pattern" />
+        ///     <paramref name="builtInPattern" />
         ///     is not a valid <see cref="BuiltInPattern">built-in pattern</see>.
         /// </exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="repeat" /> is null.</exception>
         /// .
-        public static LightingCommand CreatePlayPatternCommand(BuiltInPattern pattern, Repeat repeat) {
-            var             factory = new PlayPatternCommandFactory(pattern, repeat);
+        public static LightingCommand CreatePlayBuiltInPatternCommand(BuiltInPattern builtInPattern, Repeat repeat) {
+            var             factory = new PlayBuiltInPatternCommandFactory(builtInPattern, repeat);
             LightingCommand command = factory.Create();
 
             return command;

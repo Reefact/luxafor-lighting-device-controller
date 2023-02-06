@@ -8,7 +8,7 @@
 
 [Luxafor](https://luxafor.com) είναι μια εταιρεία που σχεδιάζει και πωλεί προϊόντα για την παραγωγικότητα του γραφείου, όπως δείκτες διαθεσιμότητας και εργαλεία ειδοποίησης. 
 
-Η ναυαρχίδα τους είναι ένας [δείκτης διαθεσιμότητας LED] (https://luxafor.com/product/flag) που μπορεί να προγραμματιστεί ώστε να εμφανίζει διαφορετικά χρώματα ανάλογα με την κατάσταση διαθεσιμότητας του χρήστη. 
+Η ναυαρχίδα τους είναι ένας [δείκτης διαθεσιμότητας LED](https://luxafor.com/product/flag) που μπορεί να προγραμματιστεί ώστε να εμφανίζει διαφορετικά χρώματα ανάλογα με την κατάσταση διαθεσιμότητας του χρήστη. 
 
 Στόχος της Luxafor είναι να παρέχει στους χρήστες έναν απλό και αποτελεσματικό τρόπο για να δηλώνουν τη διαθεσιμότητά τους στους συναδέλφους τους και να βελτιώνουν την επικοινωνία και τη συνεργασία στο χώρο εργασίας.
 
@@ -34,13 +34,28 @@
 
 Αυτή η βιβλιοθήκη έχει ως στόχο να επιτρέψει την ενσωμάτωση συσκευών LED USB στις εσωτερικές σας εφαρμογές χωρίς να χρειάζεται να περάσετε από τον διακομιστή Luxafor (webhook).
 
-Έχει αναπτυχθεί σε .Net Core και βασίζεται στη βιβλιοθήκη [HidLibrairy] (https://github.com/mikeobrien/HidLibrary), η οποία επιτρέπει την απαρίθμηση και την επικοινωνία με συσκευές USB συμβατές με HID στο .NET.
+Έχει αναπτυχθεί σε .Net Core και βασίζεται στη βιβλιοθήκη [HidLibrairy](https://github.com/mikeobrien/HidLibrary), η οποία επιτρέπει την απαρίθμηση και την επικοινωνία με συσκευές USB συμβατές με HID στο .NET.
 
 Ο παρακάτω κώδικας δείχνει ένα παράδειγμα βασικής χρήσης της βιβλιοθήκης για την οδήγηση μιας συσκευής [Luxafor Orb](https://luxafor.com/product/orb/).
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController.UnitTests/UsageExamples.cs#L20-L32
+```csharp
+[Fact]
+public void french_sequence() {
+    LuxaforDevice orb = Luxafor.GetDevices().First();
+    for (var i = 0; i < 3; i++) {
+        orb.SetBasicColor(BasicColor.Blue);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.White);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Red);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Off);
+        Thread.Sleep(1000);
+    }
+}
+```
 
-Η γραμμή 21 δείχνει πώς να συνδεθείτε σε ένα μόνο Orb που είναι συνδεδεμένο στη θύρα USB του μηχανήματος.
+Η γραμμή 3 δείχνει πώς να συνδεθείτε σε ένα μόνο Orb που είναι συνδεδεμένο στη θύρα USB του μηχανήματος.
 
 Θα εξετάσω γρήγορα το σύνολο των πιθανών εντολών που μπορείτε να στείλετε σε συσκευές από το `LuxaforDevice`.
 
@@ -72,15 +87,10 @@ void Strobe(BrightColor color, Speed speed, Repeat repeat); // Αναβοσβή�
 void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Αναβοσβήνει τα LED της στοχευμένης συσκευής σε ένα προσαρμοσμένο χρώμα.
 ```
 
-### Waves
+### Waves / Ενσωματωμένα μοτίβα
 
 ```csharp
-void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Ξεκινάει ένα μοτίβο κύματος που στοχεύει όλα τα LED της συσκευής με βάση ένα προσαρμοσμένο χρώμα.
-```
-
-### Ενσωματωμένα μοτίβα
-
-```csharp
+void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat); // Ξεκινάει ένα μοτίβο κύματος που στοχεύει όλα τα LED της συσκευής με βάση ένα προσαρμοσμένο χρώμα.
 void PlayPattern(BuiltInPattern, Repeat repeat); // Εκκίνηση ενός ενσωματωμένου μοτίβου που στοχεύει σε όλες τις λυχνίες LED της συσκευής
 ```
 

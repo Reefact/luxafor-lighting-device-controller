@@ -12,12 +12,6 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
     public class Command_should {
 
-        #region Statics members declarations
-
-        private static readonly byte G = Convert.ToByte('G');
-
-        #endregion
-
         [Fact]
         public void create_a_command_buffer_for_setting_all_device_leds_to_primary_color() {
             // Setup
@@ -61,7 +55,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_waving() {
             // Setup
-            var wave = LightingCommand.CreateWaveCommand(WaveType.Wave_3, new BrightColor(200, 0, 200), Speed.FromByte(80), Repeat.Count(5));
+            var wave = LightingCommand.CreatePlayWavePatternCommand(WavePattern.Wave_3, new BrightColor(200, 0, 200), Speed.FromByte(80), Repeat.Count(5));
             // Exercise
             byte[] commandBuffer = wave.ToBuffer();
             // Verify
@@ -71,14 +65,12 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_built_in_pattern() {
             // Setup
-            var pattern = LightingCommand.CreatePlayPatternCommand(BuiltInPattern.Police, Repeat.Count(33));
+            var pattern = LightingCommand.CreatePlayBuiltInPatternCommand(BuiltInPattern.Police, Repeat.Count(33));
             // Exercise
             byte[] commandBuffer = pattern.ToBuffer();
             // Verify
             Check.That(commandBuffer).ContainsExactly(0, 6, 5, 33, 0, 0, 0, 0, 0);
         }
-
-        // TODO: integrate productivity
 
     }
 

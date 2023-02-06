@@ -34,13 +34,28 @@ These different devices are designed to be driven manually ('mechanical') for so
 
 This library aims to allow the integration of USB LED devices to your in-house applications without having to go through the Luxafor server (webhook).
 
-It is developed in .Net Core and is based on the [HidLibrairy] library (https://github.com/mikeobrien/HidLibrary) which allows to enumerate and communicate with HID compatible USB devices in .NET.
+It is developed in .Net Core and is based on the library [HidLibrairy](https://github.com/mikeobrien/HidLibrary) which allows to enumerate and communicate with HID compatible USB devices in .NET.
 
 The code below presents an example of basic use of the library for the control of a [Luxafor Orb](https://luxafor.com/product/orb/) device.
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController.UnitTests/UsageExamples.cs#L20-L32
+```csharp
+[Fact]
+public void french_sequence() {
+    LuxaforDevice orb = Luxafor.GetDevices().First();
+    for (var i = 0; i < 3; i++) {
+        orb.SetBasicColor(BasicColor.Blue);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.White);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Red);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Off);
+        Thread.Sleep(1000);
+    }
+}
+```
 
-Line 21 shows how to connect to a single Orb connected to the machine's USB port.
+Line 3 shows how to connect to a single Orb connected to the machine's USB port.
 
 I will quickly go through all the possible commands to send to devices from the `LuxaforDevice`.
 
@@ -71,15 +86,10 @@ void Strobe(BrightColor color, Speed speed, Repeat repeat); // Flashes all the L
 void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Flashes the targeted device LEDs in a custom color
 ```
 
-### Waves
+### Waves / built-in patterns
 
 ```csharp
-void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Starts a wave pattern that targets all the LEDs of the device based on a custom color
-```
-
-### Built-in patterns
-
-```csharp
+void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat); // Starts a wave pattern that targets all the LEDs of the device based on a custom color
 void PlayPattern(BuiltInPattern, Repeat repeat); // Starts an embedded pattern that targets all LEDs on the device
 ```
 

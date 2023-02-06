@@ -3,7 +3,7 @@
     /// <summary>
     ///     Provides a set of predefined wave lighting effects.
     /// </summary>
-    public enum WaveType {
+    public enum WavePattern {
 
         /// <summary>
         ///     Plays a predefined lighting wave.

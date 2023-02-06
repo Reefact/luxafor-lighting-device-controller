@@ -34,13 +34,28 @@ Diese verschiedenen Geräte sind so konzipiert, dass sie teilweise manuell ('mec
 
 Diese Bibliothek soll die Integration von USB-LED-Geräten in Ihre In-House-Anwendungen ermöglichen, ohne dass Sie den Luxafor-Server (Webhook) nutzen müssen.
 
-Sie wurde in .Net Core entwickelt und basiert auf der [HidLibrairy]-Bibliothek (https://github.com/mikeobrien/HidLibrary), die es ermöglicht, HID-kompatible USB-Geräte in .NET aufzulisten und mit ihnen zu kommunizieren.
+Sie wurde in .Net Core entwickelt und basiert auf der Bibliothek [HidLibrairy](https://github.com/mikeobrien/HidLibrary), die es ermöglicht, HID-kompatible USB-Geräte in .NET aufzulisten und mit ihnen zu kommunizieren.
 
 Der folgende Code zeigt ein Beispiel für die grundlegende Verwendung der Bibliothek zur Steuerung eines [Luxafor Orb](https://luxafor.com/product/orb/)-Geräts.
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController.UnitTests/UsageExamples.cs#L20-L32
+```csharp
+[Fact]
+public void french_sequence() {
+    LuxaforDevice orb = Luxafor.GetDevices().First();
+    for (var i = 0; i < 3; i++) {
+        orb.SetBasicColor(BasicColor.Blue);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.White);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Red);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Off);
+        Thread.Sleep(1000);
+    }
+}
+```
 
-Zeile 21 zeigt, wie man sich mit einem einzelnen Orb verbindet, der an den USB-Anschluss des Geräts angeschlossen ist.
+Zeile 3 zeigt, wie man sich mit einem einzelnen Orb verbindet, der an den USB-Anschluss des Geräts angeschlossen ist.
 
 Ich werde kurz die Gesamtheit der möglichen Befehle vorstellen, die vom `LuxaforDevice` aus an die Geräte gesendet werden können.
 
@@ -72,15 +87,10 @@ void Strobe(BrightColor color, Speed speed, Repeat repeat); // Lässt alle LEDs 
 void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Lässt die LEDs des Zielgeräts in einer benutzerdefinierten Farbe blinken.
 ```
 
-### Wellen
+### Wellen / Integrierte Muster
 
 ```csharp
-void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Startet ein wellenförmiges Muster, das alle LEDs des Geräts auf der Grundlage einer benutzerdefinierten Farbe anvisiert.
-```
-
-### Integrierte Muster
-
-```csharp
+void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat); // Startet ein wellenförmiges Muster, das alle LEDs des Geräts auf der Grundlage einer benutzerdefinierten Farbe anvisiert.
 void PlayPattern(BuiltInPattern pattern, Repeat repeat); // Startet ein eingebettetes Muster, das auf alle LEDs des Geräts zielt.
 ```
 

@@ -27,11 +27,11 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
         [Fact]
         public void have_a_byte_representation_in_accordance_with_the_Luxafor_when_waving() {
-            Check.That(CommandMode.From(WaveType.Wave_1).ToByte()).IsEqualTo(1);
-            Check.That(CommandMode.From(WaveType.Wave_2).ToByte()).IsEqualTo(2);
-            Check.That(CommandMode.From(WaveType.Wave_3).ToByte()).IsEqualTo(3);
-            Check.That(CommandMode.From(WaveType.Wave_4).ToByte()).IsEqualTo(4);
-            Check.That(CommandMode.From(WaveType.Wave_5).ToByte()).IsEqualTo(5);
+            Check.That(CommandMode.From(WavePattern.Wave_1).ToByte()).IsEqualTo(1);
+            Check.That(CommandMode.From(WavePattern.Wave_2).ToByte()).IsEqualTo(2);
+            Check.That(CommandMode.From(WavePattern.Wave_3).ToByte()).IsEqualTo(3);
+            Check.That(CommandMode.From(WavePattern.Wave_4).ToByte()).IsEqualTo(4);
+            Check.That(CommandMode.From(WavePattern.Wave_5).ToByte()).IsEqualTo(5);
         }
 
         [Fact]

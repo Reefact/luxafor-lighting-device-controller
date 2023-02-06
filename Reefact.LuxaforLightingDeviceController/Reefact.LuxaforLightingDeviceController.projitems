@@ -14,15 +14,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)CommandCode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CommandMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BuiltInPatternConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\WaveTypeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\WavePatternConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FadeDuration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LedIndex.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LightningCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\FadeColorCommandFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\PlayPatternCommandFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\PlayBuiltInPatternCommandFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\SetColorCommandFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\StrobeCommandFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\WaveCommandFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\PlayWavePatternCommandFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Luxafor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LuxaforDevice.cs" />
@@ -36,6 +36,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rgb.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Speed.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TargetedLeds.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WaveType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WavePattern.cs" />
   </ItemGroup>
 </Project>

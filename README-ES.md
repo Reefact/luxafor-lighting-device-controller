@@ -34,13 +34,28 @@ Estos diferentes dispositivos están diseñados para ser accionados manualmente 
 
 Esta librería tiene como objetivo permitir la integración de dispositivos LED USB a sus aplicaciones internas sin necesidad de pasar por el servidor Luxafor (webhook).
 
-Está desarrollado en .Net Core y se basa en la librería [HidLibrairy] (https://github.com/mikeobrien/HidLibrary) que permite enumerar y comunicarse con dispositivos USB compatibles con HID en .NET.
+Está desarrollado en .Net Core y se basa en la librería [HidLibrairy](https://github.com/mikeobrien/HidLibrary) que permite enumerar y comunicarse con dispositivos USB compatibles con HID en .NET.
 
 El siguiente código muestra un ejemplo de uso básico de la biblioteca para controlar un dispositivo [Luxafor Orb](https://luxafor.com/product/orb/).
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController.UnitTests/UsageExamples.cs#L20-L32
+```csharp
+[Fact]
+public void french_sequence() {
+    LuxaforDevice orb = Luxafor.GetDevices().First();
+    for (var i = 0; i < 3; i++) {
+        orb.SetBasicColor(BasicColor.Blue);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.White);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Red);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Off);
+        Thread.Sleep(1000);
+    }
+}
+```
 
-La línea 21 muestra cómo conectarse a un único Orb conectado al puerto USB de la máquina.
+La línea 3 muestra cómo conectarse a un único Orb conectado al puerto USB de la máquina.
 
 Voy a repasar rápidamente el conjunto de comandos posibles para enviar a los dispositivos desde el `LuxaforDevice`.
 
@@ -72,15 +87,10 @@ void Strobe(BrightColor color, Speed speed, Repeat repeat); // Parpadea todos lo
 void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Hace parpadear los LEDs del dispositivo objetivo en un color personalizado
 ```
 
-### Waves
+### Waves / Patrones incorporados
 
 ```csharp
-void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Inicia un patrón de onda que se dirige a todos los LEDs del dispositivo basándose en un color personalizado.
-```
-
-### Patrones incorporados
-
-```csharp
+void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat); // Inicia un patrón de onda que se dirige a todos los LEDs del dispositivo basándose en un color personalizado.
 void PlayPattern(BuiltInPattern, Repeat repeat); // Iniciar un patrón incorporado que apunte a todos los LEDs del dispositivo.
 ```
 

@@ -70,11 +70,11 @@ namespace Reefact.LuxaforLightingDeviceController {
         void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat);
 
         /// <summary>Play a wave pattern on the <see cref="LuxaforDevice">Luxafor device</see> based on a bright color.</summary>
-        /// <param name="waveType">The wave <see cref="WaveType">type</see>.</param>
+        /// <param name="wavePattern">The wave <see cref="WavePattern">type</see>.</param>
         /// <param name="color">The <see cref="BrightColor">color</see> to set.</param>
         /// <param name="speed">The wave <see cref="Speed">speed</see>.</param>
         /// <param name="repeat">The waves number.</param>
-        void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat);
+        void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat);
 
         /// <summary>Play a built-in pattern on the <see cref="LuxaforDevice">Luxafor device</see>.</summary>
         /// <param name="pattern">The selected built-in pattern to play.</param>

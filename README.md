@@ -40,9 +40,24 @@ Elle est développée en .Net Core et se base sur la librairie [HidLibrairy](htt
 
 Le code ci-dessous présente un exemple d'utilisation basique de la librairie pour le pilotage d'un périphérique [Luxafor Orb](https://luxafor.com/product/orb/).
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController.UnitTests/UsageExamples.cs#L20-L32
+```csharp
+[Fact]
+public void french_sequence() {
+    LuxaforDevice orb = Luxafor.GetDevices().First();
+    for (var i = 0; i < 3; i++) {
+        orb.SetBasicColor(BasicColor.Blue);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.White);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Red);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Off);
+        Thread.Sleep(1000);
+    }
+}
+```
 
-La ligne 21 montre comment se connecter à un unique Orb connecté au port USB de la machine.
+La ligne 3 montre comment se connecter à un unique Orb connecté au port USB de la machine.
 
 Je vais présenter rapidement l'ensemble des commandes possibles à envoyer aux périphériques à partir du `LuxaforDevice`.
 
@@ -74,15 +89,10 @@ void Strobe(BrightColor color, Speed speed, Repeat repeat); // Fait clignoter to
 void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Fait clignoter les LEDs du périphérique ciblées dans une couleur personnalisée
 ```
 
-### Vagues
+### Vagues et autres motifs intégrés
 
 ```csharp
-void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Démarre un motif de type "vague" qui cible toutes les LEDs du périphérique basé sur une couleur personnalisée
-```
-
-### Motifs intégrés
-
-```csharp
+void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat); // Démarre un motif de type "vague" qui cible toutes les LEDs du périphérique basé sur une couleur personnalisée
 void PlayPattern(BuiltInPattern pattern, Repeat repeat); // Démarre un motif intégré qui cible toutes les LEDs du périphérique
 ```
 

@@ -8,13 +8,13 @@ Een .Net-bibliotheek die een eenvoudige API biedt om Luxafor-apparaten aan te st
 
 [Luxafor](https://luxafor.com) is een bedrijf dat producten ontwerpt en verkoopt voor kantoorproductiviteit, zoals beschikbaarheidsindicatoren en notificatiehulpmiddelen. 
 
-Hun paradepaardje is een [LED beschikbaarheidsindicator] (https://luxafor.com/product/flag) die kan worden geprogrammeerd om verschillende kleuren weer te geven, afhankelijk van de beschikbaarheidsstatus van de gebruiker. 
+Hun paradepaardje is een [LED beschikbaarheidsindicator](https://luxafor.com/product/flag) die kan worden geprogrammeerd om verschillende kleuren weer te geven, afhankelijk van de beschikbaarheidsstatus van de gebruiker. 
 
 Het doel van Luxafor is om gebruikers een eenvoudige en effectieve manier te bieden om hun beschikbaarheid aan collega's kenbaar te maken en de communicatie en samenwerking op de werkplek te verbeteren.
 
 ### Snel overzicht van de apparaten
 
-Hier is een niet-limitatieve lijst van [Luxafor-apparaten] (https://luxafor.com/products):
+Hier is een niet-limitatieve lijst van [Luxafor-apparaten](https://luxafor.com/products):
 
 - `Luxafor Flag`: een LED beschikbaarheidsindicator die de persoonlijke beschikbaarheid weergeeft
 - `Luxafor Bluetooth`: een draadloze, softwaregestuurde LED beschikbaarheidsindicator die meldingen en persoonlijke beschikbaarheid weergeeft.
@@ -34,13 +34,28 @@ Deze verschillende apparaten zijn ontworpen om handmatig ('mechanisch') aangestu
 
 Deze bibliotheek is bedoeld om de integratie van USB LED-apparaten in uw interne toepassingen mogelijk te maken zonder de noodzaak om via de Luxafor-server (webhook) te gaan.
 
-Het is ontwikkeld in .Net Core en is gebaseerd op de [HidLibrairy] bibliotheek (https://github.com/mikeobrien/HidLibrary) waarmee HID-compatibele USB-apparaten in .NET kunnen worden opgesomd en ermee kan worden gecommuniceerd.
+Het is ontwikkeld in .Net Core en is gebaseerd op de bibliotheek [HidLibrairy](https://github.com/mikeobrien/HidLibrary) waarmee HID-compatibele USB-apparaten in .NET kunnen worden opgesomd en ermee kan worden gecommuniceerd.
 
 De onderstaande code toont een voorbeeld van een basisgebruik van de bibliotheek om een [Luxafor Orb](https://luxafor.com/product/orb/) apparaat aan te sturen.
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController.UnitTests/UsageExamples.cs#L20-L32
+```csharp
+[Fact]
+public void french_sequence() {
+    LuxaforDevice orb = Luxafor.GetDevices().First();
+    for (var i = 0; i < 3; i++) {
+        orb.SetBasicColor(BasicColor.Blue);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.White);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Red);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Off);
+        Thread.Sleep(1000);
+    }
+}
+```
 
-Regel 21 laat zien hoe een verbinding wordt gemaakt met een enkele Orb die is aangesloten op de USB-poort van de machine.
+Regel 3 laat zien hoe een verbinding wordt gemaakt met een enkele Orb die is aangesloten op de USB-poort van de machine.
 
 Ik zal snel de reeks mogelijke commando's overlopen die vanuit de `LuxaforDevice` naar apparaten kunnen worden gestuurd.
 
@@ -72,15 +87,10 @@ void Strobe(BrightColor color, Speed speed, Repeat repeat); // Alle LED's van he
 void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // De doelapparaat-LED's knipperen in een aangepaste kleur.
 ```
 
-### Golven
+### Golven / Ingebouwde patronen
 
 ```csharp
-void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Start een golfpatroon dat zich richt op alle LED's op het apparaat op basis van een aangepaste kleur.
-```
-
-### Ingebouwde patronen
-
-```csharp
+void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat); // Start een golfpatroon dat zich richt op alle LED's op het apparaat op basis van een aangepaste kleur.
 void PlayPattern(BuiltInPattern, Repeat repeat); // Start een ingebouwd patroon dat zich richt op alle LED's op het apparaat
 ```
 

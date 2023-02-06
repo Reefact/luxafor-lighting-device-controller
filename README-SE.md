@@ -6,15 +6,15 @@ Ett .Net-bibliotek som tillhandahåller ett enkelt API för att styra Luxafor-en
 
 #### Översikt över företaget
 
-[Luxafor] (https://luxafor.com) är ett företag som utformar och säljer produkter för kontorsproduktivitet, t.ex. tillgänglighetsindikatorer och notifieringsverktyg. 
+[Luxafor](https://luxafor.com) är ett företag som utformar och säljer produkter för kontorsproduktivitet, t.ex. tillgänglighetsindikatorer och notifieringsverktyg. 
 
-Deras flaggskeppsprodukt är en [LED availability indicator] (https://luxafor.com/product/flag) som kan programmeras för att visa olika färger beroende på användarens tillgänglighetsstatus. 
+Deras flaggskeppsprodukt är en [LED availability indicator](https://luxafor.com/product/flag) som kan programmeras för att visa olika färger beroende på användarens tillgänglighetsstatus. 
 
 Luxafors mål är att ge användarna ett enkelt och effektivt sätt att signalera att de är tillgängliga för sina kollegor och förbättra kommunikationen och samarbetet på arbetsplatsen.
 
 #### Snabb översikt över enheterna
 
-Här är en icke uttömmande förteckning över [Luxafor-apparater] (https://luxafor.com/products):
+Här är en icke uttömmande förteckning över [Luxafor-apparater](https://luxafor.com/products):
 
 - `Luxafor Flag`: en LED-indikator för tillgänglighet som visar personlig tillgänglighet.
 - `Luxafor Bluetooth`: en trådlös, mjukvarustyrd LED-indikator för tillgänglighet som visar meddelanden och personlig tillgänglighet.
@@ -34,13 +34,28 @@ Dessa olika enheter är utformade för att kunna drivas manuellt ("mekaniskt") f
 
 Det här biblioteket syftar till att göra det möjligt att integrera USB LED-enheter i dina interna applikationer utan att behöva gå via Luxafor-servern (webhook).
 
-Den är utvecklad i .Net Core och bygger på biblioteket [HidLibrairy] (https://github.com/mikeobrien/HidLibrary) som gör det möjligt att räkna upp och kommunicera med HID-kompatibla USB-enheter i .NET.
+Den är utvecklad i .Net Core och bygger på biblioteket [HidLibrairy](https://github.com/mikeobrien/HidLibrary) som gör det möjligt att räkna upp och kommunicera med HID-kompatibla USB-enheter i .NET.
 
-Koden nedan visar ett exempel på en grundläggande användning av biblioteket för att styra en [Luxafor Orb] (https://luxafor.com/product/orb/) enhet.
+Koden nedan visar ett exempel på en grundläggande användning av biblioteket för att styra en [Luxafor Orb](https://luxafor.com/product/orb/) enhet.
 
-https://github.com/Reefact/luxafor-devices-controller/blob/eb984aebc8db58c9922f9b480706e946a8ef5d88/LuxaforDevicesController.UnitTests/UsageExamples.cs#L20-L32
+```csharp
+[Fact]
+public void french_sequence() {
+    LuxaforDevice orb = Luxafor.GetDevices().First();
+    for (var i = 0; i < 3; i++) {
+        orb.SetBasicColor(BasicColor.Blue);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.White);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Red);
+        Thread.Sleep(500);
+        orb.SetBasicColor(BasicColor.Off);
+        Thread.Sleep(1000);
+    }
+}
+```
 
-Linje 21 visar hur du ansluter till en enda Orb som är ansluten till maskinens USB-port.
+Linje 3 visar hur du ansluter till en enda Orb som är ansluten till maskinens USB-port.
 
 Jag ska snabbt gå igenom de möjliga kommandon som kan skickas till enheter från `LuxaforDevice`.
 
@@ -72,15 +87,10 @@ void Strobe(BrightColor color color, Speed speed speed, Repeat repeat); // Blink
 void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Blinkar för de LED-lampor som är målinriktade i en anpassad färg.
 ```
 
-#### Vågor
+### Vågor / Inbyggda mönster
 
 ```csharp
-void Wave(WaveType waveType, BrightColor color, Speed speed, Repeat repeat); // Startar ett vågmönster som riktar sig till alla lysdioder på enheten baserat på en anpassad färg.
-```
-
-### Inbyggda mönster
-
-```csharp
+void PlayPattern(WaveType wavePattern, BrightColor color, Speed speed, Repeat repeat); // Startar ett vågmönster som riktar sig till alla lysdioder på enheten baserat på en anpassad färg.
 void PlayPattern(BuiltInPattern, Repeat repeat); // Starta ett inbyggt mönster som riktar sig till alla lysdioder på enheten.
 ```
 

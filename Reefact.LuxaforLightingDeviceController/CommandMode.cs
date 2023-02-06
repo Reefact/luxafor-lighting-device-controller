@@ -24,12 +24,12 @@ namespace Reefact.LuxaforLightingDeviceController {
             return new CommandMode(targetedLeds.ToLuxCode());
         }
 
-        public static CommandMode From(WaveType waveType) {
-            if (!Enum.IsDefined(typeof(WaveType), waveType)) { throw new InvalidEnumArgumentException(nameof(waveType), (int)waveType, typeof(WaveType)); }
+        public static CommandMode From(WavePattern wavePattern) {
+            if (!Enum.IsDefined(typeof(WavePattern), wavePattern)) { throw new InvalidEnumArgumentException(nameof(wavePattern), (int)wavePattern, typeof(WavePattern)); }
 
-            var waveTypeAsByte = WaveTypeConverter.ToByte(waveType);
+            var wavePatternAsByte = WavePatternConverter.ToByte(wavePattern);
 
-            return new CommandMode(waveTypeAsByte);
+            return new CommandMode(wavePatternAsByte);
         }
 
         public static CommandMode From(BuiltInPattern builtInPattern) {

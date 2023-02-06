@@ -202,8 +202,8 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
             public static readonly LightingCommand SetAllCyan         = LightingCommand.CreateSetColorCommand(BrightColor.Cyan);
             public static readonly LightingCommand SetBackSideCyan    = LightingCommand.CreateSetColorCommand(TargetedLeds.BackSide, BrightColor.Cyan);
             public static readonly LightingCommand SetTabSideCyan     = LightingCommand.CreateSetColorCommand(TargetedLeds.TabSide, BrightColor.Cyan);
-            public static readonly LightingCommand CustomWaveAlpha    = LightingCommand.CreateWaveCommand(WaveType.Wave_1, BrightColor.Magenta, Speed.FromByte(1), Repeat.Count(20));
-            public static readonly LightingCommand CustomWaveBeta     = LightingCommand.CreateWaveCommand(WaveType.Wave_4, BrightColor.Cyan, Speed.FromByte(1), Repeat.Count(20));
+            public static readonly LightingCommand CustomWaveAlpha    = LightingCommand.CreatePlayWavePatternCommand(WavePattern.Wave_1, BrightColor.Magenta, Speed.FromByte(1), Repeat.Count(20));
+            public static readonly LightingCommand CustomWaveBeta     = LightingCommand.CreatePlayWavePatternCommand(WavePattern.Wave_4, BrightColor.Cyan, Speed.FromByte(1), Repeat.Count(20));
 
             #endregion
 
