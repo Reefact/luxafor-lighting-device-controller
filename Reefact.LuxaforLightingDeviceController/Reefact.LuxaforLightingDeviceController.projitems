@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>1c192fa2-6fdd-4faa-8d66-2d14e9271f99</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Reefact.LuxaforLightingDeviceController</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BrightColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BuiltInPattern.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommandCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommandMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BuiltInPatternConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\WaveTypeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FadeDuration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LedIndex.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LightningCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\FadeColorCommandFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\PlayPatternCommandFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\SetColorCommandFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\StrobeCommandFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactories\WaveCommandFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LightningCommandFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Luxafor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LuxaforDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LuxaforDeviceImp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Option.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Protocol\LuxaforProtocol_BuildInPatternId.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Protocol\LuxaforProtocol_CommandCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Protocol\LuxaforProtocol_Lux.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Protocol\LuxaforProtocol_WaveType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repeat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rgb.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Speed.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TargetedLeds.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WaveType.cs" />
+  </ItemGroup>
+</Project>

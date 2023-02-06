@@ -85,14 +85,14 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Starts an embedded pattern t
 
 ### Send a command
 
-It is possible to create custom commands called `LightningCommand` so that they can be reused in the code:
+It is possible to create custom commands called `LightingCommand` so that they can be reused in the code:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightingCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 The `Send` method allows you to use these commands.
 
 ```csharp
-void Send(LightningCommand command); // Send a command to the device
+void Send(LightingCommand command); // Send a command to the device
 ```

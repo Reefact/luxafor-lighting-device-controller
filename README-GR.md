@@ -86,14 +86,14 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Εκκίνηση ενός ε
 
 ### Αποστολή εντολής
 
-Είναι δυνατή η δημιουργία προσαρμοσμένων εντολών με την ονομασία `LightningCommand` ώστε να μπορούν να επαναχρησιμοποιηθούν στον κώδικα:
+Είναι δυνατή η δημιουργία προσαρμοσμένων εντολών με την ονομασία `LightingCommand` ώστε να μπορούν να επαναχρησιμοποιηθούν στον κώδικα:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All,BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3)),
+var command = LightingCommand.CreateStrobeCommand(TargetedLeds.All,BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3)),
 ```
 
 Η μέθοδος `Send` σας επιτρέπει να χρησιμοποιήσετε αυτές τις εντολές.
 
 ```csharp
-void Send(LightningCommand command); // Αποστολή μιας εντολής στη συσκευή
+void Send(LightingCommand command); // Αποστολή μιας εντολής στη συσκευή
 ```

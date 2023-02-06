@@ -86,14 +86,14 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Iniciar un patrón incorpora
 
 ### Enviar un comando
 
-Es posible crear comandos personalizados llamados `LightningCommand` para que puedan ser reutilizados en el código:
+Es posible crear comandos personalizados llamados `LightingCommand` para que puedan ser reutilizados en el código:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightingCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 El método `Enviar` le permite utilizar estos comandos.
 
 ```csharp
-void Send(LightningCommand command); // Enviar un comando al dispositivo
+void Send(LightingCommand command); // Enviar un comando al dispositivo
 ```

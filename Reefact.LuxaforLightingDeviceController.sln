@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{97C68052-FD61-4882-8116-C302E561587A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A81C5869-D67D-44AE-9C87-3203CF889B51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9B3D5C1-927B-4FB5-9123-FD894DE7C7A2}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		icon.ico = icon.ico
+		LICENSE = LICENSE
+		icon.png = icon.png
+		..\..\..\OneDrive\Bureau\luxafor-protocol.xlsx = ..\..\..\OneDrive\Bureau\luxafor-protocol.xlsx
+		README-DE.md = README-DE.md
+		README-EN.md = README-EN.md
+		README-ES.md = README-ES.md
+		README-GR.md = README-GR.md
+		README-NL.md = README-NL.md
+		README-SE.md = README-SE.md
+		README.md = README.md
+		Reefact.LuxaforLightingDeviceController.nuspec = Reefact.LuxaforLightingDeviceController.nuspec
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Reefact.LuxaforLightingDeviceController", "Reefact.LuxaforLightingDeviceController\Reefact.LuxaforLightingDeviceController.shproj", "{1C192FA2-6FDD-4FAA-8D66-2D14E9271F99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reefact.LuxaforLightingDeviceController.NetStandard20", "Reefact.LuxaforLightingDeviceController.NetStandard20\Reefact.LuxaforLightingDeviceController.NetStandard20.csproj", "{2DD6AE77-F49C-485B-8C56-1D25169B3380}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reefact.LuxaforLightingDeviceController.NetStandard20.UnitTests", "Reefact.LuxaforLightingDeviceController.NetStandard20.UnitTests\Reefact.LuxaforLightingDeviceController.NetStandard20.UnitTests.csproj", "{A2B359A8-904D-4F8E-9814-AF7E267152FF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Reefact.LuxaforLightingDeviceController.UnitTests", "Reefact.LuxaforLightingDeviceController.UnitTests\Reefact.LuxaforLightingDeviceController.UnitTests.shproj", "{FA4F5205-D9AE-4488-B332-25695A6A0C0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reefact.LuxaforLightingDeviceController.Net46", "Reefact.LuxaforLightingDeviceController.Net46\Reefact.LuxaforLightingDeviceController.Net46.csproj", "{7E46FA40-B983-4F7C-AC73-9BBF5FE29151}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		tt|Any CPU = tt|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DD6AE77-F49C-485B-8C56-1D25169B3380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD6AE77-F49C-485B-8C56-1D25169B3380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD6AE77-F49C-485B-8C56-1D25169B3380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD6AE77-F49C-485B-8C56-1D25169B3380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD6AE77-F49C-485B-8C56-1D25169B3380}.tt|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD6AE77-F49C-485B-8C56-1D25169B3380}.tt|Any CPU.Build.0 = Debug|Any CPU
+		{A2B359A8-904D-4F8E-9814-AF7E267152FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B359A8-904D-4F8E-9814-AF7E267152FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2B359A8-904D-4F8E-9814-AF7E267152FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B359A8-904D-4F8E-9814-AF7E267152FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2B359A8-904D-4F8E-9814-AF7E267152FF}.tt|Any CPU.ActiveCfg = tt|Any CPU
+		{A2B359A8-904D-4F8E-9814-AF7E267152FF}.tt|Any CPU.Build.0 = tt|Any CPU
+		{7E46FA40-B983-4F7C-AC73-9BBF5FE29151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E46FA40-B983-4F7C-AC73-9BBF5FE29151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E46FA40-B983-4F7C-AC73-9BBF5FE29151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E46FA40-B983-4F7C-AC73-9BBF5FE29151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E46FA40-B983-4F7C-AC73-9BBF5FE29151}.tt|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E46FA40-B983-4F7C-AC73-9BBF5FE29151}.tt|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C192FA2-6FDD-4FAA-8D66-2D14E9271F99} = {97C68052-FD61-4882-8116-C302E561587A}
+		{2DD6AE77-F49C-485B-8C56-1D25169B3380} = {97C68052-FD61-4882-8116-C302E561587A}
+		{A2B359A8-904D-4F8E-9814-AF7E267152FF} = {A81C5869-D67D-44AE-9C87-3203CF889B51}
+		{FA4F5205-D9AE-4488-B332-25695A6A0C0E} = {A81C5869-D67D-44AE-9C87-3203CF889B51}
+		{7E46FA40-B983-4F7C-AC73-9BBF5FE29151} = {97C68052-FD61-4882-8116-C302E561587A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {852C2C55-E43A-418F-8FC1-83275024077D}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Reefact.LuxaforLightingDeviceController\Reefact.LuxaforLightingDeviceController.projitems*{1c192fa2-6fdd-4faa-8d66-2d14e9271f99}*SharedItemsImports = 13
+		Reefact.LuxaforLightingDeviceController\Reefact.LuxaforLightingDeviceController.projitems*{2dd6ae77-f49c-485b-8c56-1d25169b3380}*SharedItemsImports = 5
+		Reefact.LuxaforLightingDeviceController\Reefact.LuxaforLightingDeviceController.projitems*{7e46fa40-b983-4f7c-ac73-9bbf5fe29151}*SharedItemsImports = 4
+		Reefact.LuxaforLightingDeviceController.UnitTests\Reefact.LuxaforLightingDeviceController.UnitTests.projitems*{a2b359a8-904d-4f8e-9814-af7e267152ff}*SharedItemsImports = 5
+		Reefact.LuxaforLightingDeviceController.UnitTests\Reefact.LuxaforLightingDeviceController.UnitTests.projitems*{fa4f5205-d9ae-4488-b332-25695a6a0c0e}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal

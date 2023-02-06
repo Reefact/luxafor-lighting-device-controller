@@ -86,14 +86,14 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Starta ett inbyggt mönster 
 
 ### Skicka ett kommando
 
-Det är möjligt att skapa egna kommandon som kallas `LightningCommand` så att de kan återanvändas i koden:
+Det är möjligt att skapa egna kommandon som kallas `LightingCommand` så att de kan återanvändas i koden:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightingCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 Metoden `Send` gör det möjligt att använda dessa kommandon.
 
 ```csharp
-void Send(LightningCommand command); // Skicka ett kommando till enheten
+void Send(LightingCommand command); // Skicka ett kommando till enheten
 ```

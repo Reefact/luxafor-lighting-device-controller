@@ -88,14 +88,14 @@ void PlayPattern(BuiltInPattern pattern, Repeat repeat); // Démarre un motif in
 
 ### Envoyer une commande
 
-Il est possible de créer des commandes personnalisées appelées `LightningCommand` afin de pouvoir les réutiliser dans le code:
+Il est possible de créer des commandes personnalisées appelées `LightingCommand` afin de pouvoir les réutiliser dans le code:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightingCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 La méthode `Send` permet d'utiliser ces commandes.
 
 ```csharp
-void Send(LightningCommand command); // Envoye une commande au périphérique
+void Send(LightingCommand command); // Envoye une commande au périphérique
 ```

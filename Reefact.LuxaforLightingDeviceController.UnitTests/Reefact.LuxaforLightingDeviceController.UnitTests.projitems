@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>fa4f5205-d9ae-4488-b332-25695a6a0c0e</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Reefact.LuxaforLightingDeviceController.UnitTests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Color_should.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommandCode_should.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommandMode_should.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command_should.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TargetedLeds_should.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UsageExamples.cs" />
+  </ItemGroup>
+</Project>

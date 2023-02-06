@@ -86,14 +86,14 @@ void PlayPattern(BuiltInPattern pattern, Repeat repeat); // Startet ein eingebet
 
 ### Einen Befehl senden
 
-Es ist möglich, eigene Befehle mit dem Namen ``LightningCommand`` zu erstellen, um sie im Code wiederverwenden zu können:
+Es ist möglich, eigene Befehle mit dem Namen ``LightingCommand`` zu erstellen, um sie im Code wiederverwenden zu können:
 
 ```csharp
-var command = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var command = LightingCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 Mit der Methode `Send` können Sie diese Befehle verwenden.
 
 ```csharp
-void Send(LightningCommand command); // Sendet einen Befehl an das Gerät.
+void Send(LightingCommand command); // Sendet einen Befehl an das Gerät.
 ```

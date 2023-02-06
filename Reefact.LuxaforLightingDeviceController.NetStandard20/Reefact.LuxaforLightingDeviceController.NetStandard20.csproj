@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Reefact.LuxaforLightingDeviceController</AssemblyName>
+    <RootNamespace>Reefact.LuxaforLightingDeviceController</RootNamespace>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="hidlibrary" Version="3.3.40" />
+    <PackageReference Include="Value" Version="1.1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Reefact.LuxaforLightingDeviceController.NetStandard20.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <Import Project="..\Reefact.LuxaforLightingDeviceController\Reefact.LuxaforLightingDeviceController.projitems" Label="Shared" />
+
+</Project>

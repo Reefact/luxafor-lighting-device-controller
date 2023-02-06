@@ -86,14 +86,14 @@ void PlayPattern(BuiltInPattern, Repeat repeat); // Start een ingebouwd patroon 
 
 ### Stuur een commando
 
-Het is mogelijk om aangepaste commando's te maken met de naam `LightningCommand`, zodat ze in de code kunnen worden hergebruikt:
+Het is mogelijk om aangepaste commando's te maken met de naam `LightingCommand`, zodat ze in de code kunnen worden hergebruikt:
 
 ```csharp
-var commando = LightningCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
+var commando = LightingCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
 ```
 
 Met de methode `Zend` kunt u deze commando's gebruiken.
 
 ```csharp
-void Send(LightningCommand command); // Stuur een commando naar het apparaat.
+void Send(LightingCommand command); // Stuur een commando naar het apparaat.
 ```
