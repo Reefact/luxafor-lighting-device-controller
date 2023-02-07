@@ -70,6 +70,7 @@ void TurnOff(TargetedLeds targetedLeds); // Turn off the targeted LEDs of the de
 
 ```csharp
 void SetColor(BrightColor color); // Turns on the device's LEDs in a custom color.
+void SetColor(TargetedLeds targetedLeds, BrightColor color); // Turns on the targeted device LEDs in a custom color.
 ```
 
 ### Make a transition (fade)
