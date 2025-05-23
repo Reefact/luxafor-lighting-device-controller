@@ -24,6 +24,10 @@ namespace Reefact.LuxaforLightingDeviceController {
             _target = target;
         }
 
+        public void Dispose() {
+            _target.Dispose();
+        }
+
         #endregion
 
         public string Path => _target.DevicePath;

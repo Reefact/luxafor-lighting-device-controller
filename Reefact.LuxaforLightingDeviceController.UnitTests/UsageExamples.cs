@@ -30,7 +30,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void use_led_index_as_target() {
-            LuxaforDevice orb = Luxafor.GetDevices().First();
+            using LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             var repeat = 10;
@@ -50,7 +50,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void turn_off_specified_leds() {
-            LuxaforDevice orb = Luxafor.GetDevices().First();
+            using LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             orb.SetColor(BrightColor.Red);
@@ -65,7 +65,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public  void french_sequence() {
-            LuxaforDevice orb = Luxafor.GetDevices().First();
+            using LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             for (var i = 0; i < 3; i++) {
@@ -84,7 +84,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void create_a_strobe_sequence() {
-            LuxaforDevice orb = Luxafor.GetDevices().First();
+            using LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             orb.Strobe(LedIndex._1, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
@@ -111,7 +111,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void run_a_list_of_commands() {
-            LuxaforDevice orb = Luxafor.GetDevices().First();
+            using LuxaforDevice orb = Luxafor.GetDevices().First();
 
             // Sequence 1
             StartSequence(orb);
@@ -152,7 +152,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void set_two_leds_at_once() {
-            LuxaforDevice orb = Luxafor.GetDevices().First();
+            using LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             orb.SetColor(BrightColor.Black);
@@ -165,7 +165,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void simulate_simultaneous_custom_targeted_leds() {
-            LuxaforDevice orb = Luxafor.GetDevices().First();
+            using LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             for (var i = 0; i < 4; i++) {

@@ -9,7 +9,7 @@ namespace Reefact.LuxaforLightingDeviceController {
     /// <summary>
     ///     Represents a <a href="http://luxafor.com">Luxafor</a> device.
     /// </summary>
-    public interface LuxaforDevice {
+    public interface LuxaforDevice : IDisposable {
 
         /// <summary>
         ///     Get the path of the <see cref="LuxaforDevice">Luxafor device</see>.
