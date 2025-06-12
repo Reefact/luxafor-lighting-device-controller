@@ -9,7 +9,7 @@ namespace Reefact.LuxaforLightingDeviceController {
     /// <summary>
     ///     Represents a <a href="http://luxafor.com">Luxafor</a> device.
     /// </summary>
-    public interface LuxaforDevice {
+    public interface LuxaforDevice : IDisposable {
 
         /// <summary>
         ///     Get the path of the <see cref="LuxaforDevice">Luxafor device</see>.
@@ -26,60 +26,71 @@ namespace Reefact.LuxaforLightingDeviceController {
         ///     <see cref="LuxaforDevice">Luxafor device</see>.
         /// </summary>
         /// <param name="command">The <see cref="LightingCommand">lighting command</see>.</param>
+        /// <returns>true if the command succeeded, otherwise false</returns>
         /// <exception cref="ArgumentNullException">Argument <paramref name="command" /> is null.</exception>
-        void Send(LightingCommand command);
+        bool Send(LightingCommand command);
 
         /// <summary>Turn off all the LEDs of the <see cref="LuxaforDevice">Luxafor device</see>.</summary>
-        void TurnOff();
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool TurnOff();
 
         /// <summary>Turn off the targeted LEDs of the <see cref="LuxaforDevice">Luxafor device</see>.</summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
-        void TurnOff(TargetedLeds targetedLeds);
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool TurnOff(TargetedLeds targetedLeds);
 
         /// <summary>Turns on all the LEDs of the <see cref="LuxaforDevice">Luxafor device</see> in a bright color.</summary>
         /// <param name="color">The <see cref="BrightColor">color</see> to set.</param>
-        void SetColor(BrightColor color);
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool SetColor(BrightColor color);
 
         /// <summary>Turns on the targeted LEDs of the <see cref="LuxaforDevice">Luxafor device</see> in a bright color.</summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
         /// <param name="color">The <see cref="BrightColor">color</see> to set.</param>
-        void SetColor(TargetedLeds targetedLeds, BrightColor color);
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool SetColor(TargetedLeds targetedLeds, BrightColor color);
 
         /// <summary>Fade all the LEDs of the <see cref="LuxaforDevice">Luxafor device</see> to a bright color.</summary>
         /// <param name="color">The <see cref="BrightColor">color</see> to set.</param>
         /// <param name="duration">The <see cref="FadeDuration">fade duration</see>.</param>
-        void FadeColor(BrightColor color, FadeDuration duration);
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool FadeColor(BrightColor color, FadeDuration duration);
 
         /// <summary>Fade targeted LEDs of the <see cref="LuxaforDevice">Luxafor device</see> to a bright color.</summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
         /// <param name="color">The <see cref="BrightColor">color</see> to set.</param>
         /// <param name="duration">The <see cref="FadeDuration">fade duration</see>.</param>
-        void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration);
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration);
 
         /// <summary>Strobe all the LEDs of the <see cref="LuxaforDevice">Luxafor device</see> to a bright color.</summary>
         /// <param name="color">The <see cref="BrightColor">color</see> to set.</param>
         /// <param name="speed">The flicker <see cref="Speed">speed</see>.</param>
         /// <param name="repeat">The number of flashes.</param>
-        void Strobe(BrightColor color, Speed speed, Repeat repeat);
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool Strobe(BrightColor color, Speed speed, Repeat repeat);
 
         /// <summary>Strobe targeted LEDs of the <see cref="LuxaforDevice">Luxafor device</see> to a bright color.</summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
         /// <param name="color">The <see cref="BrightColor">color</see> to set.</param>
         /// <param name="speed">The flicker <see cref="Speed">speed</see>.</param>
         /// <param name="repeat">The number of flashes.</param>
-        void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat);
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat);
 
         /// <summary>Play a wave pattern on the <see cref="LuxaforDevice">Luxafor device</see> based on a bright color.</summary>
         /// <param name="wavePattern">The wave <see cref="WavePattern">type</see>.</param>
         /// <param name="color">The <see cref="BrightColor">color</see> to set.</param>
         /// <param name="speed">The wave <see cref="Speed">speed</see>.</param>
         /// <param name="repeat">The waves number.</param>
-        void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat);
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat);
 
         /// <summary>Play a built-in pattern on the <see cref="LuxaforDevice">Luxafor device</see>.</summary>
         /// <param name="pattern">The selected built-in pattern to play.</param>
         /// <param name="repeat">The number of repetition of the pattern.</param>
-        void PlayPattern(BuiltInPattern pattern, Repeat repeat);
+        /// <returns>true if the command succeeded, otherwise false</returns>
+        bool PlayPattern(BuiltInPattern pattern, Repeat repeat);
 
     }
 
