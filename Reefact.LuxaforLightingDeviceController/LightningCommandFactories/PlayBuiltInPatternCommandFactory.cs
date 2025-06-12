@@ -30,10 +30,10 @@ namespace Reefact.LuxaforLightingDeviceController.LightingCommandFactories {
 
         /// <inheritdoc />
         public LightingCommand Create() {
-            CommandMode mode                 = CommandMode.From(_builtInPattern);
-            var         color                = new BrightColor(_repeat.ToByte(), 0, 0);
-            string      stringRepresentation = CreateStringRepresentation();
-            var         command              = new LightingCommand(CommandCode.ActivateBuiltInPatterns, mode, color, Option.UnUsed, Option.UnUsed, Option.UnUsed, stringRepresentation);
+            CommandMode     mode                 = CommandMode.From(_builtInPattern);
+            BrightColor     color                = new BrightColor(_repeat.ToByte(), 0, 0);
+            string          stringRepresentation = CreateStringRepresentation();
+            LightingCommand command              = new LightingCommand(CommandCode.ActivateBuiltInPatterns, mode, color, Option.UnUsed, Option.UnUsed, Option.UnUsed, stringRepresentation);
 
             return command;
         }

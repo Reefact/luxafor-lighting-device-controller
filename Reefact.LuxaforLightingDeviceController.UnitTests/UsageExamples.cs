@@ -33,9 +33,9 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
             using LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
-            var repeat = 10;
-            var sleep  = 1000;
-            for (var r = 0; r < 4; r++) {
+            int repeat = 10;
+            int sleep  = 1000;
+            for (int r = 0; r < 4; r++) {
                 for (byte i = 1; i <= 6; i++) {
                     LedIndex ledIndex = LedIndex.From(i);
                     orb.Strobe(ledIndex, BrightColor.Red, Speed.FromByte(1), Repeat.Count((byte)repeat));
@@ -64,11 +64,11 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         }
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
-        public  void french_sequence() {
+        public void french_sequence() {
             using LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
-            for (var i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {
                 orb.SetColor(BrightColor.Blue);
                 Thread.Sleep(500);
                 orb.SetColor(BrightColor.White);
@@ -127,7 +127,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
             // Sequence 2
             StartSequence(orb);
-            for (var i = 0; i < 6; i++) {
+            for (int i = 0; i < 6; i++) {
                 orb.Send(MyCommand.SetAllCyan);
                 Thread.Sleep(250);
                 orb.Send(MyCommand.SetAllMagenta);
@@ -137,7 +137,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
 
             // Sequence 3
             StartSequence(orb);
-            for (var i = 0; i < 6; i++) {
+            for (int i = 0; i < 6; i++) {
                 orb.Send(MyCommand.SetBackSideMagenta);
                 orb.Send(MyCommand.SetTabSideCyan);
                 orb.SetColor(TargetedLeds.Led_2, BrightColor.Green);
@@ -168,7 +168,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
             using LuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
-            for (var i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {
                 orb.SetColor(TargetedLeds.Led_2, BrightColor.Black);
                 orb.SetColor(TargetedLeds.Led_4, BrightColor.Black);
                 orb.SetColor(TargetedLeds.Led_6, BrightColor.Black);

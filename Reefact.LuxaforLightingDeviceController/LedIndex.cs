@@ -52,7 +52,7 @@ namespace Reefact.LuxaforLightingDeviceController {
             if (_indexes == null) {
                 _indexes = new Dictionary<byte, LedIndex>();
             }
-            var ledIndex = new LedIndex(index);
+            LedIndex ledIndex = new LedIndex(index);
             _indexes.Add(index, ledIndex);
 
             return ledIndex;

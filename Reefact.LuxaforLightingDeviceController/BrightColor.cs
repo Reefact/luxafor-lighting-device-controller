@@ -54,10 +54,10 @@ namespace Reefact.LuxaforLightingDeviceController {
             Match match = HexParser.Match(hex);
             if (!match.Success) { throw new FormatException(); }
 
-            byte red   = ToByte(match.Groups, "red");
-            byte green = ToByte(match.Groups, "green");
-            byte blue  = ToByte(match.Groups, "blue");
-            var  color = new BrightColor(red, green, blue);
+            byte        red   = ToByte(match.Groups, "red");
+            byte        green = ToByte(match.Groups, "green");
+            byte        blue  = ToByte(match.Groups, "blue");
+            BrightColor color = new BrightColor(red, green, blue);
 
             return color;
         }
@@ -74,7 +74,7 @@ namespace Reefact.LuxaforLightingDeviceController {
 
         private static byte ToByte(GroupCollection groups, string groupName) {
             string valueAsString = groups[groupName].Value;
-            var    value         = Convert.ToByte(valueAsString, 16);
+            byte   value         = Convert.ToByte(valueAsString, 16);
 
             return value;
         }

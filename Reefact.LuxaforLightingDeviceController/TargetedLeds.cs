@@ -65,7 +65,7 @@ namespace Reefact.LuxaforLightingDeviceController {
             if (_LedsByLuxCode is null) {
                 _LedsByLuxCode = new Dictionary<byte, TargetedLeds>();
             }
-            var Leds = new TargetedLeds(luxCode, stringRepresentation, targetedLeds);
+            TargetedLeds Leds = new TargetedLeds(luxCode, stringRepresentation, targetedLeds);
             _LedsByLuxCode.Add(luxCode, Leds);
 
             return Leds;

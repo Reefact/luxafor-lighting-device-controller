@@ -36,11 +36,11 @@ namespace Reefact.LuxaforLightingDeviceController.LightingCommandFactories {
 
         /// <inheritdoc />
         public LightingCommand Create() {
-            CommandMode mode                 = CommandMode.From(_wavePattern);
-            Option      option2              = Option.From(_repeat);
-            Option      option3              = Option.From(_speed);
-            string      stringRepresentation = CreateStringRepresentation();
-            var         command              = new LightingCommand(CommandCode.ActivateWave, mode, _color, Option.UnUsed, option2, option3, stringRepresentation);
+            CommandMode     mode                 = CommandMode.From(_wavePattern);
+            Option          option2              = Option.From(_repeat);
+            Option          option3              = Option.From(_speed);
+            string          stringRepresentation = CreateStringRepresentation();
+            LightingCommand command              = new LightingCommand(CommandCode.ActivateWave, mode, _color, Option.UnUsed, option2, option3, stringRepresentation);
 
             return command;
         }

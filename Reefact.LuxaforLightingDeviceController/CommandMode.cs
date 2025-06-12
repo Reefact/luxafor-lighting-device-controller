@@ -27,7 +27,7 @@ namespace Reefact.LuxaforLightingDeviceController {
         public static CommandMode From(WavePattern wavePattern) {
             if (!Enum.IsDefined(typeof(WavePattern), wavePattern)) { throw new InvalidEnumArgumentException(nameof(wavePattern), (int)wavePattern, typeof(WavePattern)); }
 
-            var wavePatternAsByte = WavePatternConverter.ToByte(wavePattern);
+            byte wavePatternAsByte = WavePatternConverter.ToByte(wavePattern);
 
             return new CommandMode(wavePatternAsByte);
         }
@@ -35,7 +35,7 @@ namespace Reefact.LuxaforLightingDeviceController {
         public static CommandMode From(BuiltInPattern builtInPattern) {
             if (!Enum.IsDefined(typeof(BuiltInPattern), builtInPattern)) { throw new InvalidEnumArgumentException(nameof(builtInPattern), (int)builtInPattern, typeof(BuiltInPattern)); }
 
-            var builtInPatternAsByte = BuiltInPatternConverter.ToByte(builtInPattern);
+            byte builtInPatternAsByte = BuiltInPatternConverter.ToByte(builtInPattern);
 
             return new CommandMode(builtInPatternAsByte);
         }

@@ -20,7 +20,7 @@ public class Color_should {
         // Exercise
         BrightColor color = BrightColor.From(hexadecimalValue);
         // Verify
-        var rgb = color.ToRgb();
+        Rgb? rgb = color.ToRgb();
         Check.That(rgb.Red).IsEqualTo(expectedRedComponent);
         Check.That(rgb.Green).IsEqualTo(expectedGreenComponent);
         Check.That(rgb.Blue).IsEqualTo(expectedBlueComponent);
@@ -34,7 +34,7 @@ public class Color_should {
         // Setup
         BrightColor color = new(redComponent, greenComponent, blueComponent);
         // Exercise
-        var representation = color.ToString();
+        string? representation = color.ToString();
         // Verify
         Check.That(representation).IsEqualTo(expectedRepresentation);
     }

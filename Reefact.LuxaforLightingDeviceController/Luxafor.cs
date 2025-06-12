@@ -42,9 +42,9 @@ namespace Reefact.LuxaforLightingDeviceController {
         public static LuxaforDevice GetDevice(string devicePath) {
             if (devicePath is null) { throw new ArgumentNullException(nameof(devicePath)); }
 
-            IHidEnumerator hidEnumerator = new HidEnumerator();
-            IHidDevice     target        = hidEnumerator.GetDevice(devicePath);
-            var            luxaforDevice = new LuxaforDeviceImp(target);
+            IHidEnumerator   hidEnumerator = new HidEnumerator();
+            IHidDevice       target        = hidEnumerator.GetDevice(devicePath);
+            LuxaforDeviceImp luxaforDevice = new LuxaforDeviceImp(target);
 
             return luxaforDevice;
         }

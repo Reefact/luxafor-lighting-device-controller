@@ -63,8 +63,8 @@ namespace Reefact.LuxaforLightingDeviceController {
         /// <exception cref="ArgumentNullException"><paramref name="targetedLeds" /> is null.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="color" /> is null.</exception>
         public static LightingCommand CreateSetColorCommand(TargetedLeds targetedLeds, BrightColor color) {
-            var             factory = new SetColorCommandFactory(targetedLeds, color);
-            LightingCommand command = factory.Create();
+            SetColorCommandFactory factory = new SetColorCommandFactory(targetedLeds, color);
+            LightingCommand        command = factory.Create();
 
             return command;
         }
@@ -79,8 +79,8 @@ namespace Reefact.LuxaforLightingDeviceController {
         /// <param name="duration">The <see cref="FadeDuration">fade duration</see>.</param>
         /// <returns>A <see cref="LightingCommand">command</see>.</returns>
         public static LightingCommand CreateFadeColorCommand(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration) {
-            var             factory            = new FadeColorCommandFactory(targetedLeds, color, duration);
-            LightingCommand fadeToColorCommand = factory.Create();
+            FadeColorCommandFactory factory            = new FadeColorCommandFactory(targetedLeds, color, duration);
+            LightingCommand         fadeToColorCommand = factory.Create();
 
             return fadeToColorCommand;
         }
@@ -99,8 +99,8 @@ namespace Reefact.LuxaforLightingDeviceController {
         /// <exception cref="ArgumentNullException">Argument <paramref name="speed" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="repeat" /> is null.</exception>
         public static LightingCommand CreateStrobeCommand(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat) {
-            var             factory = new StrobeCommandFactory(targetedLeds, color, speed, repeat);
-            LightingCommand command = factory.Create();
+            StrobeCommandFactory factory = new StrobeCommandFactory(targetedLeds, color, speed, repeat);
+            LightingCommand      command = factory.Create();
 
             return command;
         }
@@ -122,8 +122,8 @@ namespace Reefact.LuxaforLightingDeviceController {
         /// <exception cref="ArgumentNullException">Argument <paramref name="speed" /> is null.</exception>
         /// <exception cref="ArgumentNullException">Argument <paramref name="repeat" /> is null.</exception>
         public static LightingCommand CreatePlayWavePatternCommand(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat) {
-            var             factory = new PlayWavePatternCommandFactory(wavePattern, color, speed, repeat);
-            LightingCommand command = factory.Create();
+            PlayWavePatternCommandFactory factory = new PlayWavePatternCommandFactory(wavePattern, color, speed, repeat);
+            LightingCommand               command = factory.Create();
 
             return command;
         }
@@ -142,8 +142,8 @@ namespace Reefact.LuxaforLightingDeviceController {
         /// <exception cref="ArgumentNullException">Argument <paramref name="repeat" /> is null.</exception>
         /// .
         public static LightingCommand CreatePlayBuiltInPatternCommand(BuiltInPattern builtInPattern, Repeat repeat) {
-            var             factory = new PlayBuiltInPatternCommandFactory(builtInPattern, repeat);
-            LightingCommand command = factory.Create();
+            PlayBuiltInPatternCommandFactory factory = new PlayBuiltInPatternCommandFactory(builtInPattern, repeat);
+            LightingCommand                  command = factory.Create();
 
             return command;
         }
@@ -162,7 +162,7 @@ namespace Reefact.LuxaforLightingDeviceController {
         internal LightingCommand(CommandCode code,    CommandMode mode,    BrightColor color,
                                  Option      option1, Option      option2, Option      option3,
                                  string      stringRepresentation) {
-            var rgb = color.ToRgb();
+            Rgb rgb = color.ToRgb();
             _buffer               = new byte[] { 0, code.ToByte(), mode.ToByte(), rgb.Red, rgb.Green, rgb.Blue, option1.ToByte(), option2.ToByte(), option3.ToByte() };
             _stringRepresentation = stringRepresentation;
         }
@@ -180,7 +180,7 @@ namespace Reefact.LuxaforLightingDeviceController {
         }
 
         internal byte[] ToBuffer() {
-            var buffer = new byte[_buffer.Length];
+            byte[] buffer = new byte[_buffer.Length];
             _buffer.CopyTo(buffer, 0);
 
             return buffer;

@@ -1,7 +1,8 @@
 ﻿#region Usings declarations
 
-using HidLibrary;
 using System;
+
+using HidLibrary;
 
 #endregion
 
@@ -23,15 +24,15 @@ namespace Reefact.LuxaforLightingDeviceController {
             _target = target;
         }
 
-        public void Dispose() {
-            _target.Dispose();
-        }
-
         #endregion
 
         public string Path => _target.DevicePath;
 
         public string Description => _target.Description;
+
+        public void Dispose() {
+            _target.Dispose();
+        }
 
         public bool Send(LightingCommand command) {
             if (command is null) { throw new ArgumentNullException(nameof(command)); }
@@ -42,22 +43,26 @@ namespace Reefact.LuxaforLightingDeviceController {
         }
 
         public bool TurnOff() {
-            var command = LightingCommand.CreateTurnOffCommand();
+            LightingCommand command = LightingCommand.CreateTurnOffCommand();
+
             return Send(command);
         }
 
         public bool TurnOff(TargetedLeds targetedLeds) {
-            var command = LightingCommand.CreateTurnOffCommand(targetedLeds);
+            LightingCommand command = LightingCommand.CreateTurnOffCommand(targetedLeds);
+
             return Send(command);
         }
 
         public bool SetColor(BrightColor color) {
-            var command = LightingCommand.CreateSetColorCommand(color);
+            LightingCommand command = LightingCommand.CreateSetColorCommand(color);
+
             return Send(command);
         }
 
         public bool SetColor(TargetedLeds targetedLeds, BrightColor color) {
-            var command = LightingCommand.CreateSetColorCommand(targetedLeds, color);
+            LightingCommand command = LightingCommand.CreateSetColorCommand(targetedLeds, color);
+
             return Send(command);
         }
 
@@ -67,7 +72,8 @@ namespace Reefact.LuxaforLightingDeviceController {
         }
 
         public bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration) {
-            var command = LightingCommand.CreateFadeColorCommand(targetedLeds, color, duration);
+            LightingCommand command = LightingCommand.CreateFadeColorCommand(targetedLeds, color, duration);
+
             return Send(command);
         }
 
@@ -77,17 +83,20 @@ namespace Reefact.LuxaforLightingDeviceController {
         }
 
         public bool Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat) {
-            var command = LightingCommand.CreateStrobeCommand(targetedLeds, color, speed, repeat);
+            LightingCommand command = LightingCommand.CreateStrobeCommand(targetedLeds, color, speed, repeat);
+
             return Send(command);
         }
 
         public bool PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat) {
-            var command = LightingCommand.CreatePlayWavePatternCommand(wavePattern, color, speed, repeat);
+            LightingCommand command = LightingCommand.CreatePlayWavePatternCommand(wavePattern, color, speed, repeat);
+
             return Send(command);
         }
 
         public bool PlayPattern(BuiltInPattern builtInPattern, Repeat repeat) {
-            var command = LightingCommand.CreatePlayBuiltInPatternCommand(builtInPattern, repeat);
+            LightingCommand command = LightingCommand.CreatePlayBuiltInPatternCommand(builtInPattern, repeat);
+
             return Send(command);
         }
 

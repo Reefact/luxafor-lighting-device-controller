@@ -15,7 +15,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_setting_all_device_leds_to_primary_color() {
             // Setup
-            var setGreenColor = LightingCommand.CreateSetColorCommand(BrightColor.Green);
+            LightingCommand? setGreenColor = LightingCommand.CreateSetColorCommand(BrightColor.Green);
             // Exercise
             byte[] commandBuffer = setGreenColor.ToBuffer();
             // Verify
@@ -25,7 +25,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_setting_color_without_fade() {
             // Setup
-            var setTabSideRed = LightingCommand.CreateSetColorCommand(TargetedLeds.TabSide, new BrightColor(255, 0, 0));
+            LightingCommand? setTabSideRed = LightingCommand.CreateSetColorCommand(TargetedLeds.TabSide, new BrightColor(255, 0, 0));
             // Exercise
             byte[] commandBuffer = setTabSideRed.ToBuffer();
             // Verify
@@ -35,7 +35,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_setting_color_with_fade() {
             // Setup
-            var fade = LightingCommand.CreateFadeColorCommand(TargetedLeds.Led_3, new BrightColor(0, 0, 130), FadeDuration.From(50));
+            LightingCommand? fade = LightingCommand.CreateFadeColorCommand(TargetedLeds.Led_3, new BrightColor(0, 0, 130), FadeDuration.From(50));
             // Exercise
             byte[] commandBuffer = fade.ToBuffer();
             // Verify
@@ -45,7 +45,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_flashing() {
             // Setup
-            var strobe = LightingCommand.CreateStrobeCommand(TargetedLeds.All, new BrightColor(255, 255, 255), Speed.FromByte(25), Repeat.Count(10));
+            LightingCommand? strobe = LightingCommand.CreateStrobeCommand(TargetedLeds.All, new BrightColor(255, 255, 255), Speed.FromByte(25), Repeat.Count(10));
             // Exercise
             byte[] commandBuffer = strobe.ToBuffer();
             // Verify
@@ -55,7 +55,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_waving() {
             // Setup
-            var wave = LightingCommand.CreatePlayWavePatternCommand(WavePattern.Wave_3, new BrightColor(200, 0, 200), Speed.FromByte(80), Repeat.Count(5));
+            LightingCommand? wave = LightingCommand.CreatePlayWavePatternCommand(WavePattern.Wave_3, new BrightColor(200, 0, 200), Speed.FromByte(80), Repeat.Count(5));
             // Exercise
             byte[] commandBuffer = wave.ToBuffer();
             // Verify
@@ -65,7 +65,7 @@ namespace Reefact.LuxaforDevicesController.UnitTests {
         [Fact]
         public void create_a_command_buffer_for_built_in_pattern() {
             // Setup
-            var pattern = LightingCommand.CreatePlayBuiltInPatternCommand(BuiltInPattern.Police, Repeat.Count(33));
+            LightingCommand? pattern = LightingCommand.CreatePlayBuiltInPatternCommand(BuiltInPattern.Police, Repeat.Count(33));
             // Exercise
             byte[] commandBuffer = pattern.ToBuffer();
             // Verify
