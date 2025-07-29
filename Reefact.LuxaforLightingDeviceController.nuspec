@@ -14,12 +14,7 @@
     <description>A .Net library that provides a simple API to control Luxafor lighting devices.</description>
     <summary>Transform your monitoring experience! With this library, create your own connectors for a total control of your alerts and notifications.</summary>
     <readme>docs\readme.md</readme>
-    <releaseNotes>Enhancements: 
-      <ul>
-        <li>Device commands now return bool to indicate whether the operation succeeded</li>
-        <li>Added support for IDisposable on LuxaforDevice o able proper resource cleanup.</li>
-      </ul>
-    </releaseNotes>
+    <releaseNotes>Enhancements: - Device commands now return bool to indicate whether the operation succeeded - Added support for IDisposable on LuxaforDevice o able proper resource cleanup.</releaseNotes>
     <copyright>©2025 Reefact</copyright>
     <language>en-US</language>
     <tags>HID library</tags>
