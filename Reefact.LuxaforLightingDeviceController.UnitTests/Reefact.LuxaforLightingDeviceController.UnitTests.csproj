@@ -22,6 +22,15 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+    <!--
+      Lets the net472 target be COMPILED on any OS (running it still requires Windows), so that an API missing
+      from .NET Framework is caught locally instead of by the CI:
+      dotnet build Reefact.LuxaforLightingDeviceController.UnitTests -p:TargetFrameworks=net472
+    -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Update="PublicApi.approved.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

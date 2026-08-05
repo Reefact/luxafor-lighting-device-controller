@@ -20,6 +20,8 @@ public class PublicApi_should {
 
     #region Statics members declarations
 
+    private static readonly string[] LineSeparators = { "\r\n", "\n" };
+
     private static string DescribePublicApi() {
         Assembly      assembly = typeof(Luxafor).Assembly;
         StringBuilder builder  = new();
@@ -83,15 +85,24 @@ public class PublicApi_should {
         }
     }
 
+    /// <summary>
+    ///     Normalizes the line endings, so that the comparison holds whatever the git checkout settings and the
+    ///     target framework are. <c>string.Replace(string, string, StringComparison)</c> would not do: it does not
+    ///     exist on .NET Framework.
+    /// </summary>
+    private static string NormalizeLineEndings(string text) {
+        return string.Join("\n", text.Split(LineSeparators, StringSplitOptions.None));
+    }
+
     #endregion
 
     [Fact]
     public void not_change_without_updating_the_approved_api() {
         // Setup
         string approvedFilePath = Path.Combine(AppContext.BaseDirectory, "PublicApi.approved.txt");
-        string approvedApi      = File.ReadAllText(approvedFilePath).Replace("\r\n", "\n", StringComparison.Ordinal);
+        string approvedApi      = NormalizeLineEndings(File.ReadAllText(approvedFilePath));
         // Exercise
-        string actualApi = DescribePublicApi().Replace("\r\n", "\n", StringComparison.Ordinal);
+        string actualApi = NormalizeLineEndings(DescribePublicApi());
         // Verify
         Check.WithCustomMessage($"The public API changed. Review the change (is it a breaking change?) then update '{approvedFilePath}'.")
              .That(actualApi).IsEqualTo(approvedApi);
