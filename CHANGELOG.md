@@ -34,6 +34,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - `TargetedLeds.FromLedIndex(LedIndex)`, the named alternative to the existing implicit conversion.
 - Source Link, a symbol package (`.snupkg`) and deterministic builds.
 - A GitHub Actions CI (Windows) running build, tests, packaging and a validation of the `.nupkg` content.
+- A GitHub Actions release workflow publishing to nuget.org when a `v*` tag is pushed, after checking
+  that the tag matches the version of the project, running the tests and validating the package.
 - Tests covering write failure propagation, `Dispose`, missing devices, invalid HID paths, argument guards,
   value object equality and the public API surface.
 
