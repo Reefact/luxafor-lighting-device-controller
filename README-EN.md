@@ -66,7 +66,7 @@ The code below presents an example of basic use of the library for the control o
 ```csharp
 [Fact]
 public void french_sequence() {
-    using LuxaforDevice orb = Luxafor.GetDevices().First();
+    using ILuxaforDevice orb = Luxafor.GetDevices().First();
     for (var i = 0; i < 3; i++) {
         orb.SetColor(BrightColor.Blue);
         Thread.Sleep(500);
@@ -80,22 +80,22 @@ public void french_sequence() {
 }
 ```
 
-Line 3 shows how to connect to a single Orb connected to the machine's USB port. `LuxaforDevice` implements `IDisposable`: the `using` statement releases the device handle at the end of the block.
+Line 3 shows how to connect to a single Orb connected to the machine's USB port. `ILuxaforDevice` implements `IDisposable`: the `using` statement releases the device handle at the end of the block.
 
 ### Getting a device
 
 ```csharp
-IEnumerable<LuxaforDevice> GetDevices(); // All the Luxafor devices connected to the USB ports (empty when none is plugged in)
-LuxaforDevice GetDevice(string devicePath); // The Luxafor device located at the given path
+IEnumerable<ILuxaforDevice> GetDevices(); // All the Luxafor devices connected to the USB ports (empty when none is plugged in)
+ILuxaforDevice GetDevice(string devicePath); // The Luxafor device located at the given path
 ```
 
 `Luxafor.GetDevice` throws a `LuxaforDeviceNotFoundException` when no device is found at the given path, when the device found there is not a supported Luxafor device, or when it is not connected anymore.
 
 ```csharp
-using LuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
+using ILuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
 ```
 
-I will quickly go through all the possible commands to send to devices from the `LuxaforDevice`.
+I will quickly go through all the possible commands to send to devices from the `ILuxaforDevice`.
 
 Every command returns a `bool`: `true` when the device accepted the command, `false` when the write failed (device unplugged, taken by another application, ...). Invalid arguments throw (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
 

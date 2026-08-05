@@ -11,7 +11,7 @@ using Reefact.LuxaforLightingDeviceController.LightingCommandFactories;
 namespace Reefact.LuxaforLightingDeviceController {
 
     /// <summary>
-    ///     Represents a lighting command to a Luxafor <see cref="LuxaforDevice">device</see>.
+    ///     Represents a lighting command to a Luxafor <see cref="ILuxaforDevice">device</see>.
     /// </summary>
     [DebuggerDisplay("{ToString()}")]
     public sealed class LightingCommand : IEquatable<LightingCommand> {
@@ -19,7 +19,7 @@ namespace Reefact.LuxaforLightingDeviceController {
         #region Statics members declarations
 
         /// <summary>
-        ///     Creates a <see cref="LightingCommand">command</see> to turn off a Luxafor <see cref="LuxaforDevice">device</see>.
+        ///     Creates a <see cref="LightingCommand">command</see> to turn off a Luxafor <see cref="ILuxaforDevice">device</see>.
         /// </summary>
         /// <returns>A <see cref="LightingCommand">command</see>.</returns>
         public static LightingCommand CreateTurnOffCommand() {
@@ -28,7 +28,7 @@ namespace Reefact.LuxaforLightingDeviceController {
 
         /// <summary>
         ///     Creates a <see cref="LightingCommand">command</see> to turn off
-        ///     <paramref name="targetedLeds">targeted LEDs</paramref> of a <see cref="LuxaforDevice">device</see>.
+        ///     <paramref name="targetedLeds">targeted LEDs</paramref> of a <see cref="ILuxaforDevice">device</see>.
         /// </summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
         /// <returns>A <see cref="LightingCommand">command</see>.</returns>
@@ -39,7 +39,7 @@ namespace Reefact.LuxaforLightingDeviceController {
 
         /// <summary>
         ///     Creates a <see cref="LightingCommand">command</see> to turn on/off all LEDs of a
-        ///     <see cref="LuxaforDevice">device</see>
+        ///     <see cref="ILuxaforDevice">device</see>
         ///     in a <paramref name="color">bright color</paramref>.
         /// </summary>
         /// <param name="color">The <see cref="BrightColor">bright color</see>.</param>
@@ -52,7 +52,7 @@ namespace Reefact.LuxaforLightingDeviceController {
         /// <summary>
         ///     Creates a <see cref="LightingCommand">command</see> to turn on/off
         ///     <paramref name="targetedLeds">targeted LEDs</paramref>
-        ///     of a <see cref="LuxaforDevice">device</see> in a <paramref name="color">bright color</paramref>.
+        ///     of a <see cref="ILuxaforDevice">device</see> in a <paramref name="color">bright color</paramref>.
         /// </summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
         /// <param name="color">The <see cref="BrightColor">bright color</see>.</param>
@@ -69,7 +69,7 @@ namespace Reefact.LuxaforLightingDeviceController {
         /// <summary>
         ///     Create a <see cref="LightingCommand">command</see> to fade <paramref name="targetedLeds">targeted LEDs</paramref>
         ///     of a
-        ///     <see cref="LuxaforDevice">device</see> in a <paramref name="color">bright color</paramref>.
+        ///     <see cref="ILuxaforDevice">device</see> in a <paramref name="color">bright color</paramref>.
         /// </summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
         /// <param name="color">The <see cref="BrightColor">bright color</see>.</param>
@@ -84,7 +84,7 @@ namespace Reefact.LuxaforLightingDeviceController {
 
         /// <summary>
         ///     Create a <see cref="LightingCommand">command</see> to activate the strobe effect on
-        ///     <paramref name="targetedLeds">targeted LEDs</paramref> of a <see cref="LuxaforDevice">device</see>.
+        ///     <paramref name="targetedLeds">targeted LEDs</paramref> of a <see cref="ILuxaforDevice">device</see>.
         /// </summary>
         /// <param name="targetedLeds">The <see cref="TargetedLeds">targeted LEDs</see>.</param>
         /// <param name="color">The <see cref="BrightColor">bright color</see>.</param>
@@ -104,7 +104,7 @@ namespace Reefact.LuxaforLightingDeviceController {
 
         /// <summary>
         ///     Create a <see cref="LightingCommand">command</see> to activate a wave effect of a
-        ///     <see cref="LuxaforDevice">device</see>.
+        ///     <see cref="ILuxaforDevice">device</see>.
         /// </summary>
         /// <param name="wavePattern">The <see cref="WavePattern">predefined type</see> of the wave.</param>
         /// <param name="color">The <see cref="BrightColor">bright color</see>.</param>
@@ -127,7 +127,7 @@ namespace Reefact.LuxaforLightingDeviceController {
 
         /// <summary>
         ///     Create a <see cref="LightingCommand">command</see> to play a built-in pattern of a
-        ///     <see cref="LuxaforDevice">device</see>.
+        ///     <see cref="ILuxaforDevice">device</see>.
         /// </summary>
         /// <param name="builtInPattern">The <see cref="BuiltInPattern">predefined built-in pattern</see> to activate.</param>
         /// <param name="repeat">the number of <see cref="Repeat">repetitions</see> to be carried out.</param>

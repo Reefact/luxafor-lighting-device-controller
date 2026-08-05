@@ -9,6 +9,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Breaking changes
 
+- The device interface is renamed `LuxaforDevice` → `ILuxaforDevice`, aligning the public API with the .NET
+  naming convention the rest of the ecosystem uses (`IDisposable`, `IEnumerable<T>`, ...). Consumers have to
+  update the type name; the members themselves are unchanged, so the migration is a rename:
+  `using ILuxaforDevice orb = Luxafor.GetDevices().First();`. The implementations keep naming their
+  specialization (`HidLuxaforDevice`), and `Luxafor`, `LuxaforDeviceLocator` and
+  `LuxaforDeviceNotFoundException` keep their names — they are not interfaces.
 - The value objects (`BrightColor`, `FadeDuration`, `LedIndex`, `LightingCommand`, `Repeat`, `Speed`,
   `TargetedLeds`) no longer derive from `Value.ValueType<T>`: they implement their own equality
   (`Equals`, `GetHashCode`, `==`, `!=`, `IEquatable<T>`) with the same value semantics, and the `Value`

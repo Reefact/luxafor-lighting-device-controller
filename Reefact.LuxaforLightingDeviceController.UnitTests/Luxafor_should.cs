@@ -21,7 +21,7 @@ public class Luxafor_should {
         // Setup
         FakeHidDeviceRegistry registry = FakeHidDeviceRegistry.Empty();
         // Exercise
-        IEnumerable<LuxaforDevice> devices = LuxaforDeviceLocator.GetDevices(registry);
+        IEnumerable<ILuxaforDevice> devices = LuxaforDeviceLocator.GetDevices(registry);
         // Verify
         Check.That(devices).IsEmpty();
     }
@@ -31,7 +31,7 @@ public class Luxafor_should {
         // Setup
         FakeHidDeviceRegistry registry = FakeHidDeviceRegistry.Containing(FakeHidDeviceHandle.AnotherBrandDevice());
         // Exercise
-        IEnumerable<LuxaforDevice> devices = LuxaforDeviceLocator.GetDevices(registry);
+        IEnumerable<ILuxaforDevice> devices = LuxaforDeviceLocator.GetDevices(registry);
         // Verify
         Check.That(devices).IsEmpty();
     }
@@ -44,7 +44,7 @@ public class Luxafor_should {
             FakeHidDeviceHandle.AnotherBrandDevice(),
             FakeHidDeviceHandle.ALuxaforDevice("hid#luxafor-2"));
         // Exercise
-        LuxaforDevice[] devices = LuxaforDeviceLocator.GetDevices(registry).ToArray();
+        ILuxaforDevice[] devices = LuxaforDeviceLocator.GetDevices(registry).ToArray();
         // Verify
         Check.That(devices.Select(device => device.Path)).ContainsExactly("hid#luxafor-1", "hid#luxafor-2");
     }
@@ -54,7 +54,7 @@ public class Luxafor_should {
         // Setup
         FakeHidDeviceRegistry registry = FakeHidDeviceRegistry.Empty();
         // Exercise
-        LuxaforDevice[] devices = LuxaforDeviceLocator.GetDevices(registry).ToArray();
+        ILuxaforDevice[] devices = LuxaforDeviceLocator.GetDevices(registry).ToArray();
         // Verify
         Check.That(devices).IsEmpty();
         Check.That(registry.EnumerationRequests).ContainsExactly((1240, 62322));
@@ -115,7 +115,7 @@ public class Luxafor_should {
         FakeHidDeviceHandle   luxafor  = FakeHidDeviceHandle.ALuxaforDevice("hid#luxafor-1");
         FakeHidDeviceRegistry registry = FakeHidDeviceRegistry.Containing(FakeHidDeviceHandle.AnotherBrandDevice(), luxafor);
         // Exercise
-        using LuxaforDevice device = LuxaforDeviceLocator.GetDevice(registry, "hid#luxafor-1");
+        using ILuxaforDevice device = LuxaforDeviceLocator.GetDevice(registry, "hid#luxafor-1");
         // Verify
         Check.That(device.Path).IsEqualTo("hid#luxafor-1");
         Check.That(luxafor.DisposeCount).IsEqualTo(0);

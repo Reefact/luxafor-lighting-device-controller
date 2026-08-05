@@ -16,7 +16,7 @@ namespace Reefact.LuxaforLightingDeviceController {
     ///     on/off or animated simultaneously by the device.
     /// </summary>
     /// <remarks>
-    ///     Targeting combinations are limited by the <see cref="LuxaforDevice" />device. Consider multiple sequential commands
+    ///     Targeting combinations are limited by the <see cref="ILuxaforDevice" />device. Consider multiple sequential commands
     ///     for other combinations, but in this case the on/off or animation will also be sequential and could: it can cause a
     ///     visual ripple effect.
     /// </remarks>

@@ -55,8 +55,8 @@ class Reefact.LuxaforLightingDeviceController.LightingCommand : System.IEquatabl
     Reefact.LuxaforLightingDeviceController.LightingCommand CreateTurnOffCommand(Reefact.LuxaforLightingDeviceController.TargetedLeds)
     System.String ToString()
 class Reefact.LuxaforLightingDeviceController.Luxafor
-    Reefact.LuxaforLightingDeviceController.LuxaforDevice GetDevice(System.String)
-    System.Collections.Generic.IEnumerable`1[Reefact.LuxaforLightingDeviceController.LuxaforDevice] GetDevices()
+    Reefact.LuxaforLightingDeviceController.ILuxaforDevice GetDevice(System.String)
+    System.Collections.Generic.IEnumerable`1[Reefact.LuxaforLightingDeviceController.ILuxaforDevice] GetDevices()
 class Reefact.LuxaforLightingDeviceController.LuxaforDeviceNotFoundException : System.Exception
     System.String DevicePath
     System.String get_DevicePath()
@@ -123,7 +123,7 @@ enum Reefact.LuxaforLightingDeviceController.WavePattern
     Reefact.LuxaforLightingDeviceController.WavePattern Wave_3
     Reefact.LuxaforLightingDeviceController.WavePattern Wave_4
     Reefact.LuxaforLightingDeviceController.WavePattern Wave_5
-interface Reefact.LuxaforLightingDeviceController.LuxaforDevice : System.IDisposable
+interface Reefact.LuxaforLightingDeviceController.ILuxaforDevice : System.IDisposable
     Boolean FadeColor(Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.FadeDuration)
     Boolean FadeColor(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.FadeDuration)
     Boolean PlayPattern(Reefact.LuxaforLightingDeviceController.BuiltInPattern, Reefact.LuxaforLightingDeviceController.Repeat)

@@ -66,7 +66,7 @@ De onderstaande code toont een voorbeeld van een basisgebruik van de bibliotheek
 ```csharp
 [Fact]
 public void french_sequence() {
-    using LuxaforDevice orb = Luxafor.GetDevices().First();
+    using ILuxaforDevice orb = Luxafor.GetDevices().First();
     for (var i = 0; i < 3; i++) {
         orb.SetColor(BrightColor.Blue);
         Thread.Sleep(500);
@@ -80,22 +80,22 @@ public void french_sequence() {
 }
 ```
 
-Regel 3 laat zien hoe u verbinding maakt met één enkele Orb die op de USB-poort van de machine is aangesloten. `LuxaforDevice` implementeert `IDisposable`: de `using`-instructie geeft de handle van het apparaat aan het einde van het blok vrij.
+Regel 3 laat zien hoe u verbinding maakt met één enkele Orb die op de USB-poort van de machine is aangesloten. `ILuxaforDevice` implementeert `IDisposable`: de `using`-instructie geeft de handle van het apparaat aan het einde van het blok vrij.
 
 ### Een apparaat verkrijgen
 
 ```csharp
-IEnumerable<LuxaforDevice> GetDevices(); // Alle Luxafor-apparaten die op de USB-poorten zijn aangesloten (leeg als er geen is aangesloten)
-LuxaforDevice GetDevice(string devicePath); // Het Luxafor-apparaat op het opgegeven pad
+IEnumerable<ILuxaforDevice> GetDevices(); // Alle Luxafor-apparaten die op de USB-poorten zijn aangesloten (leeg als er geen is aangesloten)
+ILuxaforDevice GetDevice(string devicePath); // Het Luxafor-apparaat op het opgegeven pad
 ```
 
 `Luxafor.GetDevice` gooit een `LuxaforDeviceNotFoundException` wanneer er geen apparaat op het opgegeven pad wordt gevonden, wanneer het gevonden apparaat geen ondersteund Luxafor-apparaat is, of wanneer het niet meer is aangesloten.
 
 ```csharp
-using LuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
+using ILuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
 ```
 
-Ik zal snel alle mogelijke commando's doornemen die vanuit de `LuxaforDevice` naar de apparaten kunnen worden gestuurd.
+Ik zal snel alle mogelijke commando's doornemen die vanuit de `ILuxaforDevice` naar de apparaten kunnen worden gestuurd.
 
 Elk commando geeft een `bool` terug: `true` wanneer het apparaat het commando heeft aanvaard, `false` wanneer het schrijven is mislukt (apparaat losgekoppeld, in gebruik door een andere toepassing, ...). Ongeldige argumenten gooien een uitzondering (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
 

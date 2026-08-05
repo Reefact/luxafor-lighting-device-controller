@@ -66,7 +66,7 @@ dotnet add package Reefact.LuxaforLightingDeviceController
 ```csharp
 [Fact]
 public void french_sequence() {
-    using LuxaforDevice orb = Luxafor.GetDevices().First();
+    using ILuxaforDevice orb = Luxafor.GetDevices().First();
     for (var i = 0; i < 3; i++) {
         orb.SetColor(BrightColor.Blue);
         Thread.Sleep(500);
@@ -80,22 +80,22 @@ public void french_sequence() {
 }
 ```
 
-Η γραμμή 3 δείχνει πώς να συνδεθείτε σε ένα μόνο Orb συνδεδεμένο στη θύρα USB του μηχανήματος. Το `LuxaforDevice` υλοποιεί το `IDisposable`: η δήλωση `using` απελευθερώνει τον χειριστή της συσκευής στο τέλος του μπλοκ.
+Η γραμμή 3 δείχνει πώς να συνδεθείτε σε ένα μόνο Orb συνδεδεμένο στη θύρα USB του μηχανήματος. Το `ILuxaforDevice` υλοποιεί το `IDisposable`: η δήλωση `using` απελευθερώνει τον χειριστή της συσκευής στο τέλος του μπλοκ.
 
 ### Λήψη μιας συσκευής
 
 ```csharp
-IEnumerable<LuxaforDevice> GetDevices(); // Όλες οι συσκευές Luxafor που είναι συνδεδεμένες στις θύρες USB (κενό αν δεν υπάρχει καμία)
-LuxaforDevice GetDevice(string devicePath); // Η συσκευή Luxafor που βρίσκεται στη συγκεκριμένη διαδρομή
+IEnumerable<ILuxaforDevice> GetDevices(); // Όλες οι συσκευές Luxafor που είναι συνδεδεμένες στις θύρες USB (κενό αν δεν υπάρχει καμία)
+ILuxaforDevice GetDevice(string devicePath); // Η συσκευή Luxafor που βρίσκεται στη συγκεκριμένη διαδρομή
 ```
 
 Η `Luxafor.GetDevice` ρίχνει μια `LuxaforDeviceNotFoundException` όταν δεν βρεθεί συσκευή στη διαδρομή που δόθηκε, όταν η συσκευή που βρέθηκε εκεί δεν είναι υποστηριζόμενη συσκευή Luxafor, ή όταν δεν είναι πλέον συνδεδεμένη.
 
 ```csharp
-using LuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
+using ILuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
 ```
 
-Θα παρουσιάσω γρήγορα όλες τις εντολές που μπορούν να σταλούν στις συσκευές από το `LuxaforDevice`.
+Θα παρουσιάσω γρήγορα όλες τις εντολές που μπορούν να σταλούν στις συσκευές από το `ILuxaforDevice`.
 
 Κάθε εντολή επιστρέφει ένα `bool`: `true` όταν η συσκευή δέχτηκε την εντολή, `false` όταν η εγγραφή απέτυχε (αποσυνδεδεμένη συσκευή, δεσμευμένη από άλλη εφαρμογή, ...). Τα μη έγκυρα ορίσματα ρίχνουν εξαίρεση (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
 

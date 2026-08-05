@@ -31,11 +31,6 @@ indent_size = 2
 # would break every consumer without making the API clearer.
 dotnet_diagnostic.CA1707.severity = none
 
-# CA1715: Identifiers should have correct prefix.
-# LuxaforDevice is a public interface shipped since 1.0.0 without the 'I' prefix. Renaming it
-# is a breaking change; internal interfaces do use the 'I' prefix.
-dotnet_diagnostic.CA1715.severity = none
-
 # ---------------------------------------------------------------------------
 # Unit tests
 # ---------------------------------------------------------------------------

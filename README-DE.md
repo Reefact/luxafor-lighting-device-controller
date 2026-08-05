@@ -66,7 +66,7 @@ Der folgende Code zeigt ein Beispiel für die grundlegende Verwendung der Biblio
 ```csharp
 [Fact]
 public void french_sequence() {
-    using LuxaforDevice orb = Luxafor.GetDevices().First();
+    using ILuxaforDevice orb = Luxafor.GetDevices().First();
     for (var i = 0; i < 3; i++) {
         orb.SetColor(BrightColor.Blue);
         Thread.Sleep(500);
@@ -80,22 +80,22 @@ public void french_sequence() {
 }
 ```
 
-Zeile 3 zeigt, wie man sich mit einem einzelnen Orb verbindet, der am USB-Anschluss des Rechners angeschlossen ist. `LuxaforDevice` implementiert `IDisposable`: Die `using`-Anweisung gibt das Handle des Geräts am Ende des Blocks wieder frei.
+Zeile 3 zeigt, wie man sich mit einem einzelnen Orb verbindet, der am USB-Anschluss des Rechners angeschlossen ist. `ILuxaforDevice` implementiert `IDisposable`: Die `using`-Anweisung gibt das Handle des Geräts am Ende des Blocks wieder frei.
 
 ### Ein Gerät abrufen
 
 ```csharp
-IEnumerable<LuxaforDevice> GetDevices(); // Alle an die USB-Anschlüsse angeschlossenen Luxafor-Geräte (leer, wenn keines angeschlossen ist)
-LuxaforDevice GetDevice(string devicePath); // Das Luxafor-Gerät unter dem angegebenen Pfad
+IEnumerable<ILuxaforDevice> GetDevices(); // Alle an die USB-Anschlüsse angeschlossenen Luxafor-Geräte (leer, wenn keines angeschlossen ist)
+ILuxaforDevice GetDevice(string devicePath); // Das Luxafor-Gerät unter dem angegebenen Pfad
 ```
 
 `Luxafor.GetDevice` löst eine `LuxaforDeviceNotFoundException` aus, wenn unter dem angegebenen Pfad kein Gerät gefunden wird, wenn das dort gefundene Gerät kein unterstütztes Luxafor-Gerät ist oder wenn es nicht mehr angeschlossen ist.
 
 ```csharp
-using LuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
+using ILuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
 ```
 
-Ich werde nun kurz alle Befehle vorstellen, die über das `LuxaforDevice` an die Geräte gesendet werden können.
+Ich werde nun kurz alle Befehle vorstellen, die über das `ILuxaforDevice` an die Geräte gesendet werden können.
 
 Jeder Befehl gibt einen `bool` zurück: `true`, wenn das Gerät den Befehl angenommen hat, `false`, wenn das Schreiben fehlgeschlagen ist (Gerät abgezogen, von einer anderen Anwendung belegt, ...). Ungültige Argumente lösen eine Ausnahme aus (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
 

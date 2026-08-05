@@ -9,9 +9,9 @@ using Reefact.LuxaforLightingDeviceController.Hid;
 namespace Reefact.LuxaforLightingDeviceController {
 
     /// <summary>
-    ///     The <see cref="LuxaforDevice">Luxafor device</see> driven through a HID connection.
+    ///     The <see cref="ILuxaforDevice">Luxafor device</see> driven through a HID connection.
     /// </summary>
-    internal sealed class HidLuxaforDevice : LuxaforDevice {
+    internal sealed class HidLuxaforDevice : ILuxaforDevice {
 
         #region Fields declarations
 

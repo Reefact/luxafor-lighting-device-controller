@@ -66,7 +66,7 @@ Koden nedan visar ett exempel på en grundläggande användning av biblioteket f
 ```csharp
 [Fact]
 public void french_sequence() {
-    using LuxaforDevice orb = Luxafor.GetDevices().First();
+    using ILuxaforDevice orb = Luxafor.GetDevices().First();
     for (var i = 0; i < 3; i++) {
         orb.SetColor(BrightColor.Blue);
         Thread.Sleep(500);
@@ -80,22 +80,22 @@ public void french_sequence() {
 }
 ```
 
-Rad 3 visar hur man ansluter till en enda Orb som är ansluten till maskinens USB-port. `LuxaforDevice` implementerar `IDisposable`: `using`-satsen frigör enhetens handtag i slutet av blocket.
+Rad 3 visar hur man ansluter till en enda Orb som är ansluten till maskinens USB-port. `ILuxaforDevice` implementerar `IDisposable`: `using`-satsen frigör enhetens handtag i slutet av blocket.
 
 ### Hämta en enhet
 
 ```csharp
-IEnumerable<LuxaforDevice> GetDevices(); // Alla Luxafor-enheter som är anslutna till USB-portarna (tom om ingen är ansluten)
-LuxaforDevice GetDevice(string devicePath); // Luxafor-enheten på den angivna sökvägen
+IEnumerable<ILuxaforDevice> GetDevices(); // Alla Luxafor-enheter som är anslutna till USB-portarna (tom om ingen är ansluten)
+ILuxaforDevice GetDevice(string devicePath); // Luxafor-enheten på den angivna sökvägen
 ```
 
 `Luxafor.GetDevice` kastar ett `LuxaforDeviceNotFoundException` när ingen enhet hittas på den angivna sökvägen, när enheten som hittas där inte är en Luxafor-enhet som stöds, eller när den inte längre är ansluten.
 
 ```csharp
-using LuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
+using ILuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
 ```
 
-Jag går snabbt igenom alla kommandon som kan skickas till enheterna från `LuxaforDevice`.
+Jag går snabbt igenom alla kommandon som kan skickas till enheterna från `ILuxaforDevice`.
 
 Varje kommando returnerar en `bool`: `true` när enheten har accepterat kommandot, `false` när skrivningen misslyckades (enheten är urkopplad, upptagen av ett annat program, ...). Ogiltiga argument kastar ett undantag (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
 

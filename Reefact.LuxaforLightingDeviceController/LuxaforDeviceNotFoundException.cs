@@ -7,7 +7,7 @@ using System;
 namespace Reefact.LuxaforLightingDeviceController {
 
     /// <summary>
-    ///     The exception thrown when no compatible Luxafor <see cref="LuxaforDevice">device</see> can be opened at the
+    ///     The exception thrown when no compatible Luxafor <see cref="ILuxaforDevice">device</see> can be opened at the
     ///     requested device path.
     /// </summary>
     public class LuxaforDeviceNotFoundException : Exception {

@@ -66,7 +66,7 @@ Le code ci-dessous présente un exemple d'utilisation basique de la librairie po
 ```csharp
 [Fact]
 public void french_sequence() {
-    using LuxaforDevice orb = Luxafor.GetDevices().First();
+    using ILuxaforDevice orb = Luxafor.GetDevices().First();
     for (var i = 0; i < 3; i++) {
         orb.SetColor(BrightColor.Blue);
         Thread.Sleep(500);
@@ -80,22 +80,22 @@ public void french_sequence() {
 }
 ```
 
-La ligne 3 montre comment se connecter à un unique Orb connecté au port USB de la machine. `LuxaforDevice` implémente `IDisposable` : le `using` libère le handle du périphérique à la fin du bloc.
+La ligne 3 montre comment se connecter à un unique Orb connecté au port USB de la machine. `ILuxaforDevice` implémente `IDisposable` : le `using` libère le handle du périphérique à la fin du bloc.
 
 ### Obtenir un périphérique
 
 ```csharp
-IEnumerable<LuxaforDevice> GetDevices(); // Tous les périphériques Luxafor connectés aux ports USB (énumération vide si aucun n'est branché)
-LuxaforDevice GetDevice(string devicePath); // Le périphérique Luxafor situé au chemin indiqué
+IEnumerable<ILuxaforDevice> GetDevices(); // Tous les périphériques Luxafor connectés aux ports USB (énumération vide si aucun n'est branché)
+ILuxaforDevice GetDevice(string devicePath); // Le périphérique Luxafor situé au chemin indiqué
 ```
 
 `Luxafor.GetDevice` lève une `LuxaforDeviceNotFoundException` lorsqu'aucun périphérique ne se trouve au chemin indiqué, lorsque le périphérique trouvé n'est pas un périphérique Luxafor supporté, ou lorsqu'il n'est plus connecté.
 
 ```csharp
-using LuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
+using ILuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
 ```
 
-Je vais présenter rapidement l'ensemble des commandes possibles à envoyer aux périphériques à partir du `LuxaforDevice`.
+Je vais présenter rapidement l'ensemble des commandes possibles à envoyer aux périphériques à partir de l'`ILuxaforDevice`.
 
 Chaque commande retourne un `bool` : `true` lorsque le périphérique a accepté la commande, `false` lorsque l'écriture a échoué (périphérique débranché, monopolisé par une autre application, ...). Les arguments invalides lèvent une exception (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
 

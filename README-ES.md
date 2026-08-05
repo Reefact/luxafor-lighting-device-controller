@@ -66,7 +66,7 @@ El siguiente código muestra un ejemplo de uso básico de la biblioteca para con
 ```csharp
 [Fact]
 public void french_sequence() {
-    using LuxaforDevice orb = Luxafor.GetDevices().First();
+    using ILuxaforDevice orb = Luxafor.GetDevices().First();
     for (var i = 0; i < 3; i++) {
         orb.SetColor(BrightColor.Blue);
         Thread.Sleep(500);
@@ -80,22 +80,22 @@ public void french_sequence() {
 }
 ```
 
-La línea 3 muestra cómo conectarse a un único Orb conectado al puerto USB de la máquina. `LuxaforDevice` implementa `IDisposable`: la instrucción `using` libera el descriptor del dispositivo al final del bloque.
+La línea 3 muestra cómo conectarse a un único Orb conectado al puerto USB de la máquina. `ILuxaforDevice` implementa `IDisposable`: la instrucción `using` libera el descriptor del dispositivo al final del bloque.
 
 ### Obtener un dispositivo
 
 ```csharp
-IEnumerable<LuxaforDevice> GetDevices(); // Todos los dispositivos Luxafor conectados a los puertos USB (vacío si no hay ninguno)
-LuxaforDevice GetDevice(string devicePath); // El dispositivo Luxafor situado en la ruta indicada
+IEnumerable<ILuxaforDevice> GetDevices(); // Todos los dispositivos Luxafor conectados a los puertos USB (vacío si no hay ninguno)
+ILuxaforDevice GetDevice(string devicePath); // El dispositivo Luxafor situado en la ruta indicada
 ```
 
 `Luxafor.GetDevice` lanza una `LuxaforDeviceNotFoundException` cuando no se encuentra ningún dispositivo en la ruta indicada, cuando el dispositivo encontrado no es un dispositivo Luxafor compatible o cuando ya no está conectado.
 
 ```csharp
-using LuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
+using ILuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
 ```
 
-Repasaré rápidamente todos los comandos que se pueden enviar a los dispositivos desde el `LuxaforDevice`.
+Repasaré rápidamente todos los comandos que se pueden enviar a los dispositivos desde el `ILuxaforDevice`.
 
 Cada comando devuelve un `bool`: `true` cuando el dispositivo ha aceptado el comando, `false` cuando la escritura ha fallado (dispositivo desconectado, ocupado por otra aplicación, ...). Los argumentos no válidos lanzan una excepción (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
 

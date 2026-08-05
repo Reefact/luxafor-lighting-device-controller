@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Reefact.LuxaforLightingDeviceController.UnitTests;
 
-public class LuxaforDevice_should {
+public class HidLuxaforDevice_should {
 
     #region Statics members declarations
 
@@ -29,7 +29,7 @@ public class LuxaforDevice_should {
         yield return Command("PlayPattern(builtIn)", device => device.PlayPattern(BuiltInPattern.Police, Repeat.Once));
     }
 
-    private static object[] Command(string name, Func<LuxaforDevice, bool> sendCommand) {
+    private static object[] Command(string name, Func<ILuxaforDevice, bool> sendCommand) {
         return new object[] { name, sendCommand };
     }
 
@@ -40,7 +40,7 @@ public class LuxaforDevice_should {
         // Setup
         FakeHidDeviceHandle handle = FakeHidDeviceHandle.ALuxaforDevice("hid#my-orb");
         handle.Description = "Luxafor Orb";
-        using LuxaforDevice device = new HidLuxaforDevice(handle);
+        using ILuxaforDevice device = new HidLuxaforDevice(handle);
         // Verify
         Check.That(device.Path).IsEqualTo("hid#my-orb");
         Check.That(device.Description).IsEqualTo("Luxafor Orb");
@@ -50,7 +50,7 @@ public class LuxaforDevice_should {
     public void write_the_command_buffer_to_the_hid_device() {
         // Setup
         FakeHidDeviceHandle handle = FakeHidDeviceHandle.ALuxaforDevice();
-        using LuxaforDevice device  = new HidLuxaforDevice(handle);
+        using ILuxaforDevice device  = new HidLuxaforDevice(handle);
         LightingCommand     command = LightingCommand.CreateSetColorCommand(TargetedLeds.TabSide, BrightColor.Red);
         // Exercise
         bool succeeded = device.Send(command);
@@ -62,10 +62,10 @@ public class LuxaforDevice_should {
 
     [Theory]
     [MemberData(nameof(AllCommands))]
-    public void report_a_success_when_the_hid_device_accepts_the_write(string commandName, Func<LuxaforDevice, bool> sendCommand) {
+    public void report_a_success_when_the_hid_device_accepts_the_write(string commandName, Func<ILuxaforDevice, bool> sendCommand) {
         // Setup
         FakeHidDeviceHandle handle = FakeHidDeviceHandle.ALuxaforDevice();
-        using LuxaforDevice device = new HidLuxaforDevice(handle);
+        using ILuxaforDevice device = new HidLuxaforDevice(handle);
         // Exercise
         bool succeeded = sendCommand(device);
         // Verify
@@ -75,10 +75,10 @@ public class LuxaforDevice_should {
 
     [Theory]
     [MemberData(nameof(AllCommands))]
-    public void propagate_the_failure_when_the_hid_device_refuses_the_write(string commandName, Func<LuxaforDevice, bool> sendCommand) {
+    public void propagate_the_failure_when_the_hid_device_refuses_the_write(string commandName, Func<ILuxaforDevice, bool> sendCommand) {
         // Setup
         FakeHidDeviceHandle handle = FakeHidDeviceHandle.AFailingLuxaforDevice();
-        using LuxaforDevice device = new HidLuxaforDevice(handle);
+        using ILuxaforDevice device = new HidLuxaforDevice(handle);
         // Exercise
         bool succeeded = sendCommand(device);
         // Verify
@@ -89,7 +89,7 @@ public class LuxaforDevice_should {
     [Fact]
     public void refuse_a_null_command() {
         // Setup
-        using LuxaforDevice device = new HidLuxaforDevice(FakeHidDeviceHandle.ALuxaforDevice());
+        using ILuxaforDevice device = new HidLuxaforDevice(FakeHidDeviceHandle.ALuxaforDevice());
         // Exercise
         Check.ThatCode(() => device.Send(null!))
              .Throws<ArgumentNullException>();
@@ -105,7 +105,7 @@ public class LuxaforDevice_should {
     public void dispose_the_underlying_hid_device() {
         // Setup
         FakeHidDeviceHandle handle = FakeHidDeviceHandle.ALuxaforDevice();
-        LuxaforDevice       device = new HidLuxaforDevice(handle);
+        ILuxaforDevice       device = new HidLuxaforDevice(handle);
         // Exercise
         device.Dispose();
         // Verify
@@ -117,7 +117,7 @@ public class LuxaforDevice_should {
         // Setup
         FakeHidDeviceHandle handle = FakeHidDeviceHandle.ALuxaforDevice();
         // Exercise
-        using (LuxaforDevice device = new HidLuxaforDevice(handle)) {
+        using (ILuxaforDevice device = new HidLuxaforDevice(handle)) {
             device.SetColor(BrightColor.Green);
             Check.That(handle.DisposeCount).IsEqualTo(0);
         }
@@ -129,7 +129,7 @@ public class LuxaforDevice_should {
     public void forward_every_dispose_call_to_the_underlying_hid_device() {
         // Setup
         FakeHidDeviceHandle handle = FakeHidDeviceHandle.ALuxaforDevice();
-        LuxaforDevice       device = new HidLuxaforDevice(handle);
+        ILuxaforDevice       device = new HidLuxaforDevice(handle);
         // Exercise
         device.Dispose();
         device.Dispose();
@@ -141,7 +141,7 @@ public class LuxaforDevice_should {
     public void send_the_expected_buffer_for_each_command_of_the_api() {
         // Setup
         FakeHidDeviceHandle handle = FakeHidDeviceHandle.ALuxaforDevice();
-        using LuxaforDevice device = new HidLuxaforDevice(handle);
+        using ILuxaforDevice device = new HidLuxaforDevice(handle);
         // Exercise
         device.TurnOff();
         device.TurnOff(TargetedLeds.BackSide);

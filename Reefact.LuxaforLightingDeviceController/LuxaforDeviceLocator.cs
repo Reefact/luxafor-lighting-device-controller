@@ -12,7 +12,7 @@ using Reefact.LuxaforLightingDeviceController.Hid;
 namespace Reefact.LuxaforLightingDeviceController {
 
     /// <summary>
-    ///     Locates the Luxafor <see cref="LuxaforDevice">devices</see> exposed by a
+    ///     Locates the Luxafor <see cref="ILuxaforDevice">devices</see> exposed by a
     ///     <see cref="IHidDeviceRegistry">HID registry</see>.
     /// </summary>
     /// <remarks>
@@ -28,14 +28,14 @@ namespace Reefact.LuxaforLightingDeviceController {
         /// <summary>The USB product identifier of the supported Luxafor devices.</summary>
         internal const int ProductId = 62322;
 
-        public static IEnumerable<LuxaforDevice> GetDevices(IHidDeviceRegistry registry) {
+        public static IEnumerable<ILuxaforDevice> GetDevices(IHidDeviceRegistry registry) {
             if (registry is null) { throw new ArgumentNullException(nameof(registry)); }
 
             return registry.Enumerate(VendorId, ProductId)
-                           .Select(handle => (LuxaforDevice)new HidLuxaforDevice(handle));
+                           .Select(handle => (ILuxaforDevice)new HidLuxaforDevice(handle));
         }
 
-        public static LuxaforDevice GetDevice(IHidDeviceRegistry registry, string devicePath) {
+        public static ILuxaforDevice GetDevice(IHidDeviceRegistry registry, string devicePath) {
             if (registry is null) { throw new ArgumentNullException(nameof(registry)); }
             if (devicePath is null) { throw new ArgumentNullException(nameof(devicePath)); }
             if (devicePath.Trim().Length == 0) { throw new ArgumentException("Device path cannot be empty.", nameof(devicePath)); }

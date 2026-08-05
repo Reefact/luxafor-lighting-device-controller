@@ -12,7 +12,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
         #region Statics members declarations
 
-        private static void EndSequence(LuxaforDevice orb) {
+        private static void EndSequence(ILuxaforDevice orb) {
             orb.Strobe(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(1), Repeat.Twice);
             Thread.Sleep(200);
             orb.Send(MyCommand.SetAllYellow);
@@ -20,7 +20,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
             orb.SetColor(BrightColor.Black);
         }
 
-        private static void StartSequence(LuxaforDevice orb) {
+        private static void StartSequence(ILuxaforDevice orb) {
             orb.SetColor(BrightColor.Black);
             orb.Send(MyCommand.StrobeYellow);
             Thread.Sleep(4000);
@@ -30,7 +30,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void use_led_index_as_target() {
-            using LuxaforDevice orb = Luxafor.GetDevices().First();
+            using ILuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             int repeat = 10;
@@ -50,7 +50,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void turn_off_specified_leds() {
-            using LuxaforDevice orb = Luxafor.GetDevices().First();
+            using ILuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             orb.SetColor(BrightColor.Red);
@@ -65,7 +65,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void french_sequence() {
-            using LuxaforDevice orb = Luxafor.GetDevices().First();
+            using ILuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             for (int i = 0; i < 3; i++) {
@@ -84,7 +84,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void create_a_strobe_sequence() {
-            using LuxaforDevice orb = Luxafor.GetDevices().First();
+            using ILuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             orb.Strobe(LedIndex._1, BrightColor.Green, Speed.FromByte(10), Repeat.Count(5));
@@ -111,7 +111,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void run_a_list_of_commands() {
-            using LuxaforDevice orb = Luxafor.GetDevices().First();
+            using ILuxaforDevice orb = Luxafor.GetDevices().First();
 
             // Sequence 1
             StartSequence(orb);
@@ -152,7 +152,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void set_two_leds_at_once() {
-            using LuxaforDevice orb = Luxafor.GetDevices().First();
+            using ILuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             orb.SetColor(BrightColor.Black);
@@ -165,7 +165,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void simulate_simultaneous_custom_targeted_leds() {
-            using LuxaforDevice orb = Luxafor.GetDevices().First();
+            using ILuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
             for (int i = 0; i < 4; i++) {
