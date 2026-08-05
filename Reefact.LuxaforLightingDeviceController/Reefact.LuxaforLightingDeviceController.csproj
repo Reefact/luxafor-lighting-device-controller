@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
+    <AssemblyName>Reefact.LuxaforLightingDeviceController</AssemblyName>
+    <RootNamespace>Reefact.LuxaforLightingDeviceController</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- NuGet package metadata -->
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageId>Reefact.LuxaforLightingDeviceController</PackageId>
+    <Version>2.0.0</Version>
+    <Title>Luxafor Lighting Device Controller</Title>
+    <Authors>Sylvain AURAT</Authors>
+    <Company>Reefact</Company>
+    <Product>Reefact.LuxaforLightingDeviceController</Product>
+    <Description>A .NET library that provides a simple API to control Luxafor lighting devices.</Description>
+    <Copyright>©2026 Reefact</Copyright>
+    <PackageTags>luxafor;hid;usb;led;notification;availability;presence</PackageTags>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Reefact/luxafor-lighting-device-controller</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Reefact/luxafor-lighting-device-controller.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>See the CHANGELOG.md file of the repository.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <!-- Source Link, symbols and reproducible builds -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="hidlibrary" Version="3.3.40" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+    <!-- Allows the .NET Framework target to be built on any OS (including CI agents without .NET Framework). -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README-EN.md" Pack="true" PackagePath="README.md" Visible="false" />
+    <None Include="..\icon.png" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Reefact.LuxaforLightingDeviceController.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+</Project>

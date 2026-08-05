@@ -1,11 +1,9 @@
 ﻿#region Usings declarations
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text.RegularExpressions;
-
-using Value;
 
 #endregion
 
@@ -15,7 +13,7 @@ namespace Reefact.LuxaforLightingDeviceController {
     ///     Represents the color of the light of a LED.
     /// </summary>
     [DebuggerDisplay("{ToString()}")]
-    public sealed class BrightColor : ValueType<BrightColor> {
+    public sealed class BrightColor : IEquatable<BrightColor> {
 
         #region Statics members declarations
 
@@ -39,20 +37,19 @@ namespace Reefact.LuxaforLightingDeviceController {
         private static readonly Regex HexParser = new Regex(@"^#(?'red'[A-F0-9]{2})(?'green'[A-F0-9]{2})(?'blue'[A-F0-9]{2})$", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         /// <summary>
-        ///     Create a <see cref="BrightColor">bright color</see> from an hexadecimal representation (e.g. #6A11A).
+        ///     Create a <see cref="BrightColor">bright color</see> from an hexadecimal representation (e.g. #0F11A8).
         /// </summary>
         /// <param name="hex">The hexadecimal value.</param>
         /// <returns>A <see cref="BrightColor">bright color</see>.</returns>
-        /// <exception cref="ArgumentNullException">
-        ///     Argument
-        ///     <param ref="hex" />
-        ///     is null.
+        /// <exception cref="ArgumentNullException">Argument <paramref name="hex" /> is null.</exception>
+        /// <exception cref="FormatException">
+        ///     Argument <paramref name="hex" /> is not a valid hexadecimal color representation.
         /// </exception>
         public static BrightColor From(string hex) {
             if (hex is null) { throw new ArgumentNullException(nameof(hex)); }
 
             Match match = HexParser.Match(hex);
-            if (!match.Success) { throw new FormatException(); }
+            if (!match.Success) { throw new FormatException($"'{hex}' is not a valid hexadecimal color representation (expected format: #RRGGBB)."); }
 
             byte        red   = ToByte(match.Groups, "red");
             byte        green = ToByte(match.Groups, "green");
@@ -68,6 +65,7 @@ namespace Reefact.LuxaforLightingDeviceController {
         /// <param name="red">The red component of the <see cref="BrightColor">bright color</see>.</param>
         /// <param name="green">The green component of the <see cref="BrightColor">bright color</see>.</param>
         /// <param name="blue">The blue component of the <see cref="BrightColor">bright color</see>.</param>
+        /// <returns>A <see cref="BrightColor">bright color</see>.</returns>
         public static BrightColor From(byte red, byte green, byte blue) {
             return new BrightColor(red, green, blue);
         }
@@ -103,14 +101,43 @@ namespace Reefact.LuxaforLightingDeviceController {
 
         /// <inheritdoc />
         public override string ToString() {
-            string hex = "#" + _rgb.Red.ToString("X2") + _rgb.Green.ToString("X2") + _rgb.Blue.ToString("X2");
+            string hex = "#" + _rgb.Red.ToString("X2", CultureInfo.InvariantCulture) + _rgb.Green.ToString("X2", CultureInfo.InvariantCulture) + _rgb.Blue.ToString("X2", CultureInfo.InvariantCulture);
 
             return hex;
         }
 
         /// <inheritdoc />
-        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality() {
-            return new object[] { _rgb };
+        public bool Equals(BrightColor? other) {
+            if (other is null) { return false; }
+            if (ReferenceEquals(this, other)) { return true; }
+
+            return _rgb.Equals(other._rgb);
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object? obj) {
+            return Equals(obj as BrightColor);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode() {
+            return _rgb.GetHashCode();
+        }
+
+        /// <summary>Indicates whether two <see cref="BrightColor">bright colors</see> are equal.</summary>
+        /// <param name="left">The first <see cref="BrightColor">bright color</see> to compare.</param>
+        /// <param name="right">The second <see cref="BrightColor">bright color</see> to compare.</param>
+        /// <returns>true if both values are equal, otherwise false.</returns>
+        public static bool operator ==(BrightColor? left, BrightColor? right) {
+            return left is null ? right is null : left.Equals(right);
+        }
+
+        /// <summary>Indicates whether two <see cref="BrightColor">bright colors</see> are different.</summary>
+        /// <param name="left">The first <see cref="BrightColor">bright color</see> to compare.</param>
+        /// <param name="right">The second <see cref="BrightColor">bright color</see> to compare.</param>
+        /// <returns>true if both values are different, otherwise false.</returns>
+        public static bool operator !=(BrightColor? left, BrightColor? right) {
+            return !(left == right);
         }
 
         internal Rgb ToRgb() {
