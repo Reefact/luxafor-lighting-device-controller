@@ -1,0 +1,109 @@
+name: Release
+
+# Publishes the package to nuget.org when a version tag is pushed.
+#
+# Procedure:
+#   1. set <Version> in Reefact.LuxaforLightingDeviceController.csproj (e.g. 2.0.0)
+#   2. update CHANGELOG.md, merge everything into main
+#   3. git tag v2.0.0 && git push origin v2.0.0
+#
+# Requires the NUGET_API_KEY repository secret (Settings > Secrets and variables > Actions),
+# holding a nuget.org API key scoped to pushing Reefact.LuxaforLightingDeviceController.
+#
+# The job refuses to publish when the tag does not match the version of the project, so a
+# mistyped tag cannot publish the wrong version, and it runs the tests and the package
+# validation before pushing anything.
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+permissions:
+  contents: write   # needed to create the GitHub release
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    # Publishing is bound to an environment: a required reviewer can be added on it
+    # (Settings > Environments > nuget) to make every release manually approved.
+    environment: nuget
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Source Link embeds the commit, it needs the full history
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Check the API key is configured
+        shell: pwsh
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:NUGET_API_KEY)) {
+            throw "The NUGET_API_KEY secret is not configured: add it in Settings > Secrets and variables > Actions."
+          }
+          Write-Host "NUGET_API_KEY is configured."
+
+      - name: Check the tag matches the version of the project
+        shell: pwsh
+        run: |
+          $project = 'Reefact.LuxaforLightingDeviceController/Reefact.LuxaforLightingDeviceController.csproj'
+          $version = (dotnet msbuild $project -getProperty:Version).Trim()
+          $expectedTag = "v$version"
+          $tag = '${{ github.ref_name }}'
+          if ($tag -ne $expectedTag) {
+            throw "Tag '$tag' does not match the version of the project ('$version', e.g. tag '$expectedTag'). Fix <Version> or the tag, then tag again."
+          }
+          Write-Host "Publishing version $version from tag $tag."
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Test
+        run: dotnet test -c Release --no-build --verbosity normal
+
+      - name: Pack
+        run: dotnet pack Reefact.LuxaforLightingDeviceController -c Release --no-build -o artifacts
+
+      - name: Validate package content
+        shell: pwsh
+        run: ./build/Validate-Package.ps1 -ArtifactsDirectory artifacts
+
+      - name: Push to nuget.org
+        shell: pwsh
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          # The matching .snupkg sitting next to the .nupkg is pushed along automatically.
+          $package = (Get-ChildItem artifacts -Filter *.nupkg | Select-Object -First 1).FullName
+          Write-Host "Pushing $package"
+          dotnet nuget push $package --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+      - name: Create the GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $tag    = '${{ github.ref_name }}'
+          $assets = (Get-ChildItem artifacts -File | ForEach-Object { $_.FullName })
+          gh release view $tag *> $null
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "Release $tag already exists, uploading the packages to it."
+            gh release upload $tag $assets --clobber
+          } else {
+            Write-Host "Creating release $tag."
+            gh release create $tag $assets --title $tag --generate-notes
+          }
