@@ -1,14 +1,12 @@
 ﻿#region Usings declarations
 
-using System.Collections.Generic;
-
-using Value;
+using System;
 
 #endregion
 
 namespace Reefact.LuxaforLightingDeviceController {
 
-    internal sealed class Rgb : ValueType<Rgb> {
+    internal sealed class Rgb : IEquatable<Rgb> {
 
         #region Constructors declarations
 
@@ -25,8 +23,35 @@ namespace Reefact.LuxaforLightingDeviceController {
         public byte Blue  { get; }
 
         /// <inheritdoc />
-        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality() {
-            return new object[] { Red, Green, Blue };
+        public bool Equals(Rgb? other) {
+            if (other is null) { return false; }
+            if (ReferenceEquals(this, other)) { return true; }
+
+            return Red == other.Red && Green == other.Green && Blue == other.Blue;
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object? obj) {
+            return Equals(obj as Rgb);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode() {
+            unchecked {
+                int hashCode = Red;
+                hashCode = (hashCode * 397) ^ Green;
+                hashCode = (hashCode * 397) ^ Blue;
+
+                return hashCode;
+            }
+        }
+
+        public static bool operator ==(Rgb? left, Rgb? right) {
+            return left is null ? right is null : left.Equals(right);
+        }
+
+        public static bool operator !=(Rgb? left, Rgb? right) {
+            return !(left == right);
         }
 
     }

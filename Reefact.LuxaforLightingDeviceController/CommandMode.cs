@@ -1,20 +1,18 @@
 ﻿#region Usings declarations
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 
 using Reefact.LuxaforLightingDeviceController.Converters;
-
-using Value;
 
 #endregion
 
 namespace Reefact.LuxaforLightingDeviceController {
 
     [DebuggerDisplay("{ToString()}")]
-    internal sealed class CommandMode : ValueType<CommandMode> {
+    internal sealed class CommandMode : IEquatable<CommandMode> {
 
         #region Statics members declarations
 
@@ -58,12 +56,33 @@ namespace Reefact.LuxaforLightingDeviceController {
 
         /// <inheritdoc />
         public override string ToString() {
-            return _value.ToString();
+            return _value.ToString(CultureInfo.InvariantCulture);
         }
 
         /// <inheritdoc />
-        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality() {
-            return new object[] { _value };
+        public bool Equals(CommandMode? other) {
+            if (other is null) { return false; }
+            if (ReferenceEquals(this, other)) { return true; }
+
+            return _value == other._value;
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object? obj) {
+            return Equals(obj as CommandMode);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode() {
+            return _value.GetHashCode();
+        }
+
+        public static bool operator ==(CommandMode? left, CommandMode? right) {
+            return left is null ? right is null : left.Equals(right);
+        }
+
+        public static bool operator !=(CommandMode? left, CommandMode? right) {
+            return !(left == right);
         }
 
         internal byte ToByte() {

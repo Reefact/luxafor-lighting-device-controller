@@ -8,9 +8,9 @@ using Xunit;
 
 #endregion
 
-namespace Reefact.LuxaforDevicesController.UnitTests {
+namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
-    public class Command_should {
+    public class LightingCommand_should {
 
         [Fact]
         public void create_a_command_buffer_for_setting_all_device_leds_to_primary_color() {

@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Reefact.LuxaforLightingDeviceController.LightingCommandFactories {
 
-    internal sealed class PlayWavePatternCommandFactory : LightingCommandFactory {
+    internal sealed class PlayWavePatternCommandFactory : ILightingCommandFactory {
 
         #region Fields declarations
 

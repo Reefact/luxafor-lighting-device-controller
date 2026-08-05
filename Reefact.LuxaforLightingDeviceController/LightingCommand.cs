@@ -1,13 +1,10 @@
 ﻿#region Usings declarations
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 
 using Reefact.LuxaforLightingDeviceController.LightingCommandFactories;
-
-using Value;
 
 #endregion
 
@@ -17,7 +14,7 @@ namespace Reefact.LuxaforLightingDeviceController {
     ///     Represents a lighting command to a Luxafor <see cref="LuxaforDevice">device</see>.
     /// </summary>
     [DebuggerDisplay("{ToString()}")]
-    public sealed class LightingCommand : ValueType<LightingCommand> {
+    public sealed class LightingCommand : IEquatable<LightingCommand> {
 
         #region Statics members declarations
 
@@ -175,8 +172,49 @@ namespace Reefact.LuxaforLightingDeviceController {
         }
 
         /// <inheritdoc />
-        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality() {
-            return new object[] { new ListByValue<byte>(_buffer) };
+        public bool Equals(LightingCommand? other) {
+            if (other is null) { return false; }
+            if (ReferenceEquals(this, other)) { return true; }
+            if (_buffer.Length != other._buffer.Length) { return false; }
+
+            for (int i = 0; i < _buffer.Length; i++) {
+                if (_buffer[i] != other._buffer[i]) { return false; }
+            }
+
+            return true;
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object? obj) {
+            return Equals(obj as LightingCommand);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode() {
+            unchecked {
+                int hashCode = 17;
+                foreach (byte value in _buffer) {
+                    hashCode = (hashCode * 397) ^ value;
+                }
+
+                return hashCode;
+            }
+        }
+
+        /// <summary>Indicates whether two <see cref="LightingCommand">lighting commands</see> are equal.</summary>
+        /// <param name="left">The first <see cref="LightingCommand">lighting command</see> to compare.</param>
+        /// <param name="right">The second <see cref="LightingCommand">lighting command</see> to compare.</param>
+        /// <returns>true if both commands produce the same device buffer, otherwise false.</returns>
+        public static bool operator ==(LightingCommand? left, LightingCommand? right) {
+            return left is null ? right is null : left.Equals(right);
+        }
+
+        /// <summary>Indicates whether two <see cref="LightingCommand">lighting commands</see> are different.</summary>
+        /// <param name="left">The first <see cref="LightingCommand">lighting command</see> to compare.</param>
+        /// <param name="right">The second <see cref="LightingCommand">lighting command</see> to compare.</param>
+        /// <returns>true if both commands produce different device buffers, otherwise false.</returns>
+        public static bool operator !=(LightingCommand? left, LightingCommand? right) {
+            return !(left == right);
         }
 
         internal byte[] ToBuffer() {

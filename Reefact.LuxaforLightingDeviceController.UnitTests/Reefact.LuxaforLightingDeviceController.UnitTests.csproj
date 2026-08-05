@@ -1,13 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <!-- net472 is only built on Windows: it is there to exercise the net462 assembly of the library. -->
+    <TargetFrameworks>net10.0</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('Windows'))">net10.0;net472</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
-
-    <Configurations>Debug;Release;tt</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,9 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Reefact.LuxaforLightingDeviceController.NetStandard20\Reefact.LuxaforLightingDeviceController.NetStandard20.csproj" />
+    <ProjectReference Include="..\Reefact.LuxaforLightingDeviceController\Reefact.LuxaforLightingDeviceController.csproj" />
   </ItemGroup>
-
-  <Import Project="..\Reefact.LuxaforLightingDeviceController.UnitTests\Reefact.LuxaforLightingDeviceController.UnitTests.projitems" Label="Shared" />
 
 </Project>

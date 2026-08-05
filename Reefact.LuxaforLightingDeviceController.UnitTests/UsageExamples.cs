@@ -6,7 +6,7 @@ using Xunit;
 
 #endregion
 
-namespace Reefact.LuxaforDevicesController.UnitTests {
+namespace Reefact.LuxaforLightingDeviceController.UnitTests {
 
     public class UsageExamples {
 

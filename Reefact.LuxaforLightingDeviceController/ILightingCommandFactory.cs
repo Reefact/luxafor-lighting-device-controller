@@ -1,6 +1,6 @@
 ﻿namespace Reefact.LuxaforLightingDeviceController {
 
-    internal interface LightingCommandFactory {
+    internal interface ILightingCommandFactory {
 
         LightingCommand Create();
 

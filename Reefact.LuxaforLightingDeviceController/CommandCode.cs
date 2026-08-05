@@ -1,18 +1,16 @@
 ﻿#region Usings declarations
 
-using System.Collections.Generic;
+using System;
 using System.Diagnostics;
 
 using Reefact.LuxaforLightingDeviceController.Protocol;
-
-using Value;
 
 #endregion
 
 namespace Reefact.LuxaforLightingDeviceController {
 
     [DebuggerDisplay("{ToString()}")]
-    internal sealed class CommandCode : ValueType<CommandCode> {
+    internal sealed class CommandCode : IEquatable<CommandCode> {
 
         #region Statics members declarations
 
@@ -46,8 +44,29 @@ namespace Reefact.LuxaforLightingDeviceController {
         }
 
         /// <inheritdoc />
-        protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality() {
-            return new object[] { _value };
+        public bool Equals(CommandCode? other) {
+            if (other is null) { return false; }
+            if (ReferenceEquals(this, other)) { return true; }
+
+            return _value == other._value;
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object? obj) {
+            return Equals(obj as CommandCode);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode() {
+            return _value.GetHashCode();
+        }
+
+        public static bool operator ==(CommandCode? left, CommandCode? right) {
+            return left is null ? right is null : left.Equals(right);
+        }
+
+        public static bool operator !=(CommandCode? left, CommandCode? right) {
+            return !(left == right);
         }
 
         internal byte ToByte() {

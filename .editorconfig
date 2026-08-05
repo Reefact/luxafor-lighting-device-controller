@@ -1,0 +1,47 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.{md,yml,yaml}]
+indent_size = 2
+trim_trailing_whitespace = false
+
+[*.{csproj,props,targets,config,nuspec,xml}]
+indent_size = 2
+
+[*.cs]
+
+# ---------------------------------------------------------------------------
+# Analyzer rules deliberately turned off.
+#
+# The library follows semantic versioning and its public API is frozen: the
+# rules below can only be satisfied by breaking that API, for no functional
+# gain. They are disabled here rather than suppressed one by one in the code.
+# ---------------------------------------------------------------------------
+
+# CA1707: Identifiers should not contain underscores.
+# LedIndex._1, TargetedLeds.Led_1, WavePattern.Wave_1, BuiltInPattern.Pattern_1... mirror the
+# numbering printed on the devices and on the Luxafor protocol documentation. Renaming them
+# would break every consumer without making the API clearer.
+dotnet_diagnostic.CA1707.severity = none
+
+# CA1715: Identifiers should have correct prefix.
+# LuxaforDevice is a public interface shipped since 1.0.0 without the 'I' prefix. Renaming it
+# is a breaking change; internal interfaces do use the 'I' prefix.
+dotnet_diagnostic.CA1715.severity = none
+
+# ---------------------------------------------------------------------------
+# Unit tests
+# ---------------------------------------------------------------------------
+[Reefact.LuxaforLightingDeviceController.UnitTests/**.cs]
+
+# CA1859: Use concrete types when possible for improved performance.
+# The tests deliberately drive the library through its public abstractions (LuxaforDevice, ...):
+# that is precisely what they are meant to verify.
+dotnet_diagnostic.CA1859.severity = none

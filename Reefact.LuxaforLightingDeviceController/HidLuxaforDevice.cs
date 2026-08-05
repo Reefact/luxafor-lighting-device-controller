@@ -2,23 +2,26 @@
 
 using System;
 
-using HidLibrary;
+using Reefact.LuxaforLightingDeviceController.Hid;
 
 #endregion
 
 namespace Reefact.LuxaforLightingDeviceController {
 
-    internal sealed class LuxaforDeviceImp : LuxaforDevice {
+    /// <summary>
+    ///     The <see cref="LuxaforDevice">Luxafor device</see> driven through a HID connection.
+    /// </summary>
+    internal sealed class HidLuxaforDevice : LuxaforDevice {
 
         #region Fields declarations
 
-        private readonly IHidDevice _target;
+        private readonly IHidDeviceHandle _target;
 
         #endregion
 
         #region Constructors declarations
 
-        internal LuxaforDeviceImp(IHidDevice target) {
+        internal HidLuxaforDevice(IHidDeviceHandle target) {
             if (target is null) { throw new ArgumentNullException(nameof(target)); }
 
             _target = target;
@@ -26,14 +29,18 @@ namespace Reefact.LuxaforLightingDeviceController {
 
         #endregion
 
+        /// <inheritdoc />
         public string Path => _target.DevicePath;
 
+        /// <inheritdoc />
         public string Description => _target.Description;
 
+        /// <inheritdoc />
         public void Dispose() {
             _target.Dispose();
         }
 
+        /// <inheritdoc />
         public bool Send(LightingCommand command) {
             if (command is null) { throw new ArgumentNullException(nameof(command)); }
 
@@ -42,24 +49,28 @@ namespace Reefact.LuxaforLightingDeviceController {
             return _target.Write(buffer);
         }
 
+        /// <inheritdoc />
         public bool TurnOff() {
             LightingCommand command = LightingCommand.CreateTurnOffCommand();
 
             return Send(command);
         }
 
+        /// <inheritdoc />
         public bool TurnOff(TargetedLeds targetedLeds) {
             LightingCommand command = LightingCommand.CreateTurnOffCommand(targetedLeds);
 
             return Send(command);
         }
 
+        /// <inheritdoc />
         public bool SetColor(BrightColor color) {
             LightingCommand command = LightingCommand.CreateSetColorCommand(color);
 
             return Send(command);
         }
 
+        /// <inheritdoc />
         public bool SetColor(TargetedLeds targetedLeds, BrightColor color) {
             LightingCommand command = LightingCommand.CreateSetColorCommand(targetedLeds, color);
 
@@ -71,6 +82,7 @@ namespace Reefact.LuxaforLightingDeviceController {
             return FadeColor(TargetedLeds.All, color, duration);
         }
 
+        /// <inheritdoc />
         public bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration) {
             LightingCommand command = LightingCommand.CreateFadeColorCommand(targetedLeds, color, duration);
 
@@ -82,20 +94,23 @@ namespace Reefact.LuxaforLightingDeviceController {
             return Strobe(TargetedLeds.All, color, speed, repeat);
         }
 
+        /// <inheritdoc />
         public bool Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat) {
             LightingCommand command = LightingCommand.CreateStrobeCommand(targetedLeds, color, speed, repeat);
 
             return Send(command);
         }
 
+        /// <inheritdoc />
         public bool PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat) {
             LightingCommand command = LightingCommand.CreatePlayWavePatternCommand(wavePattern, color, speed, repeat);
 
             return Send(command);
         }
 
-        public bool PlayPattern(BuiltInPattern builtInPattern, Repeat repeat) {
-            LightingCommand command = LightingCommand.CreatePlayBuiltInPatternCommand(builtInPattern, repeat);
+        /// <inheritdoc />
+        public bool PlayPattern(BuiltInPattern pattern, Repeat repeat) {
+            LightingCommand command = LightingCommand.CreatePlayBuiltInPatternCommand(pattern, repeat);
 
             return Send(command);
         }

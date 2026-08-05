@@ -8,9 +8,9 @@ using Xunit;
 
 #endregion
 
-namespace Reefact.LuxaforDevicesController.UnitTests;
+namespace Reefact.LuxaforLightingDeviceController.UnitTests;
 
-public class Color_should {
+public class BrightColor_should {
 
     [Theory]
     [InlineData("#0F11A8", 15, 17, 168)]
