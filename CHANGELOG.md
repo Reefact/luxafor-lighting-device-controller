@@ -1,0 +1,59 @@
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project adheres to
+[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [2.0.0]
+
+### Breaking changes
+
+- The value objects (`BrightColor`, `FadeDuration`, `LedIndex`, `LightingCommand`, `Repeat`, `Speed`,
+  `TargetedLeds`) no longer derive from `Value.ValueType<T>`: they implement their own equality
+  (`Equals`, `GetHashCode`, `==`, `!=`, `IEquatable<T>`) with the same value semantics, and the `Value`
+  package is not a dependency anymore. Source compatible for any normal usage (comparisons, dictionary keys,
+  `IEquatable<T>`), but binary incompatible: recompile against 2.0.0. Only code explicitly referring to the
+  `Value.ValueType<T>` base type (or overriding `GetAllAttributesToBeUsedForEquality`) needs to be adapted.
+- `Luxafor.GetDevice(devicePath)` now reports invalid paths explicitly instead of failing with an obscure
+  `ArgumentNullException`: it throws `ArgumentException` on a blank path and `LuxaforDeviceNotFoundException`
+  when no device sits at the path, when it is not a supported Luxafor device, or when it is not connected
+  anymore.
+- The package no longer ships a `net46` assembly under a `net462` folder: the `net462` target is really
+  compiled against .NET Framework 4.6.2.
+
+### Added
+
+- `LuxaforDeviceNotFoundException`, carrying the offending `DevicePath`.
+- `TargetedLeds.FromLedIndex(LedIndex)`, the named alternative to the existing implicit conversion.
+- Source Link, a symbol package (`.snupkg`) and deterministic builds.
+- A GitHub Actions CI (Windows) running build, tests, packaging and a validation of the `.nupkg` content.
+- Tests covering write failure propagation, `Dispose`, missing devices, invalid HID paths, argument guards,
+  value object equality and the public API surface.
+
+### Changed
+
+- Single SDK-style project multi-targeting `netstandard2.0` and `net462`, replacing the Shared Project, the
+  non-SDK .NET Framework project and the hand written `.nuspec`; the package is now produced by
+  `dotnet pack -c Release` (from Release binaries, where the previous `.nuspec` picked up Debug ones).
+- Nullable reference types, warnings as errors and the .NET analyzers are enabled.
+- HidLibrary is used through an internal abstraction (`IHidDeviceRegistry`, `IHidDeviceHandle`), which keeps
+  it out of the public API and makes the device logic testable without hardware.
+- Internal renamings, without impact on the public API: `LuxaforDeviceImp` becomes `HidLuxaforDevice`, the
+  `Lightning*` files and folders become `Lighting*` (matching the `LightingCommand` type they contain), and
+  the internal `LightingCommandFactory` interface becomes `ILightingCommandFactory`.
+- Documentation: the READMEs (7 languages) are synchronized with the code — obsolete `BasicColor` /
+  `SetBasicColor` examples replaced by `BrightColor` / `SetColor`, `void` signatures corrected to `bool`,
+  `using` shown on `LuxaforDevice`, plus installation, device lookup, error handling, supported devices and
+  license sections.
+
+### Fixed
+
+- `FadeColor` commands no longer describe themselves with a "duration od" typo in `ToString()`.
+
+## [1.2.0]
+
+### Added
+
+- Device commands return a `bool` to indicate whether the operation succeeded.
+- `LuxaforDevice` implements `IDisposable` to enable proper resource cleanup.

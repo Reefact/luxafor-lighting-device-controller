@@ -1,4 +1,4 @@
-_[English Version](README-EN.md) - [Nederlandse versie](README-NL.md) - [Svensk version](README-SE.md) - [Deutsche Version](README-DE.md) - [Versión española](README-ES.md) - [Ελληνική έκδοση](README-GR.md)_
+_[English Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-EN.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-NL.md) - [Svensk version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-SE.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-ES.md) - [Ελληνική έκδοση](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-GR.md)_
 
 # Contrôleur de périphériques Luxafor
 
@@ -12,7 +12,7 @@ Une bibliothèque .Net qui fournit une API simple pour contrôler les périphér
 
 Leur produit phare est un [indicateur de disponibilité LED](https://luxafor.com/product/flag) qui peut être programmé pour afficher différentes couleurs en fonction de l'état de disponibilité de l'utilisateur. 
 
-L'objectif de Luxafor est de fournir aux utilisateurs un moyen simple et efficace de signaler leur disponibilité aux collègues de travail et d'améliorer la communication et la collaboration en entrepris
+L'objectif de Luxafor est de fournir aux utilisateurs un moyen simple et efficace de signaler leur disponibilité aux collègues de travail et d'améliorer la communication et la collaboration en entreprise.
 
 ### Présentation rapide des périphériques
 
@@ -36,64 +36,102 @@ Ces différents périphériques sont conçus pour être pilotés manuellement ('
 
 Cette librairie à pour but de permettre l'intégration des périphériques USB à LED à vos applications in-house sans avoir besoin de passer par le serveur Luxafor (webhook).
 
-Elle est développée en .Net Core et se base sur la librairie [HidLibrairy](https://github.com/mikeobrien/HidLibrary) qui permet d'énumérer et de communiquer avec des périphériques USB compatibles HID en .NET.
+Elle cible `.NET Standard 2.0` et `.NET Framework 4.6.2`, et se base sur la librairie [HidLibrary](https://github.com/mikeobrien/HidLibrary) qui permet d'énumérer et de communiquer avec des périphériques USB compatibles HID en .NET.
+
+> **Windows uniquement.** Les périphériques sont pilotés via la couche HID de Windows : le package s'installe sur toutes les plateformes, mais l'énumération et le pilotage des périphériques ne fonctionnent que sous Windows.
+
+### Périphériques supportés
+
+La librairie parle le protocole USB HID des périphériques Luxafor identifiés par le vendor id `1240` (`0x04D8`) et le product id `62322` (`0xF372`).
+
+| Périphérique | Statut |
+| --- | --- |
+| `Luxafor Orb` | **Testé** : le périphérique utilisé pour développer et valider la librairie (6 LEDs adressables). |
+| `Luxafor Flag` | **Devrait fonctionner, non testé** : mêmes identifiants et même protocole d'éclairage (6 LEDs adressables). |
+| `Luxafor Mute Button`, `Luxafor Colorblind Flag` | **Devraient fonctionner, non testés** : les commandes d'éclairage sont les mêmes ; la disposition des LEDs, leur nombre et le rendu des couleurs peuvent différer. |
+| `Luxafor Bluetooth`, `Luxafor Switch`, `Luxafor Cube`, `Luxafor Pomodoro-Timer`, `Luxafor CO2 Monitor` | **Non supportés** : ces périphériques ne se pilotent pas via ce protocole USB HID. |
+
+Tout retour concernant un périphérique non testé est le bienvenu : n'hésitez pas à [ouvrir une issue](https://github.com/Reefact/luxafor-lighting-device-controller/issues).
+
+### Installation
+
+```shell
+dotnet add package Reefact.LuxaforLightingDeviceController
+```
+
+### Démarrage rapide
 
 Le code ci-dessous présente un exemple d'utilisation basique de la librairie pour le pilotage d'un périphérique [Luxafor Orb](https://luxafor.com/product/orb/).
 
 ```csharp
 [Fact]
 public void french_sequence() {
-    LuxaforDevice orb = Luxafor.GetDevices().First();
+    using LuxaforDevice orb = Luxafor.GetDevices().First();
     for (var i = 0; i < 3; i++) {
-        orb.SetBasicColor(BasicColor.Blue);
+        orb.SetColor(BrightColor.Blue);
         Thread.Sleep(500);
-        orb.SetBasicColor(BasicColor.White);
+        orb.SetColor(BrightColor.White);
         Thread.Sleep(500);
-        orb.SetBasicColor(BasicColor.Red);
+        orb.SetColor(BrightColor.Red);
         Thread.Sleep(500);
-        orb.SetBasicColor(BasicColor.Off);
+        orb.TurnOff();
         Thread.Sleep(1000);
     }
 }
 ```
 
-La ligne 3 montre comment se connecter à un unique Orb connecté au port USB de la machine.
+La ligne 3 montre comment se connecter à un unique Orb connecté au port USB de la machine. `LuxaforDevice` implémente `IDisposable` : le `using` libère le handle du périphérique à la fin du bloc.
+
+### Obtenir un périphérique
+
+```csharp
+IEnumerable<LuxaforDevice> GetDevices(); // Tous les périphériques Luxafor connectés aux ports USB (énumération vide si aucun n'est branché)
+LuxaforDevice GetDevice(string devicePath); // Le périphérique Luxafor situé au chemin indiqué
+```
+
+`Luxafor.GetDevice` lève une `LuxaforDeviceNotFoundException` lorsqu'aucun périphérique ne se trouve au chemin indiqué, lorsque le périphérique trouvé n'est pas un périphérique Luxafor supporté, ou lorsqu'il n'est plus connecté.
+
+```csharp
+using LuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
+```
 
 Je vais présenter rapidement l'ensemble des commandes possibles à envoyer aux périphériques à partir du `LuxaforDevice`.
+
+Chaque commande retourne un `bool` : `true` lorsque le périphérique a accepté la commande, `false` lorsque l'écriture a échoué (périphérique débranché, monopolisé par une autre application, ...). Les arguments invalides lèvent une exception (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
 
 ### Eteindre
 
 ```csharp
-void TurnOff(); // Eteint toutes les LEDs du périphérique
-void TurnOff(TargetedLeds targetedLeds); // Eteint les LEDs du périphérique ciblées
+bool TurnOff(); // Eteint toutes les LEDs du périphérique
+bool TurnOff(TargetedLeds targetedLeds); // Eteint les LEDs du périphérique ciblées
 ```
 
 ### Définir une couleur unique
 
 ```csharp
-void SetColor(BrightColor color); // Allume les LEDs du périphérique dans une couleur personnalisée.
-void SetColor(TargetedLeds targetedLeds, BrightColor color); // Allume les LEDs du périphérique ciblées dans une couleur personnalisée.
+bool SetColor(BrightColor color); // Allume les LEDs du périphérique dans une couleur personnalisée.
+bool SetColor(TargetedLeds targetedLeds, BrightColor color); // Allume les LEDs du périphérique ciblées dans une couleur personnalisée.
 ```
 
 ### Effectuer une transition (fondu)
 
 ```csharp
-void FadeColor(BrightColor color, FadeDuration duration); // Effectue une transition de toutes les LEDs du périphérique vers une couleur personnalisée
-void FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Effectue une transition des LEDs du périphérique ciblées vers une couleur personnalisée
+bool FadeColor(BrightColor color, FadeDuration duration); // Effectue une transition de toutes les LEDs du périphérique vers une couleur personnalisée
+bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Effectue une transition des LEDs du périphérique ciblées vers une couleur personnalisée
 ```
 
 ### Clignotement (effet stroboscopique)
 
 ```csharp
-void Strobe(BrightColor color, Speed speed, Repeat repeat); // Fait clignoter toutes les LEDs du périphérique dans une couleur personnalisée
-void Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Fait clignoter les LEDs du périphérique ciblées dans une couleur personnalisée
+bool Strobe(BrightColor color, Speed speed, Repeat repeat); // Fait clignoter toutes les LEDs du périphérique dans une couleur personnalisée
+bool Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Fait clignoter les LEDs du périphérique ciblées dans une couleur personnalisée
 ```
 
 ### Vagues et autres motifs intégrés
 
 ```csharp
-void PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat); // Démarre un motif de type "vague" qui cible toutes les LEDs du périphérique basé sur une couleur personnalisée
-void PlayPattern(BuiltInPattern pattern, Repeat repeat); // Démarre un motif intégré qui cible toutes les LEDs du périphérique
+bool PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat); // Démarre un motif de type "vague" qui cible toutes les LEDs du périphérique basé sur une couleur personnalisée
+bool PlayPattern(BuiltInPattern pattern, Repeat repeat); // Démarre un motif intégré qui cible toutes les LEDs du périphérique
 ```
 
 ### Envoyer une commande
@@ -107,5 +145,25 @@ var command = LightingCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.
 La méthode `Send` permet d'utiliser ces commandes.
 
 ```csharp
-void Send(LightingCommand command); // Envoye une commande au périphérique
+bool Send(LightingCommand command); // Envoie une commande au périphérique
 ```
+
+### Couleurs
+
+```csharp
+BrightColor.Red; // ainsi que Green, Blue, Yellow, Cyan, Magenta, White, Black
+BrightColor.From("#0F11A8"); // A partir de sa représentation hexadécimale
+BrightColor.From(15, 17, 168); // A partir de ses composantes rouge, verte et bleue
+```
+
+## Compiler la librairie
+
+```shell
+dotnet build -c Release
+dotnet test -c Release
+dotnet pack Reefact.LuxaforLightingDeviceController -c Release -o artifacts
+```
+
+## Licence
+
+Cette librairie est distribuée sous licence [Apache-2.0](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/LICENSE).

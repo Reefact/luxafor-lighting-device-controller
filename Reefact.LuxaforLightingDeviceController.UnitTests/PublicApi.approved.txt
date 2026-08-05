@@ -1,0 +1,141 @@
+class Reefact.LuxaforLightingDeviceController.BrightColor : System.IEquatable<Reefact.LuxaforLightingDeviceController.BrightColor>
+    Boolean Equals(Reefact.LuxaforLightingDeviceController.BrightColor)
+    Boolean Equals(System.Object)
+    Boolean op_Equality(Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.BrightColor)
+    Boolean op_Inequality(Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.BrightColor)
+    Int32 GetHashCode()
+    Reefact.LuxaforLightingDeviceController.BrightColor Black
+    Reefact.LuxaforLightingDeviceController.BrightColor Blue
+    Reefact.LuxaforLightingDeviceController.BrightColor Cyan
+    Reefact.LuxaforLightingDeviceController.BrightColor From(Byte, Byte, Byte)
+    Reefact.LuxaforLightingDeviceController.BrightColor From(System.String)
+    Reefact.LuxaforLightingDeviceController.BrightColor Green
+    Reefact.LuxaforLightingDeviceController.BrightColor Magenta
+    Reefact.LuxaforLightingDeviceController.BrightColor Red
+    Reefact.LuxaforLightingDeviceController.BrightColor White
+    Reefact.LuxaforLightingDeviceController.BrightColor Yellow
+    System.String ToString()
+    Void .ctor(Byte, Byte, Byte)
+class Reefact.LuxaforLightingDeviceController.FadeDuration : System.IEquatable<Reefact.LuxaforLightingDeviceController.FadeDuration>
+    Boolean Equals(Reefact.LuxaforLightingDeviceController.FadeDuration)
+    Boolean Equals(System.Object)
+    Boolean op_Equality(Reefact.LuxaforLightingDeviceController.FadeDuration, Reefact.LuxaforLightingDeviceController.FadeDuration)
+    Boolean op_Inequality(Reefact.LuxaforLightingDeviceController.FadeDuration, Reefact.LuxaforLightingDeviceController.FadeDuration)
+    Int32 GetHashCode()
+    Reefact.LuxaforLightingDeviceController.FadeDuration From(Byte)
+    System.String ToString()
+class Reefact.LuxaforLightingDeviceController.LedIndex : System.IEquatable<Reefact.LuxaforLightingDeviceController.LedIndex>
+    Boolean Equals(Reefact.LuxaforLightingDeviceController.LedIndex)
+    Boolean Equals(System.Object)
+    Boolean op_Equality(Reefact.LuxaforLightingDeviceController.LedIndex, Reefact.LuxaforLightingDeviceController.LedIndex)
+    Boolean op_Inequality(Reefact.LuxaforLightingDeviceController.LedIndex, Reefact.LuxaforLightingDeviceController.LedIndex)
+    Int32 GetHashCode()
+    Reefact.LuxaforLightingDeviceController.LedIndex From(Byte)
+    Reefact.LuxaforLightingDeviceController.LedIndex _1
+    Reefact.LuxaforLightingDeviceController.LedIndex _2
+    Reefact.LuxaforLightingDeviceController.LedIndex _3
+    Reefact.LuxaforLightingDeviceController.LedIndex _4
+    Reefact.LuxaforLightingDeviceController.LedIndex _5
+    Reefact.LuxaforLightingDeviceController.LedIndex _6
+    Reefact.LuxaforLightingDeviceController.LedIndex[] GetAll()
+    System.String ToString()
+class Reefact.LuxaforLightingDeviceController.LightingCommand : System.IEquatable<Reefact.LuxaforLightingDeviceController.LightingCommand>
+    Boolean Equals(Reefact.LuxaforLightingDeviceController.LightingCommand)
+    Boolean Equals(System.Object)
+    Boolean op_Equality(Reefact.LuxaforLightingDeviceController.LightingCommand, Reefact.LuxaforLightingDeviceController.LightingCommand)
+    Boolean op_Inequality(Reefact.LuxaforLightingDeviceController.LightingCommand, Reefact.LuxaforLightingDeviceController.LightingCommand)
+    Int32 GetHashCode()
+    Reefact.LuxaforLightingDeviceController.LightingCommand CreateFadeColorCommand(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.FadeDuration)
+    Reefact.LuxaforLightingDeviceController.LightingCommand CreatePlayBuiltInPatternCommand(Reefact.LuxaforLightingDeviceController.BuiltInPattern, Reefact.LuxaforLightingDeviceController.Repeat)
+    Reefact.LuxaforLightingDeviceController.LightingCommand CreatePlayWavePatternCommand(Reefact.LuxaforLightingDeviceController.WavePattern, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.Speed, Reefact.LuxaforLightingDeviceController.Repeat)
+    Reefact.LuxaforLightingDeviceController.LightingCommand CreateSetColorCommand(Reefact.LuxaforLightingDeviceController.BrightColor)
+    Reefact.LuxaforLightingDeviceController.LightingCommand CreateSetColorCommand(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.BrightColor)
+    Reefact.LuxaforLightingDeviceController.LightingCommand CreateStrobeCommand(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.Speed, Reefact.LuxaforLightingDeviceController.Repeat)
+    Reefact.LuxaforLightingDeviceController.LightingCommand CreateTurnOffCommand()
+    Reefact.LuxaforLightingDeviceController.LightingCommand CreateTurnOffCommand(Reefact.LuxaforLightingDeviceController.TargetedLeds)
+    System.String ToString()
+class Reefact.LuxaforLightingDeviceController.Luxafor
+    Reefact.LuxaforLightingDeviceController.LuxaforDevice GetDevice(System.String)
+    System.Collections.Generic.IEnumerable`1[Reefact.LuxaforLightingDeviceController.LuxaforDevice] GetDevices()
+class Reefact.LuxaforLightingDeviceController.LuxaforDeviceNotFoundException : System.Exception
+    System.String DevicePath
+    System.String get_DevicePath()
+    Void .ctor()
+    Void .ctor(System.String)
+    Void .ctor(System.String, System.Exception)
+class Reefact.LuxaforLightingDeviceController.Repeat : System.IEquatable<Reefact.LuxaforLightingDeviceController.Repeat>
+    Boolean Equals(Reefact.LuxaforLightingDeviceController.Repeat)
+    Boolean Equals(System.Object)
+    Boolean op_Equality(Reefact.LuxaforLightingDeviceController.Repeat, Reefact.LuxaforLightingDeviceController.Repeat)
+    Boolean op_Inequality(Reefact.LuxaforLightingDeviceController.Repeat, Reefact.LuxaforLightingDeviceController.Repeat)
+    Int32 GetHashCode()
+    Reefact.LuxaforLightingDeviceController.Repeat Count(Byte)
+    Reefact.LuxaforLightingDeviceController.Repeat Once
+    Reefact.LuxaforLightingDeviceController.Repeat Twice
+    System.String ToString()
+class Reefact.LuxaforLightingDeviceController.Speed : System.IEquatable<Reefact.LuxaforLightingDeviceController.Speed>
+    Boolean Equals(Reefact.LuxaforLightingDeviceController.Speed)
+    Boolean Equals(System.Object)
+    Boolean op_Equality(Reefact.LuxaforLightingDeviceController.Speed, Reefact.LuxaforLightingDeviceController.Speed)
+    Boolean op_Inequality(Reefact.LuxaforLightingDeviceController.Speed, Reefact.LuxaforLightingDeviceController.Speed)
+    Int32 GetHashCode()
+    Reefact.LuxaforLightingDeviceController.Speed FromByte(Byte)
+    System.String ToString()
+class Reefact.LuxaforLightingDeviceController.TargetedLeds : System.Collections.Generic.IEnumerable<Reefact.LuxaforLightingDeviceController.LedIndex>, System.Collections.IEnumerable, System.IEquatable<Reefact.LuxaforLightingDeviceController.TargetedLeds>
+    Boolean Equals(Reefact.LuxaforLightingDeviceController.TargetedLeds)
+    Boolean Equals(System.Object)
+    Boolean TargetsSeveralLeds
+    Boolean TargetsSingleLed
+    Boolean get_TargetsSeveralLeds()
+    Boolean get_TargetsSingleLed()
+    Boolean op_Equality(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.TargetedLeds)
+    Boolean op_Inequality(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.TargetedLeds)
+    Int32 GetHashCode()
+    Reefact.LuxaforLightingDeviceController.TargetedLeds All
+    Reefact.LuxaforLightingDeviceController.TargetedLeds BackSide
+    Reefact.LuxaforLightingDeviceController.TargetedLeds FromLedIndex(Reefact.LuxaforLightingDeviceController.LedIndex)
+    Reefact.LuxaforLightingDeviceController.TargetedLeds FromLuxCode(Byte)
+    Reefact.LuxaforLightingDeviceController.TargetedLeds Led_1
+    Reefact.LuxaforLightingDeviceController.TargetedLeds Led_2
+    Reefact.LuxaforLightingDeviceController.TargetedLeds Led_3
+    Reefact.LuxaforLightingDeviceController.TargetedLeds Led_4
+    Reefact.LuxaforLightingDeviceController.TargetedLeds Led_5
+    Reefact.LuxaforLightingDeviceController.TargetedLeds Led_6
+    Reefact.LuxaforLightingDeviceController.TargetedLeds TabSide
+    Reefact.LuxaforLightingDeviceController.TargetedLeds op_Implicit(Reefact.LuxaforLightingDeviceController.LedIndex)
+    System.Collections.Generic.IEnumerator`1[Reefact.LuxaforLightingDeviceController.LedIndex] GetEnumerator()
+    System.String ToString()
+enum Reefact.LuxaforLightingDeviceController.BuiltInPattern
+    Int32 value__
+    Reefact.LuxaforLightingDeviceController.BuiltInPattern Off
+    Reefact.LuxaforLightingDeviceController.BuiltInPattern Pattern_1
+    Reefact.LuxaforLightingDeviceController.BuiltInPattern Pattern_2
+    Reefact.LuxaforLightingDeviceController.BuiltInPattern Pattern_3
+    Reefact.LuxaforLightingDeviceController.BuiltInPattern Pattern_4
+    Reefact.LuxaforLightingDeviceController.BuiltInPattern Pattern_5
+    Reefact.LuxaforLightingDeviceController.BuiltInPattern Police
+    Reefact.LuxaforLightingDeviceController.BuiltInPattern Rainbow
+    Reefact.LuxaforLightingDeviceController.BuiltInPattern TrafficLight
+enum Reefact.LuxaforLightingDeviceController.WavePattern
+    Int32 value__
+    Reefact.LuxaforLightingDeviceController.WavePattern Wave_1
+    Reefact.LuxaforLightingDeviceController.WavePattern Wave_2
+    Reefact.LuxaforLightingDeviceController.WavePattern Wave_3
+    Reefact.LuxaforLightingDeviceController.WavePattern Wave_4
+    Reefact.LuxaforLightingDeviceController.WavePattern Wave_5
+interface Reefact.LuxaforLightingDeviceController.LuxaforDevice : System.IDisposable
+    Boolean FadeColor(Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.FadeDuration)
+    Boolean FadeColor(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.FadeDuration)
+    Boolean PlayPattern(Reefact.LuxaforLightingDeviceController.BuiltInPattern, Reefact.LuxaforLightingDeviceController.Repeat)
+    Boolean PlayPattern(Reefact.LuxaforLightingDeviceController.WavePattern, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.Speed, Reefact.LuxaforLightingDeviceController.Repeat)
+    Boolean Send(Reefact.LuxaforLightingDeviceController.LightingCommand)
+    Boolean SetColor(Reefact.LuxaforLightingDeviceController.BrightColor)
+    Boolean SetColor(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.BrightColor)
+    Boolean Strobe(Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.Speed, Reefact.LuxaforLightingDeviceController.Repeat)
+    Boolean Strobe(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.Speed, Reefact.LuxaforLightingDeviceController.Repeat)
+    Boolean TurnOff()
+    Boolean TurnOff(Reefact.LuxaforLightingDeviceController.TargetedLeds)
+    System.String Description
+    System.String Path
+    System.String get_Description()
+    System.String get_Path()

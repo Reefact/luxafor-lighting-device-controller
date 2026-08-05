@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="PublicApi.approved.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Reefact.LuxaforLightingDeviceController\Reefact.LuxaforLightingDeviceController.csproj" />
   </ItemGroup>
 
