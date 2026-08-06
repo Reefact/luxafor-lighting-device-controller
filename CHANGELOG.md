@@ -58,6 +58,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Fixed
 
+- `TargetedLeds.TabSide` and `TargetedLeds.BackSide` were inverted: `TabSide` sent the lux code 66
+  (`0x42`) and `BackSide` 65 (`0x41`), while the Luxafor protocol assigns 65 to the tab side (LEDs n° 1,
+  2 and 3) and 66 to the back side (LEDs n° 4, 5 and 6). Both now send the right code, which has been
+  confirmed on a device. **This changes which LEDs light up**: code targeting `TabSide` or `BackSide`
+  used to drive the opposite side, and any workaround swapping the two has to be removed.
 - `FadeColor` commands no longer describe themselves with a "duration od" typo in `ToString()`.
 
 ## [1.2.0]

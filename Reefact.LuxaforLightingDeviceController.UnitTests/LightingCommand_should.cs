@@ -29,7 +29,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
             // Exercise
             byte[] commandBuffer = setTabSideRed.ToBuffer();
             // Verify
-            Check.That(commandBuffer).ContainsExactly(0, 1, 66, 255, 0, 0, 0, 0, 0);
+            Check.That(commandBuffer).ContainsExactly(0, 1, 65, 255, 0, 0, 0, 0, 0);
         }
 
         [Fact]

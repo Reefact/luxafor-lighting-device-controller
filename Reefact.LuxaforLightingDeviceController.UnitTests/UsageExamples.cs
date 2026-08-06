@@ -68,7 +68,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
             using ILuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
-            // Only the LEDs n° 1, 2 and 3 turn green, e.g. the side of the device the tab is on.
+            // Only the LEDs n° 1, 2 and 3 turn green, e.g. the tab side of the device.
             orb.SetColor(TargetedLeds.TabSide, BrightColor.Green);
             Thread.Sleep(3000);
 
@@ -80,7 +80,7 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
             using ILuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
 
-            // Only the LEDs n° 4, 5 and 6 turn green, e.g. the side of the device opposite the tab.
+            // Only the LEDs n° 4, 5 and 6 turn green, e.g. the back side of the device.
             orb.SetColor(TargetedLeds.BackSide, BrightColor.Green);
             Thread.Sleep(3000);
 

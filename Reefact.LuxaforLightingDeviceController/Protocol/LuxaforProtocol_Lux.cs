@@ -24,8 +24,12 @@ namespace Reefact.LuxaforLightingDeviceController.Protocol {
 
             #region Statics members declarations
 
-            public static readonly byte BackSide = Convert.ToByte('A');
-            public static readonly byte TabSide  = Convert.ToByte('B');
+            // 'A' (0x41) selects the tab side, e.g. the LEDs n° 1, 2 and 3, and 'B' (0x42) the back
+            // side, e.g. the LEDs n° 4, 5 and 6. The library had these two inverted until 2.0.0;
+            // the mapping below is the one of the Luxafor documentation and of the other drivers of
+            // these devices, and it has been confirmed on a device. Do not swap them back.
+            public static readonly byte TabSide  = Convert.ToByte('A');
+            public static readonly byte BackSide = Convert.ToByte('B');
 
             #endregion
 

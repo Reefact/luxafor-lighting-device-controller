@@ -15,8 +15,8 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
         [Fact]
         public void have_a_byte_representation_in_accordance_with_the_Luxafor_when_targeting_leds() {
             Check.That(CommandMode.From(TargetedLeds.All).ToByte()).IsEqualTo(255);
-            Check.That(CommandMode.From(TargetedLeds.BackSide).ToByte()).IsEqualTo(Convert.ToByte('A'));
-            Check.That(CommandMode.From(TargetedLeds.TabSide).ToByte()).IsEqualTo(Convert.ToByte('B'));
+            Check.That(CommandMode.From(TargetedLeds.TabSide).ToByte()).IsEqualTo(Convert.ToByte('A'));
+            Check.That(CommandMode.From(TargetedLeds.BackSide).ToByte()).IsEqualTo(Convert.ToByte('B'));
             Check.That(CommandMode.From(TargetedLeds.Led_1).ToByte()).IsEqualTo(1);
             Check.That(CommandMode.From(TargetedLeds.Led_2).ToByte()).IsEqualTo(2);
             Check.That(CommandMode.From(TargetedLeds.Led_3).ToByte()).IsEqualTo(3);
