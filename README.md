@@ -34,7 +34,7 @@ Ces différents périphériques sont conçus pour être pilotés manuellement ('
 
 ## Présentation de la librairie
 
-Cette librairie à pour but de permettre l'intégration des périphériques USB à LED à vos applications in-house sans avoir besoin de passer par le serveur Luxafor (webhook).
+Cette librairie a pour but de permettre l'intégration des périphériques USB à LED à vos applications in-house sans avoir besoin de passer par le serveur Luxafor (webhook).
 
 Elle cible `.NET Standard 2.0` et `.NET Framework 4.6.2`, et se base sur la librairie [HidLibrary](https://github.com/mikeobrien/HidLibrary) qui permet d'énumérer et de communiquer avec des périphériques USB compatibles HID en .NET.
 
@@ -42,7 +42,7 @@ Elle cible `.NET Standard 2.0` et `.NET Framework 4.6.2`, et se base sur la libr
 
 ### Périphériques supportés
 
-La librairie parle le protocole USB HID des périphériques Luxafor identifiés par le vendor id `1240` (`0x04D8`) et le product id `62322` (`0xF372`).
+La librairie pilote, via leur protocole USB HID, les périphériques Luxafor identifiés par le vendor id `1240` (`0x04D8`) et le product id `62322` (`0xF372`).
 
 | Périphérique | Statut |
 | --- | --- |

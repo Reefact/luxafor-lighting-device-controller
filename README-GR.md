@@ -42,7 +42,7 @@ _[Version française](https://github.com/Reefact/luxafor-lighting-device-control
 
 ### Υποστηριζόμενες συσκευές
 
-Η βιβλιοθήκη μιλάει το πρωτόκολλο USB HID των συσκευών Luxafor που προσδιορίζονται από το vendor id `1240` (`0x04D8`) και το product id `62322` (`0xF372`).
+Η βιβλιοθήκη ελέγχει, μέσω του πρωτοκόλλου USB HID, τις συσκευές Luxafor που προσδιορίζονται από το vendor id `1240` (`0x04D8`) και το product id `62322` (`0xF372`).
 
 | Συσκευή | Κατάσταση |
 | --- | --- |
@@ -80,9 +80,9 @@ public void french_sequence() {
 }
 ```
 
-Η γραμμή 3 δείχνει πώς να συνδεθείτε σε ένα μόνο Orb συνδεδεμένο στη θύρα USB του μηχανήματος. Το `ILuxaforDevice` υλοποιεί το `IDisposable`: η δήλωση `using` απελευθερώνει τον χειριστή της συσκευής στο τέλος του μπλοκ.
+Η γραμμή 3 δείχνει πώς να συνδεθείτε σε ένα μόνο Orb συνδεδεμένο στη θύρα USB του μηχανήματος. Το `ILuxaforDevice` υλοποιεί το `IDisposable`: η δήλωση `using` απελευθερώνει το handle της συσκευής στο τέλος του μπλοκ.
 
-### Λήψη μιας συσκευής
+### Ανάκτηση μιας συσκευής
 
 ```csharp
 IEnumerable<ILuxaforDevice> GetDevices(); // Όλες οι συσκευές Luxafor που είναι συνδεδεμένες στις θύρες USB (κενό αν δεν υπάρχει καμία)
@@ -120,7 +120,7 @@ bool FadeColor(BrightColor color, FadeDuration duration); // Μεταβαίνε�
 bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Μετάβαση των LED της στοχευμένης συσκευής σε ένα προσαρμοσμένο χρώμα
 ```
 
-### Αναβόσβημα (στροβοσκόπιο)
+### Στροβοσκοπικό εφέ
 
 ```csharp
 bool Strobe(BrightColor color, Speed speed, Repeat repeat); // Αναβοσβήνει όλα τα LED της συσκευής σε ένα προσαρμοσμένο χρώμα.

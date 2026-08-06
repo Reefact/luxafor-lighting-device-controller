@@ -14,7 +14,7 @@ Ihr Vorzeigeprodukt ist ein [LED-Verfügbarkeitsindikator](https://luxafor.com/p
 
 Das Ziel von Luxafor ist es, Nutzern eine einfache und effektive Möglichkeit zu bieten, Arbeitskollegen ihre Verfügbarkeit zu signalisieren und die Kommunikation und Zusammenarbeit im Unternehmen zu verbessern.
 
-### Ein kurzer Überblick über die Geräte.
+### Ein kurzer Überblick über die Geräte
 
 Hier ist eine nicht erschöpfende Liste der [Luxafor-Geräte](https://luxafor.com/products):
 
@@ -42,7 +42,7 @@ Sie zielt auf `.NET Standard 2.0` und `.NET Framework 4.6.2` ab und basiert auf 
 
 ### Unterstützte Geräte
 
-Die Bibliothek spricht das USB-HID-Protokoll der Luxafor-Geräte mit der Vendor-ID `1240` (`0x04D8`) und der Produkt-ID `62322` (`0xF372`).
+Die Bibliothek steuert über deren USB-HID-Protokoll die Luxafor-Geräte mit der Vendor-ID `1240` (`0x04D8`) und der Produkt-ID `62322` (`0xF372`).
 
 | Gerät | Status |
 | --- | --- |
@@ -106,14 +106,14 @@ bool TurnOff(); // Schaltet alle LEDs des Geräts aus.
 bool TurnOff(TargetedLeds targetedLeds); // Schaltet die LEDs des Zielgeräts aus.
 ```
 
-### Definieren Sie eine einzelne Farbe.
+### Eine einzelne Farbe festlegen
 
 ```csharp
 bool SetColor(BrightColor color); // Schaltet die LEDs des Geräts in einer benutzerdefinierten Farbe ein.
 bool SetColor(TargetedLeds targetedLeds, BrightColor color); // Schaltet die LEDs des Zielgeräts in einer benutzerdefinierten Farbe ein.
 ```
 
-### Einen Übergang (Fade) durchführen.
+### Einen Übergang (Fade) durchführen
 
 ```csharp
 bool FadeColor(BrightColor color, FadeDuration duration); // Alle LEDs des Geräts werden in eine benutzerdefinierte Farbe umgewandelt.
