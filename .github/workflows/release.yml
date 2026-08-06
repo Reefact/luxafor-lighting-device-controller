@@ -7,8 +7,20 @@ name: Release
 #   2. update CHANGELOG.md, merge everything into main
 #   3. git tag v2.0.0 && git push origin v2.0.0
 #
-# Requires the NUGET_API_KEY repository secret (Settings > Secrets and variables > Actions),
-# holding a nuget.org API key scoped to pushing Reefact.LuxaforLightingDeviceController.
+# Authentication uses nuget.org trusted publishing (OIDC): no long-lived API key is stored in
+# the repository, the job exchanges a GitHub OIDC token for a short-lived key at push time.
+# It needs, once:
+#
+#   - on nuget.org (Account > Trusted Publishing), a policy for this repository:
+#       owner        Reefact
+#       repository   luxafor-lighting-device-controller
+#       workflow     .github/workflows/release.yml   (optional filter, recommended)
+#       environment  nuget                           (optional filter, matches the job below)
+#       tag filter   v*                              (optional filter, matches the trigger)
+#   - the NUGET_USER secret (or repository variable), holding the nuget.org account name the
+#     policy belongs to. Trust policies are attached to an individual account, so this is the
+#     personal username of whoever created the policy, even when the package owner is the
+#     Reefact organization.
 #
 # The job refuses to publish when the tag does not match the version of the project, so a
 # mistyped tag cannot publish the wrong version, and it runs the tests and the package
@@ -19,6 +31,7 @@ on:
     tags: [ 'v*' ]
 
 permissions:
+  id-token: write   # needed to request the GitHub OIDC token exchanged for a nuget.org key
   contents: write   # needed to create the GitHub release
 
 env:
@@ -44,15 +57,16 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      - name: Check the API key is configured
+      - name: Check the nuget.org account is configured
         shell: pwsh
         env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          # Accepted as a secret or as a repository variable: it is an account name, not a credential.
+          NUGET_USER: ${{ secrets.NUGET_USER || vars.NUGET_USER }}
         run: |
-          if ([string]::IsNullOrWhiteSpace($env:NUGET_API_KEY)) {
-            throw "The NUGET_API_KEY secret is not configured: add it in Settings > Secrets and variables > Actions."
+          if ([string]::IsNullOrWhiteSpace($env:NUGET_USER)) {
+            throw "NUGET_USER is not configured: add it in Settings > Secrets and variables > Actions, holding the nuget.org account name the trusted publishing policy belongs to."
           }
-          Write-Host "NUGET_API_KEY is configured."
+          Write-Host "Publishing as the nuget.org account $env:NUGET_USER."
 
       - name: Check the tag matches the version of the project
         shell: pwsh
@@ -82,10 +96,17 @@ jobs:
         shell: pwsh
         run: ./build/Validate-Package.ps1 -ArtifactsDirectory artifacts
 
+      # Kept right before the push: the key returned by the token service is short-lived.
+      - name: Log in to nuget.org (OIDC)
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ secrets.NUGET_USER || vars.NUGET_USER }}
+
       - name: Push to nuget.org
         shell: pwsh
         env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
         run: |
           # The matching .snupkg sitting next to the .nupkg is pushed along automatically.
           $package = (Get-ChildItem artifacts -Filter *.nupkg | Select-Object -First 1).FullName
