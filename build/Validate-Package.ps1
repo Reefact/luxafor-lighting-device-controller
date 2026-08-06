@@ -92,7 +92,15 @@ $metadata = $nuspec.package.metadata
 
 if ($metadata.id -ne 'Reefact.LuxaforLightingDeviceController') { Add-Error "unexpected package id: $($metadata.id)" } else { Write-Host "  [OK] id" }
 foreach ($field in 'version', 'description', 'authors', 'projectUrl', 'icon', 'readme', 'repository') {
-    if ([string]::IsNullOrWhiteSpace([string] $metadata.$field) -and $null -eq $metadata.$field) {
+    # An element PowerShell surfaces as a string ('version', 'description', ...) is empty when the
+    # string is; one it surfaces as an XmlElement because it only carries attributes ('repository')
+    # never is, hence the two branches. Missing altogether, the property throws under strict mode.
+    $value = $null
+    try { $value = $metadata.$field } catch { }
+    $isEmpty = if ($null -eq $value) { $true }
+               elseif ($value -is [System.Xml.XmlElement]) { -not ($value.HasAttributes -or $value.HasChildNodes) }
+               else { [string]::IsNullOrWhiteSpace([string] $value) }
+    if ($isEmpty) {
         Add-Error "missing metadata: $field"
     } else {
         Write-Host "  [OK] $field"
