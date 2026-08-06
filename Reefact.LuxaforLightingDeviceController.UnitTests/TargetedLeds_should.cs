@@ -20,8 +20,8 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
             Check.That(TargetedLeds.Led_4.ToLuxCode()).IsEqualTo(4);
             Check.That(TargetedLeds.Led_5.ToLuxCode()).IsEqualTo(5);
             Check.That(TargetedLeds.Led_6.ToLuxCode()).IsEqualTo(6);
-            Check.That(TargetedLeds.BackSide.ToLuxCode()).IsEqualTo(Convert.ToByte('A'));
-            Check.That(TargetedLeds.TabSide.ToLuxCode()).IsEqualTo(Convert.ToByte('B'));
+            Check.That(TargetedLeds.TabSide.ToLuxCode()).IsEqualTo(Convert.ToByte('A'));
+            Check.That(TargetedLeds.BackSide.ToLuxCode()).IsEqualTo(Convert.ToByte('B'));
             Check.That(TargetedLeds.All.ToLuxCode()).IsEqualTo(255);
         }
 

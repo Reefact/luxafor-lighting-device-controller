@@ -57,7 +57,7 @@ public class HidLuxaforDevice_should {
         // Verify
         Check.That(succeeded).IsTrue();
         Check.That(handle.WrittenBuffers).HasSize(1);
-        Check.That(handle.WrittenBuffers[0]).ContainsExactly(0, 1, 66, 255, 0, 0, 0, 0, 0);
+        Check.That(handle.WrittenBuffers[0]).ContainsExactly(0, 1, 65, 255, 0, 0, 0, 0, 0);
     }
 
     [Theory]
@@ -156,7 +156,7 @@ public class HidLuxaforDevice_should {
         // Verify
         Check.That(handle.WrittenBuffers).HasSize(10);
         Check.That(handle.WrittenBuffers[0]).ContainsExactly(0, 1, 255, 0, 0, 0, 0, 0, 0);
-        Check.That(handle.WrittenBuffers[1]).ContainsExactly(0, 1, 65, 0, 0, 0, 0, 0, 0);
+        Check.That(handle.WrittenBuffers[1]).ContainsExactly(0, 1, 66, 0, 0, 0, 0, 0, 0);
         Check.That(handle.WrittenBuffers[2]).ContainsExactly(0, 1, 255, 0, 255, 0, 0, 0, 0);
         Check.That(handle.WrittenBuffers[3]).ContainsExactly(0, 1, 3, 0, 0, 255, 0, 0, 0);
         Check.That(handle.WrittenBuffers[4]).ContainsExactly(0, 2, 255, 255, 0, 0, 50, 0, 0);
