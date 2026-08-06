@@ -9,6 +9,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Breaking changes
 
+- `TargetedLeds.TabSide` and `TargetedLeds.BackSide` now light the side they name. They were inverted:
+  `TabSide` sent the lux code 66 (`0x42`) and `BackSide` 65 (`0x41`), while the Luxafor protocol assigns
+  65 to the tab side (LEDs n° 1, 2 and 3) and 66 to the back side (LEDs n° 4, 5 and 6). The API does not
+  change and nothing fails to compile, but **the LEDs that light up do change**: code written against
+  1.x drove the opposite side, so any workaround swapping the two has to be removed. Verified on a
+  device before the change.
 - The device interface is renamed `LuxaforDevice` → `ILuxaforDevice`, aligning the public API with the .NET
   naming convention the rest of the ecosystem uses (`IDisposable`, `IEnumerable<T>`, ...). Consumers have to
   update the type name; the members themselves are unchanged, so the migration is a rename:
@@ -58,11 +64,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Fixed
 
-- `TargetedLeds.TabSide` and `TargetedLeds.BackSide` were inverted: `TabSide` sent the lux code 66
-  (`0x42`) and `BackSide` 65 (`0x41`), while the Luxafor protocol assigns 65 to the tab side (LEDs n° 1,
-  2 and 3) and 66 to the back side (LEDs n° 4, 5 and 6). Both now send the right code, which has been
-  confirmed on a device. **This changes which LEDs light up**: code targeting `TabSide` or `BackSide`
-  used to drive the opposite side, and any workaround swapping the two has to be removed.
+- The lux codes sent for `TargetedLeds.TabSide` and `TargetedLeds.BackSide` were inverted, so both lit
+  the opposite side of the device. See the breaking changes above: this one is silent, it changes
+  behaviour without breaking the build.
 - `FadeColor` commands no longer describe themselves with a "duration od" typo in `ToString()`.
 
 ## [1.2.0]
