@@ -64,6 +64,30 @@ namespace Reefact.LuxaforLightingDeviceController.UnitTests {
         }
 
         [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
+        public void light_up_the_tab_side_in_green() {
+            using ILuxaforDevice orb = Luxafor.GetDevices().First();
+            StartSequence(orb);
+
+            // Only the LEDs n° 1, 2 and 3 turn green, e.g. the side of the device the tab is on.
+            orb.SetColor(TargetedLeds.TabSide, BrightColor.Green);
+            Thread.Sleep(3000);
+
+            EndSequence(orb);
+        }
+
+        [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
+        public void light_up_the_back_side_in_green() {
+            using ILuxaforDevice orb = Luxafor.GetDevices().First();
+            StartSequence(orb);
+
+            // Only the LEDs n° 4, 5 and 6 turn green, e.g. the side of the device opposite the tab.
+            orb.SetColor(TargetedLeds.BackSide, BrightColor.Green);
+            Thread.Sleep(3000);
+
+            EndSequence(orb);
+        }
+
+        [Fact(Skip = "Connect a Luxafor Orb to the USB port, reactivate this test and verify that the sequence works.")]
         public void french_sequence() {
             using ILuxaforDevice orb = Luxafor.GetDevices().First();
             StartSequence(orb);
