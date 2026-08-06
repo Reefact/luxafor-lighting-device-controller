@@ -36,13 +36,13 @@ Deze verschillende apparaten zijn ontworpen om handmatig ('mechanisch') aangestu
 
 Deze bibliotheek is bedoeld om de integratie van USB LED-apparaten in uw interne toepassingen mogelijk te maken zonder de noodzaak om via de Luxafor-server (webhook) te gaan.
 
-Zij richt zich op `.NET Standard 2.0` en `.NET Framework 4.6.2` en is gebaseerd op de bibliotheek [HidLibrary](https://github.com/mikeobrien/HidLibrary) waarmee HID-compatibele USB-apparaten in .NET kunnen worden opgesomd en ermee kan worden gecommuniceerd.
+Ze is gebouwd voor `.NET Standard 2.0` en `.NET Framework 4.6.2` en is gebaseerd op de bibliotheek [HidLibrary](https://github.com/mikeobrien/HidLibrary) waarmee HID-compatibele USB-apparaten in .NET kunnen worden opgesomd en ermee kan worden gecommuniceerd.
 
 > **Alleen Windows.** De apparaten worden aangestuurd via de HID-laag van Windows: het pakket kan op elk platform worden geïnstalleerd, maar de apparaten kunnen alleen onder Windows worden opgesomd en aangestuurd.
 
 ### Ondersteunde apparaten
 
-De bibliotheek spreekt het USB HID-protocol van de Luxafor-apparaten met vendor id `1240` (`0x04D8`) en product id `62322` (`0xF372`).
+De bibliotheek stuurt, via hun USB HID-protocol, de Luxafor-apparaten aan met vendor id `1240` (`0x04D8`) en product id `62322` (`0xF372`).
 
 | Apparaat | Status |
 | --- | --- |
@@ -59,7 +59,7 @@ Feedback over een niet-getest apparaat is zeer welkom: [open gerust een issue](h
 dotnet add package Reefact.LuxaforLightingDeviceController
 ```
 
-### Snel starten
+### Snelstart
 
 De onderstaande code toont een voorbeeld van een basisgebruik van de bibliotheek om een [Luxafor Orb](https://luxafor.com/product/orb/) apparaat aan te sturen.
 
@@ -120,7 +120,7 @@ bool FadeColor(BrightColor color, FadeDuration duration); // Verandert alle LED'
 bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Overgang van de doelapparaat-LED's naar een aangepaste kleur.
 ```
 
-### Knipperen (stroboscoop effect)
+### Knipperen (stroboscoopeffect)
 
 ```csharp
 bool Strobe(BrightColor color, Speed speed, Repeat repeat); // Alle LED's van het apparaat knipperen in een aangepaste kleur.
@@ -166,4 +166,4 @@ dotnet pack Reefact.LuxaforLightingDeviceController -c Release -o artifacts
 
 ## Licentie
 
-Deze bibliotheek wordt verspreid onder de [Apache-2.0](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/LICENSE) licentie.
+Deze bibliotheek wordt verspreid onder de [Apache-2.0](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/LICENSE)-licentie.

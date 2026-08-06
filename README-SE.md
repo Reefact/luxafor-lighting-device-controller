@@ -38,11 +38,11 @@ Det här biblioteket syftar till att göra det möjligt att integrera USB LED-en
 
 Det riktar sig till `.NET Standard 2.0` och `.NET Framework 4.6.2` och bygger på biblioteket [HidLibrary](https://github.com/mikeobrien/HidLibrary) som gör det möjligt att räkna upp och kommunicera med HID-kompatibla USB-enheter i .NET.
 
-> **Endast Windows.** Enheterna styrs via Windows HID-lager: paketet kan installeras på alla plattformar, men enheterna kan endast räknas upp och styras under Windows.
+> **Endast Windows.** Enheterna styrs via Windows HID-lagret: paketet kan installeras på alla plattformar, men enheterna kan endast räknas upp och styras under Windows.
 
 ### Enheter som stöds
 
-Biblioteket talar USB HID-protokollet för de Luxafor-enheter som identifieras av vendor id `1240` (`0x04D8`) och product id `62322` (`0xF372`).
+Biblioteket styr, via deras USB HID-protokoll, de Luxafor-enheter som identifieras av vendor id `1240` (`0x04D8`) och product id `62322` (`0xF372`).
 
 | Enhet | Status |
 | --- | --- |
@@ -113,14 +113,14 @@ bool SetColor(BrightColor color); // Tänder enhetens lysdioder i en egen färg.
 bool SetColor(TargetedLeds targetedLeds, BrightColor color); // Slår på de riktade enheternas lysdioder i en anpassad färg.
 ```
 
-### Gör en övergång (blekning)
+### Gör en övergång (toning)
 
 ```csharp
 bool FadeColor(BrightColor color, FadeDuration duration); // Övergår alla lysdioder på enheten till en anpassad färg.
 bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Övergång av de riktade enhetens lysdioder till en anpassad färg.
 ```
 
-### Blink (stroboskopeffekt)
+### Blinkning (stroboskopeffekt)
 
 ```csharp
 bool Strobe(BrightColor color, Speed speed, Repeat repeat); // Blinkar alla lysdioder på enheten i en egen färg.

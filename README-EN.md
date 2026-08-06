@@ -34,15 +34,15 @@ These different devices are designed to be driven manually ('mechanical') for so
 
 ## Presentation of the library
 
-This library aims to allow the integration of USB LED devices to your in-house applications without having to go through the Luxafor server (webhook).
+This library aims to allow the integration of USB LED devices into your in-house applications without having to go through the Luxafor server (webhook).
 
-It targets `.NET Standard 2.0` and `.NET Framework 4.6.2`, and is based on the library [HidLibrary](https://github.com/mikeobrien/HidLibrary) which allows to enumerate and communicate with HID compatible USB devices in .NET.
+It targets `.NET Standard 2.0` and `.NET Framework 4.6.2`, and is based on the library [HidLibrary](https://github.com/mikeobrien/HidLibrary) which makes it possible to enumerate and communicate with HID-compatible USB devices in .NET.
 
 > **Windows only.** The devices are driven through the Windows HID stack: the package installs on any platform, but the devices can only be enumerated and controlled on Windows.
 
 ### Supported devices
 
-The library speaks the USB HID protocol of the Luxafor devices identified by the vendor id `1240` (`0x04D8`) and the product id `62322` (`0xF372`).
+The library drives the Luxafor devices identified by the vendor id `1240` (`0x04D8`) and the product id `62322` (`0xF372`), through their USB HID protocol.
 
 | Device | Status |
 | --- | --- |

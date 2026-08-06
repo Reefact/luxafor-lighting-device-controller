@@ -2,7 +2,7 @@ _[Version française](https://github.com/Reefact/luxafor-lighting-device-control
 
 # Controlador de dispositivos Luxafor
 
-Una librería .Net que proporciona una API simple para controlar los dispositivos Luxafor.
+Una biblioteca .Net que proporciona una API simple para controlar los dispositivos Luxafor.
 
 ## Luxafor
 
@@ -34,15 +34,15 @@ Estos diferentes dispositivos están diseñados para ser accionados manualmente 
 
 ## Presentación de la biblioteca
 
-Esta librería tiene como objetivo permitir la integración de dispositivos LED USB a sus aplicaciones internas sin necesidad de pasar por el servidor Luxafor (webhook).
+Esta biblioteca tiene como objetivo permitir la integración de dispositivos LED USB a sus aplicaciones internas sin necesidad de pasar por el servidor Luxafor (webhook).
 
-Tiene como destino `.NET Standard 2.0` y `.NET Framework 4.6.2`, y se basa en la librería [HidLibrary](https://github.com/mikeobrien/HidLibrary) que permite enumerar y comunicarse con dispositivos USB compatibles con HID en .NET.
+Está compilada para `.NET Standard 2.0` y `.NET Framework 4.6.2`, y se basa en la biblioteca [HidLibrary](https://github.com/mikeobrien/HidLibrary) que permite enumerar y comunicarse con dispositivos USB compatibles con HID en .NET.
 
-> **Sólo Windows.** Los dispositivos se controlan a través de la capa HID de Windows: el paquete se instala en cualquier plataforma, pero los dispositivos sólo pueden enumerarse y controlarse en Windows.
+> **Solo Windows.** Los dispositivos se controlan a través de la capa HID de Windows: el paquete se instala en cualquier plataforma, pero los dispositivos sólo pueden enumerarse y controlarse en Windows.
 
 ### Dispositivos compatibles
 
-La biblioteca habla el protocolo USB HID de los dispositivos Luxafor identificados por el vendor id `1240` (`0x04D8`) y el product id `62322` (`0xF372`).
+La biblioteca controla, mediante su protocolo USB HID, los dispositivos Luxafor identificados por el vendor id `1240` (`0x04D8`) y el product id `62322` (`0xF372`).
 
 | Dispositivo | Estado |
 | --- | --- |
