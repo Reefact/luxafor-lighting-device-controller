@@ -38,12 +38,22 @@ jobs:
       - name: Test
         run: dotnet test -c Release --no-build --verbosity normal
 
+      - name: Check the documentation examples are up to date
+        shell: pwsh
+        run: ./build/Sync-Snippets.ps1 -Check
+
       - name: Pack
         run: dotnet pack Reefact.LuxaforLightingDeviceController -c Release --no-build -o artifacts
 
       - name: Validate package content
         shell: pwsh
         run: ./build/Validate-Package.ps1 -ArtifactsDirectory artifacts
+
+      # Reading the archive is not enough: this installs the package in a throwaway project and
+      # compiles the public examples against it, dependencies and assets included.
+      - name: Consume the package
+        shell: pwsh
+        run: ./build/Test-PackageConsumption.ps1 -ArtifactsDirectory artifacts
 
       - name: Upload package
         uses: actions/upload-artifact@v4

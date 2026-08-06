@@ -36,6 +36,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!--
+      The examples printed in the READMEs and in the documentation pages. Compiling them here, on every
+      target framework of the library, is what keeps them from drifting away from the API.
+    -->
+    <Compile Include="..\samples\**\*.cs" LinkBase="Samples" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Reefact.LuxaforLightingDeviceController\Reefact.LuxaforLightingDeviceController.csproj" />
   </ItemGroup>
 

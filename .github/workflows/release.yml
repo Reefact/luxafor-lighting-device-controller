@@ -89,12 +89,21 @@ jobs:
       - name: Test
         run: dotnet test -c Release --no-build --verbosity normal
 
+      - name: Check the documentation examples are up to date
+        shell: pwsh
+        run: ./build/Sync-Snippets.ps1 -Check
+
       - name: Pack
         run: dotnet pack Reefact.LuxaforLightingDeviceController -c Release --no-build -o artifacts
 
       - name: Validate package content
         shell: pwsh
         run: ./build/Validate-Package.ps1 -ArtifactsDirectory artifacts
+
+      # The package is published only if a real consumer can install it, compile against it and run.
+      - name: Consume the package
+        shell: pwsh
+        run: ./build/Test-PackageConsumption.ps1 -ArtifactsDirectory artifacts
 
       # Kept right before the push: the key returned by the token service is short-lived.
       - name: Log in to nuget.org (OIDC)

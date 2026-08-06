@@ -2,45 +2,49 @@ _[Version française](https://github.com/Reefact/luxafor-lighting-device-control
 
 # Controller für Luxafor-Geräte
 
-Eine .Net-Bibliothek, die eine einfache API zur Steuerung von Luxafor-Geräten bietet.
+Steuern Sie Ihre [Luxafor](https://luxafor.com)-Verfügbarkeitsleuchten direkt aus Ihren eigenen .NET-Anwendungen heraus, über deren USB-HID-Protokoll: kein Luxafor-Server, kein Webhook, keine Fremdsoftware zu installieren.
 
-## Luxafor
+- Eine direkte API: `SetColor`, `FadeColor`, `Strobe`, `PlayPattern`, bis hin zur Steuerung einzelner LEDs.
+- `.NET Standard 2.0` und `.NET Framework 4.6.2`, mit einer einzigen Abhängigkeit ([HidLibrary](https://github.com/mikeobrien/HidLibrary)).
+- **Nur Windows**: Die Geräte werden über den HID-Stack von Windows gesteuert. Das Paket lässt sich auf jeder Plattform installieren, aber die Geräte können nur unter Windows aufgelistet und gesteuert werden.
 
-### Vorstellung des Unternehmens
+## Installation
 
-[Luxafor](https://luxafor.com) ist ein Unternehmen, das Produkte für die Büroproduktivität entwickelt und verkauft, wie z. B. Verfügbarkeitsanzeigen und Benachrichtigungstools. 
+```shell
+dotnet add package Reefact.LuxaforLightingDeviceController
+```
 
-Ihr Vorzeigeprodukt ist ein [LED-Verfügbarkeitsindikator](https://luxafor.com/product/flag), der so programmiert werden kann, dass er je nach Verfügbarkeitsstatus des Nutzers unterschiedliche Farben anzeigt. 
+## Schnellstart
 
-Das Ziel von Luxafor ist es, Nutzern eine einfache und effektive Möglichkeit zu bieten, Arbeitskollegen ihre Verfügbarkeit zu signalisieren und die Kommunikation und Zusammenarbeit im Unternehmen zu verbessern.
+<!-- snippet: quick-start -->
+```csharp
+using System.Linq;
 
-### Ein kurzer Überblick über die Geräte
+using Reefact.LuxaforLightingDeviceController;
 
-Hier ist eine nicht erschöpfende Liste der [Luxafor-Geräte](https://luxafor.com/products):
+namespace MyApplication {
 
-- `Luxafor Flag`: Eine LED-Anzeige, die die persönliche Verfügbarkeit anzeigt.
-- `Luxafor Bluetooth`: Eine drahtlose, softwaregesteuerte LED-Verfügbarkeitsanzeige, die Benachrichtigungen und die persönliche Verfügbarkeit anzeigt.
-- `Luxafor Switch`: Eine drahtlose, ferngesteuerte Verfügbarkeitsanzeige, die die Verfügbarkeit von Besprechungsräumen und Arbeitsplätzen in Echtzeit anzeigt.
-- `Luxafor Cube`: Eine eigenständige LED-Verfügbarkeitsanzeige, die die Verfügbarkeit von Besprechungsräumen anzeigt.
-- `Luxafor Pomodoro-Timer`: ein USB-betriebener LED-Timer, der die Arbeit in kleine Zeitfenster aufteilt (siehe [Pomodoro](https://reefact.net/craftsmanship/tools/pomodoro))
-- `Luxafor Orb`: eine USB-LED-Weitwinkel-Verfügbarkeitsanzeige
-- `Luxafor CO2 Monitor`: ein Sensor, der die Luftqualität in einem Raum analysiert und Sie warnt, wenn Sie den Raum lüften müssen.
-- `Luxafor Mute Button`: Schalten Sie das Mikrofon mit einem einfachen Druck an/aus und zeigen Sie mit Rot/Grün an, ob Sie verfügbar sind.
-- `Luxafor Colorblind Flag`: Einfarbiges USB-LED-Bereitschafts- und Besetzungslicht, das Ablenkungen eliminiert und die Produktivität steigert.
+    public static class BuildStatusLight {
 
-### Integration
+        public static void Show(bool buildSucceeded) {
+            using ILuxaforDevice device = Luxafor.GetDevices().First();
 
-Diese verschiedenen Geräte sind so konzipiert, dass sie teilweise manuell ('mechanisch'), teilweise halbautomatisch (manuelle Steuerung über [Software](https://luxaformanual.com)) / automatisch (Integration über [Software](https://luxaformanual.com) in Tools wie Teams, Skype, Cisco, Zappier oder über Webhook) gesteuert werden können. 
+            if (buildSucceeded) {
+                device.SetColor(BrightColor.Green);
+            } else {
+                device.Strobe(BrightColor.Red, Speed.FromByte(20), Repeat.Count(3));
+            }
+        }
 
-## Überblick über die Bibliothek
+    }
 
-Diese Bibliothek soll die Integration von USB-LED-Geräten in Ihre In-House-Anwendungen ermöglichen, ohne dass Sie den Luxafor-Server (Webhook) nutzen müssen.
+}
+```
+<!-- endSnippet -->
 
-Sie zielt auf `.NET Standard 2.0` und `.NET Framework 4.6.2` ab und basiert auf der Bibliothek [HidLibrary](https://github.com/mikeobrien/HidLibrary), die es ermöglicht, HID-kompatible USB-Geräte in .NET aufzulisten und mit ihnen zu kommunizieren.
+`Luxafor.GetDevices()` listet die an den USB-Anschlüssen des Rechners angeschlossenen Luxafor-Geräte auf; die Aufzählung ist leer, wenn keines angeschlossen ist. `ILuxaforDevice` implementiert `IDisposable`: Die `using`-Anweisung gibt das Handle des Geräts am Ende des Blocks wieder frei. Jeder Befehl gibt einen `bool` zurück: `true`, wenn das Gerät den Befehl angenommen hat, `false`, wenn das Schreiben fehlgeschlagen ist.
 
-> **Nur Windows.** Die Geräte werden über den HID-Stack von Windows gesteuert: Das Paket lässt sich auf jeder Plattform installieren, aber die Geräte können nur unter Windows aufgelistet und gesteuert werden.
-
-### Unterstützte Geräte
+## Kompatible Geräte
 
 Die Bibliothek steuert über deren USB-HID-Protokoll die Luxafor-Geräte mit der Vendor-ID `1240` (`0x04D8`) und der Produkt-ID `62322` (`0xF372`).
 
@@ -53,116 +57,21 @@ Die Bibliothek steuert über deren USB-HID-Protokoll die Luxafor-Geräte mit der
 
 Rückmeldungen zu einem nicht getesteten Gerät sind sehr willkommen: Bitte [eröffnen Sie ein Issue](https://github.com/Reefact/luxafor-lighting-device-controller/issues).
 
-### Installation
+## Funktionen
 
-```shell
-dotnet add package Reefact.LuxaforLightingDeviceController
-```
+- **Feste Farbe** (`SetColor`) aus einer benannten Farbe, einem Hexadezimalcode oder Rot-/Grün-/Blau-Anteilen.
+- **Überblendung** (`FadeColor`) zu einer Farbe, über eine gewählte Übergangsdauer.
+- **Blinken** (`Strobe`) mit gewählter Geschwindigkeit und gewählter Anzahl von Wiederholungen.
+- **Muster** (`PlayPattern`): farbige Wellen oder im Gerät integrierte Muster (`Police`, `Rainbow`, `TrafficLight`, ...).
+- **Ausschalten** (`TurnOff`), aller LEDs oder nur eines Teils davon.
+- **LEDs gezielt ansprechen**: alle, eine Seite (`TabSide`, `BackSide`) oder eine einzelne LED (`Led_1` bis `Led_6`).
+- **Wiederverwendbare Befehle**: `LightingCommand` beschreibt einen Befehl einmal, um ihn später mit `Send` erneut abzuspielen.
 
-### Schnellstart
+## Ausführliche Dokumentation
 
-Der folgende Code zeigt ein Beispiel für die grundlegende Verwendung der Bibliothek zur Steuerung eines [Luxafor Orb](https://luxafor.com/product/orb/)-Geräts.
-
-```csharp
-[Fact]
-public void french_sequence() {
-    using ILuxaforDevice orb = Luxafor.GetDevices().First();
-    for (var i = 0; i < 3; i++) {
-        orb.SetColor(BrightColor.Blue);
-        Thread.Sleep(500);
-        orb.SetColor(BrightColor.White);
-        Thread.Sleep(500);
-        orb.SetColor(BrightColor.Red);
-        Thread.Sleep(500);
-        orb.TurnOff();
-        Thread.Sleep(1000);
-    }
-}
-```
-
-Zeile 3 zeigt, wie man sich mit einem einzelnen Orb verbindet, der am USB-Anschluss des Rechners angeschlossen ist. `ILuxaforDevice` implementiert `IDisposable`: Die `using`-Anweisung gibt das Handle des Geräts am Ende des Blocks wieder frei.
-
-### Ein Gerät abrufen
-
-```csharp
-IEnumerable<ILuxaforDevice> GetDevices(); // Alle an die USB-Anschlüsse angeschlossenen Luxafor-Geräte (leer, wenn keines angeschlossen ist)
-ILuxaforDevice GetDevice(string devicePath); // Das Luxafor-Gerät unter dem angegebenen Pfad
-```
-
-`Luxafor.GetDevice` löst eine `LuxaforDeviceNotFoundException` aus, wenn unter dem angegebenen Pfad kein Gerät gefunden wird, wenn das dort gefundene Gerät kein unterstütztes Luxafor-Gerät ist oder wenn es nicht mehr angeschlossen ist.
-
-```csharp
-using ILuxaforDevice orb = Luxafor.GetDevice(@"\\?\hid#vid_04d8&pid_f372#...");
-```
-
-Ich werde nun kurz alle Befehle vorstellen, die über das `ILuxaforDevice` an die Geräte gesendet werden können.
-
-Jeder Befehl gibt einen `bool` zurück: `true`, wenn das Gerät den Befehl angenommen hat, `false`, wenn das Schreiben fehlgeschlagen ist (Gerät abgezogen, von einer anderen Anwendung belegt, ...). Ungültige Argumente lösen eine Ausnahme aus (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
-
-### Ausschalten
-
-```csharp
-bool TurnOff(); // Schaltet alle LEDs des Geräts aus.
-bool TurnOff(TargetedLeds targetedLeds); // Schaltet die LEDs des Zielgeräts aus.
-```
-
-### Eine einzelne Farbe festlegen
-
-```csharp
-bool SetColor(BrightColor color); // Schaltet die LEDs des Geräts in einer benutzerdefinierten Farbe ein.
-bool SetColor(TargetedLeds targetedLeds, BrightColor color); // Schaltet die LEDs des Zielgeräts in einer benutzerdefinierten Farbe ein.
-```
-
-### Einen Übergang (Fade) durchführen
-
-```csharp
-bool FadeColor(BrightColor color, FadeDuration duration); // Alle LEDs des Geräts werden in eine benutzerdefinierte Farbe umgewandelt.
-bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration); // Überblendet die LEDs des Zielgeräts in eine benutzerdefinierte Farbe.
-```
-
-### Blinken (Stroboskopeffekt)
-
-```csharp
-bool Strobe(BrightColor color, Speed speed, Repeat repeat); // Lässt alle LEDs des Geräts in einer benutzerdefinierten Farbe blinken.
-bool Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat); // Lässt die LEDs des Zielgeräts in einer benutzerdefinierten Farbe blinken.
-```
-
-### Wellen / Integrierte Muster
-
-```csharp
-bool PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat); // Startet ein wellenförmiges Muster, das alle LEDs des Geräts auf der Grundlage einer benutzerdefinierten Farbe anvisiert.
-bool PlayPattern(BuiltInPattern pattern, Repeat repeat); // Startet ein eingebettetes Muster, das auf alle LEDs des Geräts zielt.
-```
-
-### Einen Befehl senden
-
-Es ist möglich, benutzerdefinierte Befehle namens `LightingCommand` zu erstellen, um sie im Code wiederverwenden zu können:
-
-```csharp
-var command = LightingCommand.CreateStrobeCommand(TargetedLeds.All, BrightColor.Yellow, Speed.FromByte(20), Repeat.Count(3));
-```
-
-Mit der Methode `Send` können Sie diese Befehle verwenden.
-
-```csharp
-bool Send(LightingCommand command); // Sendet einen Befehl an das Gerät.
-```
-
-### Farben
-
-```csharp
-BrightColor.Red; // sowie Green, Blue, Yellow, Cyan, Magenta, White, Black
-BrightColor.From("#0F11A8"); // Aus der hexadezimalen Darstellung
-BrightColor.From(15, 17, 168); // Aus den Rot-, Grün- und Blauanteilen
-```
-
-## Die Bibliothek bauen
-
-```shell
-dotnet build -c Release
-dotnet test -c Release
-dotnet pack Reefact.LuxaforLightingDeviceController -c Release -o artifacts
-```
+- [API-Referenz](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-DE.md): alle Befehle, ihre Parameter und ihre Fehler.
+- [Luxafor, das Unternehmen und seine Geräte](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-DE.md): wozu diese Leuchten dienen und welche diese Bibliothek steuert.
+- [Änderungsprotokoll](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) und [Beitragsleitfaden](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
 
 ## Lizenz
 

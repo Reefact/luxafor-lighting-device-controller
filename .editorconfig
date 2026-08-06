@@ -37,6 +37,6 @@ dotnet_diagnostic.CA1707.severity = none
 [Reefact.LuxaforLightingDeviceController.UnitTests/**.cs]
 
 # CA1859: Use concrete types when possible for improved performance.
-# The tests deliberately drive the library through its public abstractions (LuxaforDevice, ...):
+# The tests deliberately drive the library through its public abstractions (ILuxaforDevice, ...):
 # that is precisely what they are meant to verify.
 dotnet_diagnostic.CA1859.severity = none
