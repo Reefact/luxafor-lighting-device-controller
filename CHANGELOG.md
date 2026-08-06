@@ -35,7 +35,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - Source Link, a symbol package (`.snupkg`) and deterministic builds.
 - A GitHub Actions CI (Windows) running build, tests, packaging and a validation of the `.nupkg` content.
 - A GitHub Actions release workflow publishing to nuget.org when a `v*` tag is pushed, after checking
-  that the tag matches the version of the project, running the tests and validating the package.
+  that the tag matches the version of the project, running the tests and validating the package. It
+  authenticates through trusted publishing (OIDC): no long-lived API key is stored in the repository.
 - Tests covering write failure propagation, `Dispose`, missing devices, invalid HID paths, argument guards,
   value object equality and the public API surface.
 
@@ -52,7 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
   the internal `LightingCommandFactory` interface becomes `ILightingCommandFactory`.
 - Documentation: the READMEs (7 languages) are synchronized with the code — obsolete `BasicColor` /
   `SetBasicColor` examples replaced by `BrightColor` / `SetColor`, `void` signatures corrected to `bool`,
-  `using` shown on `LuxaforDevice`, plus installation, device lookup, error handling, supported devices and
+  `using` shown on `ILuxaforDevice`, plus installation, device lookup, error handling, supported devices and
   license sections.
 
 ### Fixed
