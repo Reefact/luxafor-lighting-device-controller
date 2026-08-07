@@ -2,7 +2,7 @@ _[Version française](https://github.com/Reefact/luxafor-lighting-device-control
 
 # Controlador de dispositivos Luxafor
 
-Controle sus luces de disponibilidad [Luxafor](https://luxafor.com) directamente desde sus propias aplicaciones .NET, hablando su protocolo USB HID: sin servidor Luxafor, sin webhook, sin software de terceros que instalar.
+Controle sus indicadores de disponibilidad [Luxafor](https://luxafor.com) directamente desde sus propias aplicaciones .NET, hablando su protocolo USB HID: sin servidor Luxafor, sin webhook, sin software de terceros que instalar.
 
 - Una API directa: `SetColor`, `FadeColor`, `Strobe`, `PlayPattern`, hasta controlar un LED a la vez.
 - `.NET Standard 2.0` y `.NET Framework 4.6.2`, con una única dependencia ([HidLibrary](https://github.com/mikeobrien/HidLibrary)).
@@ -70,7 +70,7 @@ Cualquier comentario sobre un dispositivo no probado es bienvenido: no dude en [
 ## Documentación detallada
 
 - [Referencia de la API](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-ES.md): todos los comandos, sus parámetros y sus errores.
-- [Luxafor, la empresa y sus dispositivos](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-ES.md): para qué sirven estas luces y cuáles controla esta biblioteca.
+- [Luxafor, la empresa y sus dispositivos](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-ES.md): para qué sirven estos indicadores y cuáles controla esta biblioteca.
 - [Registro de cambios](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) y [guía de contribución](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
 
 ## Licencia

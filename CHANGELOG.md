@@ -5,6 +5,39 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- A consumption test of the produced package, `build/Test-PackageConsumption.ps1`: a throwaway project
+  outside the repository installs the `.nupkg` from a local feed into a private package cache, compiles the
+  public examples against it for `net472` and `net10.0`, checks the resolved assets (`lib/net462`,
+  `lib/netstandard2.0`, XML documentation) and the `hidlibrary` dependency, then runs the result on Windows.
+  Reading the archive cannot catch a dependency that does not resolve or an asset that never reaches the
+  consumer; this can. It runs in the CI, and in the release workflow before anything is published.
+- A `samples` folder holding the examples printed in the documentation, compiled with the tests on every
+  target framework, plus `build/Sync-Snippets.ps1` which copies them into the markdown pages. The CI runs it
+  in check mode, so an example can no longer drift away from the code it shows.
+- A `CONTRIBUTING.md` describing how to build, what the CI checks and how a release is published, and a pull
+  request template.
+
+### Changed
+
+- Documentation: each README is now what a reader needs first — what the library is for, how to install it,
+  a quick start, the compatible devices, the features, then where to read more. The presentation of the
+  Luxafor company and its product catalogue moved to `docs/luxafor*.md`, and the command-by-command
+  walkthrough became an API reference in `docs/api*.md`, both in the same seven languages.
+- The workflows moved to `actions/checkout@v5`, `actions/setup-dotnet@v5` and `actions/upload-artifact@v6`,
+  the first major of each that runs on Node 24, Node 20 being deprecated on the runners.
+
+### Fixed
+
+- The XML documentation of `TargetedLeds` no longer reads "the on/off or animation will also be sequential
+  and could: it can cause a visual ripple effect".
+- The metadata check of `build/Validate-Package.ps1` combined its two conditions with `-and`, which no value
+  could satisfy: an empty `<description>` passed. It now reports empty, blank, absent and attribute-less
+  elements alike.
+
 ## [2.0.0]
 
 ### Breaking changes
@@ -39,16 +72,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - `LuxaforDeviceNotFoundException`, carrying the offending `DevicePath`.
 - `TargetedLeds.FromLedIndex(LedIndex)`, the named alternative to the existing implicit conversion.
 - Source Link, a symbol package (`.snupkg`) and deterministic builds.
-- A GitHub Actions CI (Windows) running build, tests, packaging, a validation of the `.nupkg` content and a
-  consumption test of that package: a throwaway project outside the repository installs it from a local
-  feed into a private package cache, compiles the public examples against it for `net472` and `net10.0`,
-  checks the resolved assets (`lib/net462`, `lib/netstandard2.0`, XML documentation), the `hidlibrary`
-  dependency, and runs the result. Reading the archive cannot catch a dependency that does not resolve or
-  an asset that does not reach the consumer; this can.
-- A `samples` folder holding the examples printed in the documentation, compiled with the tests on every
-  target framework, plus `build/Sync-Snippets.ps1` which copies them into the markdown pages. The CI runs it
-  in check mode, so an example can no longer drift away from the code it shows.
-- A `CONTRIBUTING.md` describing how to build, what the CI checks and how a release is published.
+- A GitHub Actions CI (Windows) running build, tests, packaging and a validation of the `.nupkg` content.
 - A GitHub Actions release workflow publishing to nuget.org when a `v*` tag is pushed, after checking
   that the tag matches the version of the project, running the tests and validating the package. It
   authenticates through trusted publishing (OIDC): no long-lived API key is stored in the repository.
@@ -70,10 +94,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
   `SetBasicColor` examples replaced by `BrightColor` / `SetColor`, `void` signatures corrected to `bool`,
   `using` shown on `ILuxaforDevice`, plus installation, device lookup, error handling, supported devices and
   license sections.
-- Documentation: each README is now what a reader needs first — what the library is for, how to install it,
-  a quick start, the compatible devices, the features, then where to read more. The presentation of the
-  Luxafor company and its product catalogue moved to `docs/luxafor*.md`, and the command-by-command
-  walkthrough became an API reference in `docs/api*.md`, both in the same seven languages.
 
 ### Fixed
 

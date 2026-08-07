@@ -2,7 +2,7 @@ _[Version française](https://github.com/Reefact/luxafor-lighting-device-control
 
 # Ελεγκτής συσκευής Luxafor
 
-Οδηγήστε τις λυχνίες διαθεσιμότητας [Luxafor](https://luxafor.com) απευθείας από τις δικές σας εφαρμογές .NET, μιλώντας το πρωτόκολλο USB HID τους: χωρίς διακομιστή Luxafor, χωρίς webhook, χωρίς λογισμικό τρίτων προς εγκατάσταση.
+Οδηγήστε τους δείκτες διαθεσιμότητας [Luxafor](https://luxafor.com) απευθείας από τις δικές σας εφαρμογές .NET, μιλώντας το πρωτόκολλο USB HID τους: χωρίς διακομιστή Luxafor, χωρίς webhook, χωρίς λογισμικό τρίτων προς εγκατάσταση.
 
 - Ένα άμεσο API: `SetColor`, `FadeColor`, `Strobe`, `PlayPattern`, μέχρι και τον έλεγχο μίας LED τη φορά.
 - `.NET Standard 2.0` και `.NET Framework 4.6.2`, με μία μόνο εξάρτηση ([HidLibrary](https://github.com/mikeobrien/HidLibrary)).
@@ -70,7 +70,7 @@ namespace MyApplication {
 ## Αναλυτική τεκμηρίωση
 
 - [Αναφορά του API](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-GR.md): όλες οι εντολές, οι παράμετροι και τα σφάλματά τους.
-- [Luxafor, η εταιρεία και οι συσκευές της](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-GR.md): σε τι χρησιμεύουν αυτές οι λυχνίες, και ποιες οδηγεί αυτή η βιβλιοθήκη.
+- [Luxafor, η εταιρεία και οι συσκευές της](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-GR.md): σε τι χρησιμεύουν αυτοί οι δείκτες, και ποιες οδηγεί αυτή η βιβλιοθήκη.
 - [Ημερολόγιο αλλαγών](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) και [οδηγός συνεισφοράς](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
 
 ## Άδεια χρήσης

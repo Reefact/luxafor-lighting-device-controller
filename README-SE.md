@@ -2,7 +2,7 @@ _[Version française](https://github.com/Reefact/luxafor-lighting-device-control
 
 # Luxafor Device Controller
 
-Styr dina [Luxafor](https://luxafor.com)-tillgänglighetslampor direkt från dina egna .NET-applikationer, via deras USB HID-protokoll: ingen Luxafor-server, ingen webhook, ingen programvara från tredje part att installera.
+Styr dina [Luxafor](https://luxafor.com)-tillgänglighetsindikatorer direkt från dina egna .NET-applikationer, via deras USB HID-protokoll: ingen Luxafor-server, ingen webhook, ingen programvara från tredje part att installera.
 
 - Ett direkt API: `SetColor`, `FadeColor`, `Strobe`, `PlayPattern`, ända ner till att styra en lysdiod i taget.
 - `.NET Standard 2.0` och `.NET Framework 4.6.2`, med ett enda beroende ([HidLibrary](https://github.com/mikeobrien/HidLibrary)).
@@ -70,7 +70,7 @@ Biblioteket styr, via deras USB HID-protokoll, de Luxafor-enheter som identifier
 ## Utförlig dokumentation
 
 - [API-referens](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-SE.md): alla kommandon, deras parametrar och deras fel.
-- [Luxafor, företaget och dess enheter](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-SE.md): vad dessa lampor är till för, och vilka det här biblioteket styr.
+- [Luxafor, företaget och dess enheter](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-SE.md): vad dessa indikatorer är till för, och vilka det här biblioteket styr.
 - [Ändringslogg](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) och [bidragsguide](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
 
 ## Licens
