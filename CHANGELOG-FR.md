@@ -32,6 +32,12 @@ publique également.
   suffixées (`CHANGELOG-FR.md`, `CHANGELOG-NL.md`, ...).
 - Le polonais rejoint les langues de la documentation : `README-PL.md`, `docs/api-PL.md`,
   `docs/luxafor-PL.md` et `CHANGELOG-PL.md`.
+- Le test de consommation épingle désormais le package testé sur le feed local via le Package Source
+  Mapping de NuGet, et relit la source enregistrée dans `.nupkg.metadata` pour le prouver. Le projet
+  jetable a les deux sources configurées : dès qu'une version est publiée, la restauration pourrait la
+  servir à la place de celle qui vient d'être construite, et le test porterait sur le mauvais package. La
+  dépendance, elle, doit toujours venir de nuget.org — épingler l'identifiant ne doit pas entraîner le
+  reste du graphe vers le feed local.
 
 ### Modifié
 

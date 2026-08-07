@@ -31,6 +31,10 @@ likaså.
   (`CHANGELOG-FR.md`, `CHANGELOG-NL.md`, ...).
 - Polska tillkommer bland dokumentationens språk: `README-PL.md`, `docs/api-PL.md`, `docs/luxafor-PL.md`
   och `CHANGELOG-PL.md`.
+- Konsumtionstestet låser nu det testade paketet till det lokala flödet med NuGet Package Source Mapping,
+  och läser tillbaka källan som noterats i `.nupkg.metadata` som bevis. Engångsprojektet har båda källorna
+  konfigurerade: så snart en version publicerats kan återställningen leverera den i stället för den
+  nybyggda, och fel paket skulle testas. Beroendet måste fortfarande komma från nuget.org.
 
 ### Ändrat
 

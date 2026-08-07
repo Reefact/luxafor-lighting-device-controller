@@ -30,6 +30,10 @@ Wyłącznie dokumentacja, narzędzia i CI: sama biblioteka nie zmieniła się od
   ponieważ narzędzia oczekują nagłówków Keep a Changelog po angielsku; pozostałe języki mają przyrostek
   (`CHANGELOG-FR.md`, `CHANGELOG-NL.md`, ...).
 - Polski dołącza do języków dokumentacji: `README-PL.md`, `docs/api-PL.md`, `docs/luxafor-PL.md` i ten plik.
+- Test konsumpcji przypina teraz testowany pakiet do lokalnego źródła przez NuGet Package Source Mapping i
+  odczytuje z powrotem źródło zapisane w `.nupkg.metadata` jako dowód. Projekt jednorazowy ma skonfigurowane
+  oba źródła: gdy tylko wersja zostanie opublikowana, przywracanie mogłoby podać ją zamiast świeżo
+  zbudowanej i sprawdzony zostałby niewłaściwy pakiet. Zależność musi nadal pochodzić z nuget.org.
 
 ### Zmienione
 

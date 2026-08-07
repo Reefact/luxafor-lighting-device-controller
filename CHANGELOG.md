@@ -30,6 +30,12 @@ Documentation, tooling and CI only: the library itself is unchanged since 2.0.0,
   (`CHANGELOG-FR.md`, `CHANGELOG-NL.md`, ...).
 - Polish joins the languages of the documentation: `README-PL.md`, `docs/api-PL.md`, `docs/luxafor-PL.md`
   and `CHANGELOG-PL.md`.
+- The consumption test now pins the package under test to the local feed with NuGet Package Source
+  Mapping, and reads back the source recorded in `.nupkg.metadata` to prove it. Both the local feed and
+  nuget.org are configured for the throwaway project, so once a version is published the restore could
+  serve it instead of the freshly built one, and the run would check the wrong package. The dependency is
+  asserted to still come from nuget.org, so pinning the id cannot quietly drag the rest of the graph to
+  the local feed.
 
 ### Changed
 

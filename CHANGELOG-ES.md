@@ -33,6 +33,11 @@ pública.
   idiomas llevan sufijo (`CHANGELOG-FR.md`, `CHANGELOG-NL.md`, ...).
 - El polaco se suma a los idiomas de la documentación: `README-PL.md`, `docs/api-PL.md`,
   `docs/luxafor-PL.md` y `CHANGELOG-PL.md`.
+- La prueba de consumo fija ahora el paquete probado al origen local mediante Package Source Mapping de
+  NuGet, y vuelve a leer el origen registrado en `.nupkg.metadata` para demostrarlo. El proyecto desechable
+  tiene ambos orígenes configurados: en cuanto se publica una versión, la restauración podría servirla en
+  lugar de la recién compilada, y se probaría el paquete equivocado. Se exige que la dependencia siga
+  viniendo de nuget.org.
 
 ### Cambiado
 

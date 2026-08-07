@@ -32,6 +32,11 @@ publieke API eveneens.
   achtervoegsel (`CHANGELOG-FR.md`, `CHANGELOG-NL.md`, ...).
 - Het Pools voegt zich bij de talen van de documentatie: `README-PL.md`, `docs/api-PL.md`,
   `docs/luxafor-PL.md` en `CHANGELOG-PL.md`.
+- De consumptietest zet het geteste pakket nu vast op de lokale feed met NuGet Package Source Mapping, en
+  leest de in `.nupkg.metadata` vastgelegde bron terug als bewijs. Voor het wegwerpproject zijn beide
+  bronnen ingesteld: zodra een versie is gepubliceerd kan de restore die serveren in plaats van de zojuist
+  gebouwde, en dan zou de verkeerde worden getest. Van de afhankelijkheid wordt geëist dat ze nog steeds
+  van nuget.org komt.
 
 ### Gewijzigd
 

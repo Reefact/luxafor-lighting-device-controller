@@ -33,6 +33,11 @@ ebenfalls.
   erhalten ein Suffix (`CHANGELOG-FR.md`, `CHANGELOG-NL.md`, ...).
 - Polnisch kommt zu den Sprachen der Dokumentation hinzu: `README-PL.md`, `docs/api-PL.md`,
   `docs/luxafor-PL.md` und `CHANGELOG-PL.md`.
+- Der Konsumtest heftet das getestete Paket jetzt mit NuGet Package Source Mapping an die lokale Quelle und
+  liest zum Beweis die in `.nupkg.metadata` festgehaltene Quelle zurück. Für das Wegwerfprojekt sind beide
+  Quellen konfiguriert: sobald eine Version veröffentlicht ist, könnte die Wiederherstellung diese statt
+  der eben gebauten liefern, und es würde das falsche Paket geprüft. Die Abhängigkeit muss weiterhin von
+  nuget.org kommen.
 
 ### Geändert
 
