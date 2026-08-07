@@ -32,6 +32,19 @@ are skipped by default: plug a Luxafor Orb in, remove the `Skip` and watch what 
 API therefore shows up in the diff. When the change is intended, update the approved file in the
 same commit — and, if it is a breaking change, say so in `CHANGELOG.md`.
 
+## The documentation comes in eight languages
+
+Four families of pages — `README`, `CHANGELOG`, `docs/api` and `docs/luxafor` — exist in English, French,
+Dutch, Swedish, German, Spanish, Greek and Polish. One rule decides the file names: **the file without a
+suffix is the English one**, every other language carries its code (`README-FR.md`, `docs/api-PL.md`, ...).
+English is what GitHub shows on the home page, what the package ships, what the release notes point at, and
+what a reader landing on `docs/` without following a link should find.
+
+Adding or changing a page means keeping its family whole: the first line of every page is a selector linking
+to the seven others, and each language links to its own README, its own changelog and its own two docs pages.
+Regenerate those selectors from the rule rather than editing them by hand, and check that every link and
+section anchor still resolves — there are a little over three hundred of them.
+
 ## The documentation examples are compiled code
 
 The examples printed in the READMEs and in the `docs` pages are not written in markdown. They live in

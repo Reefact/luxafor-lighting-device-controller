@@ -69,8 +69,8 @@ Feedback about an untested device is very welcome: please [open an issue](https:
 
 ## Detailed documentation
 
-- [API reference](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-EN.md): every command, its parameters and its errors.
-- [Luxafor, the company and its devices](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-EN.md): what these indicators are for, and which ones this library drives.
+- [API reference](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api.md): every command, its parameters and its errors.
+- [Luxafor, the company and its devices](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor.md): what these indicators are for, and which ones this library drives.
 - [Changelog](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) and [contributing guide](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
 
 ## License

@@ -52,6 +52,10 @@ likaså.
 
 ### Rättat
 
+- `docs/api.md` och `docs/luxafor.md` är de engelska sidorna; de franska flyttar till `docs/api-FR.md`
+  och `docs/luxafor-FR.md`. Förrådet följer nu en enda regel — filen utan suffix är den engelska — där
+  `docs/` fortfarande hade den franska sidan utan suffix. Länkar till `docs/api-EN.md` eller
+  `docs/luxafor-EN.md` måste uppdateras.
 - XML-dokumentationen för `TargetedLeds` lyder inte längre "the on/off or animation will also be sequential
   and could: it can cause a visual ripple effect".
 - Metadatakontrollen i `build/Validate-Package.ps1` kombinerade sina två villkor med `-and`, vilket inget

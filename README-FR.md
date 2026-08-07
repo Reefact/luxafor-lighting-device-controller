@@ -69,8 +69,8 @@ Tout retour concernant un périphérique non testé est le bienvenu : n'hésitez
 
 ## Documentation détaillée
 
-- [Référence de l'API](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api.md) : toutes les commandes, leurs paramètres et leurs erreurs.
-- [Luxafor, la société et ses périphériques](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor.md) : à quoi servent ces indicateurs et lesquelles cette bibliothèque pilote.
+- [Référence de l'API](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-FR.md) : toutes les commandes, leurs paramètres et leurs erreurs.
+- [Luxafor, la société et ses périphériques](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-FR.md) : à quoi servent ces indicateurs et lesquelles cette bibliothèque pilote.
 - [Journal des modifications](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-FR.md) et [guide de contribution](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
 
 ## Licence

@@ -55,6 +55,11 @@ publique également.
 
 ### Corrigé
 
+- `docs/api.md` et `docs/luxafor.md` sont les pages anglaises, les françaises passant dans
+  `docs/api-FR.md` et `docs/luxafor-FR.md`. Le dépôt suit désormais une règle unique — le fichier sans
+  suffixe est l'anglais — là où `docs/` gardait encore la page française sans suffixe alors que les README
+  et les journaux de modifications ne le faisaient plus. Les liens pointant vers `docs/api-EN.md` ou
+  `docs/luxafor-EN.md` doivent être mis à jour.
 - La documentation XML de `TargetedLeds` ne dit plus « the on/off or animation will also be sequential and
   could: it can cause a visual ripple effect ».
 - Le contrôle des métadonnées de `build/Validate-Package.ps1` combinait ses deux conditions avec `-and`, ce

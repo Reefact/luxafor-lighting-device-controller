@@ -1,19 +1,19 @@
-_[English](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-EN.md) - [Nederlands](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-NL.md) - [Svenska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-SE.md) - [Deutsch](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-DE.md) - [Español](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-ES.md) - [Ελληνικά](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-GR.md) - [Polski](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-PL.md)_
+_[Français](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-FR.md) - [Nederlands](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-NL.md) - [Svenska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-SE.md) - [Deutsch](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-DE.md) - [Español](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-ES.md) - [Ελληνικά](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-GR.md) - [Polski](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-PL.md)_
 
-[← Retour au README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md)
+[← Back to the README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md)
 
-# Référence de l'API
+# API reference
 
-Tout se trouve dans un seul namespace, `Reefact.LuxaforLightingDeviceController`. La classe statique `Luxafor` est le point d'entrée : elle donne des `ILuxaforDevice`, à qui l'on envoie ensuite des commandes.
+Everything lives in a single namespace, `Reefact.LuxaforLightingDeviceController`. The static `Luxafor` class is the entry point: it hands out `ILuxaforDevice` instances, which commands are then sent to.
 
-Les exemples de cette page sont extraits du dossier [`samples`](https://github.com/Reefact/luxafor-lighting-device-controller/tree/main/samples), qui est compilé par la CI : ils ne peuvent pas se désynchroniser du code.
+The examples of this page are extracted from the [`samples`](https://github.com/Reefact/luxafor-lighting-device-controller/tree/main/samples) folder, which the CI compiles: they cannot drift away from the code.
 
-## Obtenir un périphérique
+## Getting a device
 
 | Signature | Description |
 | --- | --- |
-| `IEnumerable<ILuxaforDevice> Luxafor.GetDevices()` | Tous les périphériques Luxafor branchés sur les ports USB. L'énumération est vide lorsqu'aucun n'est branché. |
-| `ILuxaforDevice Luxafor.GetDevice(string devicePath)` | Le périphérique Luxafor situé au chemin indiqué. |
+| `IEnumerable<ILuxaforDevice> Luxafor.GetDevices()` | All the Luxafor devices plugged into the USB ports. The enumeration is empty when none is plugged in. |
+| `ILuxaforDevice Luxafor.GetDevice(string devicePath)` | The Luxafor device located at the given path. |
 
 <!-- snippet: list-devices -->
 ```csharp
@@ -25,9 +25,9 @@ foreach (ILuxaforDevice device in Luxafor.GetDevices()) {
 ```
 <!-- endSnippet -->
 
-`ILuxaforDevice` implémente `IDisposable` : le `using` libère le handle du périphérique à la fin du bloc. Le périphérique expose également son chemin (`Path`) et sa description (`Description`), telle que rapportée par Windows.
+`ILuxaforDevice` implements `IDisposable`: the `using` statement releases the device handle at the end of the block. A device also exposes its path (`Path`) and its description (`Description`), as reported by Windows.
 
-`Luxafor.GetDevice` lève une `LuxaforDeviceNotFoundException` lorsqu'aucun périphérique ne se trouve au chemin indiqué, lorsque le périphérique trouvé n'est pas un périphérique Luxafor supporté, ou lorsqu'il n'est plus connecté. La propriété `DevicePath` de l'exception rappelle le chemin demandé.
+`Luxafor.GetDevice` throws a `LuxaforDeviceNotFoundException` when no device is found at the given path, when the device found there is not a supported Luxafor device, or when it is not connected anymore. The `DevicePath` property of the exception carries the requested path back.
 
 <!-- snippet: get-device-by-path -->
 ```csharp
@@ -41,9 +41,9 @@ try {
 ```
 <!-- endSnippet -->
 
-## Résultat d'une commande
+## Result of a command
 
-Chaque commande retourne un `bool` : `true` lorsque le périphérique a accepté la commande, `false` lorsque l'écriture a échoué (périphérique débranché, monopolisé par une autre application, ...). Les arguments invalides, eux, lèvent une exception (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
+Every command returns a `bool`: `true` when the device accepted the command, `false` when the write failed (device unplugged, taken by another application, ...). Invalid arguments, on the other hand, throw (`ArgumentNullException`, `ArgumentOutOfRangeException`, `InvalidEnumArgumentException`).
 
 <!-- snippet: command-result -->
 ```csharp
@@ -53,12 +53,12 @@ if (!device.SetColor(BrightColor.Red)) {
 ```
 <!-- endSnippet -->
 
-## Éteindre
+## Turning off
 
 | Signature | Description |
 | --- | --- |
-| `bool TurnOff()` | Éteint toutes les LEDs du périphérique. |
-| `bool TurnOff(TargetedLeds targetedLeds)` | Éteint les LEDs ciblées du périphérique. |
+| `bool TurnOff()` | Turns off all the LEDs of the device. |
+| `bool TurnOff(TargetedLeds targetedLeds)` | Turns off the targeted LEDs of the device. |
 
 <!-- snippet: turn-off -->
 ```csharp
@@ -67,12 +67,12 @@ device.TurnOff(TargetedLeds.BackSide);
 ```
 <!-- endSnippet -->
 
-## Définir une couleur
+## Setting a color
 
 | Signature | Description |
 | --- | --- |
-| `bool SetColor(BrightColor color)` | Allume toutes les LEDs du périphérique dans une couleur. |
-| `bool SetColor(TargetedLeds targetedLeds, BrightColor color)` | Allume les LEDs ciblées dans une couleur. |
+| `bool SetColor(BrightColor color)` | Turns on all the LEDs of the device in a color. |
+| `bool SetColor(TargetedLeds targetedLeds, BrightColor color)` | Turns on the targeted LEDs in a color. |
 
 <!-- snippet: set-color -->
 ```csharp
@@ -81,14 +81,14 @@ device.SetColor(TargetedLeds.TabSide, BrightColor.Green);
 ```
 <!-- endSnippet -->
 
-## Effectuer une transition (fondu)
+## Making a transition (fade)
 
 | Signature | Description |
 | --- | --- |
-| `bool FadeColor(BrightColor color, FadeDuration duration)` | Fait passer toutes les LEDs vers une couleur. |
-| `bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration)` | Fait passer les LEDs ciblées vers une couleur. |
+| `bool FadeColor(BrightColor color, FadeDuration duration)` | Fades all the LEDs to a color. |
+| `bool FadeColor(TargetedLeds targetedLeds, BrightColor color, FadeDuration duration)` | Fades the targeted LEDs to a color. |
 
-La durée s'exprime dans l'unité du périphérique : `FadeDuration.From(byte)`, de `0` (instantané) à `255` (le plus lent).
+The duration is expressed in the unit of the device: `FadeDuration.From(byte)`, from `0` (immediate) to `255` (the slowest).
 
 <!-- snippet: fade-color -->
 ```csharp
@@ -97,14 +97,14 @@ device.FadeColor(TargetedLeds.BackSide, BrightColor.Blue, FadeDuration.From(30))
 ```
 <!-- endSnippet -->
 
-## Clignotement (effet stroboscopique)
+## Flashing (strobe effect)
 
 | Signature | Description |
 | --- | --- |
-| `bool Strobe(BrightColor color, Speed speed, Repeat repeat)` | Fait clignoter toutes les LEDs dans une couleur. |
-| `bool Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat)` | Fait clignoter les LEDs ciblées dans une couleur. |
+| `bool Strobe(BrightColor color, Speed speed, Repeat repeat)` | Flashes all the LEDs in a color. |
+| `bool Strobe(TargetedLeds targetedLeds, BrightColor color, Speed speed, Repeat repeat)` | Flashes the targeted LEDs in a color. |
 
-La vitesse s'exprime elle aussi dans l'unité du périphérique : `Speed.FromByte(byte)`. Le nombre de répétitions se déclare avec `Repeat.Once`, `Repeat.Twice` ou `Repeat.Count(byte)`.
+The speed is expressed in the unit of the device as well: `Speed.FromByte(byte)`. The number of repetitions is declared with `Repeat.Once`, `Repeat.Twice` or `Repeat.Count(byte)`.
 
 <!-- snippet: strobe -->
 ```csharp
@@ -113,14 +113,14 @@ device.Strobe(TargetedLeds.TabSide, BrightColor.Yellow, Speed.FromByte(20), Repe
 ```
 <!-- endSnippet -->
 
-## Vagues et motifs intégrés
+## Waves and built-in patterns
 
 | Signature | Description |
 | --- | --- |
-| `bool PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat)` | Démarre une vague colorée sur toutes les LEDs du périphérique. |
-| `bool PlayPattern(BuiltInPattern pattern, Repeat repeat)` | Démarre un motif intégré au périphérique. |
+| `bool PlayPattern(WavePattern wavePattern, BrightColor color, Speed speed, Repeat repeat)` | Starts a colored wave on all the LEDs of the device. |
+| `bool PlayPattern(BuiltInPattern pattern, Repeat repeat)` | Starts a pattern built into the device. |
 
-Les vagues vont de `WavePattern.Wave_1` à `WavePattern.Wave_5`. Les motifs intégrés sont `BuiltInPattern.Pattern_1` à `Pattern_5`, plus `Rainbow`, `TrafficLight`, `Police` et `Off`.
+Waves go from `WavePattern.Wave_1` to `WavePattern.Wave_5`. The built-in patterns are `BuiltInPattern.Pattern_1` to `Pattern_5`, plus `Rainbow`, `TrafficLight`, `Police` and `Off`.
 
 <!-- snippet: play-pattern -->
 ```csharp
@@ -129,18 +129,18 @@ device.PlayPattern(BuiltInPattern.Police, Repeat.Twice);
 ```
 <!-- endSnippet -->
 
-## Cibler des LEDs
+## Targeting LEDs
 
-`TargetedLeds` désigne les LEDs qu'une commande allume, éteint ou anime simultanément.
+`TargetedLeds` designates the LEDs a command turns on, turns off or animates simultaneously.
 
-| Valeur | LEDs concernées |
+| Value | LEDs involved |
 | --- | --- |
-| `TargetedLeds.All` | Les six LEDs. |
-| `TargetedLeds.TabSide` | Les LEDs n° 1, 2 et 3. |
-| `TargetedLeds.BackSide` | Les LEDs n° 4, 5 et 6. |
-| `TargetedLeds.Led_1` ... `TargetedLeds.Led_6` | Une seule LED. |
+| `TargetedLeds.All` | The six LEDs. |
+| `TargetedLeds.TabSide` | The LEDs n° 1, 2 and 3. |
+| `TargetedLeds.BackSide` | The LEDs n° 4, 5 and 6. |
+| `TargetedLeds.Led_1` ... `TargetedLeds.Led_6` | A single LED. |
 
-Un `LedIndex` (`LedIndex._1` à `LedIndex._6`, ou `LedIndex.From(byte)`) se convertit implicitement en `TargetedLeds`, ce qui permet de passer un index là où une cible est attendue. Les autres combinaisons ne sont pas exprimables : le périphérique ne les accepte pas. Il faut alors enchaîner plusieurs commandes, au prix d'un effet de vaguelette puisque l'allumage devient séquentiel.
+A `LedIndex` (`LedIndex._1` to `LedIndex._6`, or `LedIndex.From(byte)`) implicitly converts to `TargetedLeds`, so an index can be passed where a target is expected. The other combinations cannot be expressed: the device does not accept them. Several sequential commands are then needed, at the cost of a visual ripple effect since the lighting becomes sequential.
 
 <!-- snippet: targeted-leds -->
 ```csharp
@@ -152,9 +152,9 @@ device.SetColor(LedIndex.From(6), BrightColor.Blue);
 ```
 <!-- endSnippet -->
 
-## Couleurs
+## Colors
 
-`BrightColor` propose les couleurs `Red`, `Green`, `Blue`, `Yellow`, `Cyan`, `Magenta`, `White` et `Black`, ou se construit à partir d'une représentation hexadécimale (`#RRGGBB`) ou de trois composantes.
+`BrightColor` offers the `Red`, `Green`, `Blue`, `Yellow`, `Cyan`, `Magenta`, `White` and `Black` colors, or is built from a hexadecimal representation (`#RRGGBB`) or from three components.
 
 <!-- snippet: colors -->
 ```csharp
@@ -164,13 +164,13 @@ device.SetColor(BrightColor.From(15, 17, 168));      // from its red, green and 
 ```
 <!-- endSnippet -->
 
-`BrightColor.From(string)` lève une `FormatException` lorsque la chaîne n'est pas une représentation hexadécimale valide.
+`BrightColor.From(string)` throws a `FormatException` when the string is not a valid hexadecimal representation.
 
-## Commandes réutilisables
+## Reusable commands
 
-Une `LightingCommand` décrit une commande une fois pour toutes, pour la rejouer ensuite avec `Send`.
+A `LightingCommand` describes a command once and for all, to replay it later with `Send`.
 
-| Fabrique | Équivalent |
+| Factory | Equivalent to |
 | --- | --- |
 | `LightingCommand.CreateTurnOffCommand()` | `TurnOff()` |
 | `LightingCommand.CreateTurnOffCommand(TargetedLeds)` | `TurnOff(TargetedLeds)` |

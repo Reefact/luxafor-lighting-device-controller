@@ -56,6 +56,10 @@ pública.
 
 ### Corregido
 
+- `docs/api.md` y `docs/luxafor.md` son las páginas inglesas; las francesas pasan a `docs/api-FR.md` y
+  `docs/luxafor-FR.md`. El repositorio sigue ahora una única regla — el archivo sin sufijo es el inglés —
+  mientras que `docs/` aún tenía la página francesa sin sufijo. Hay que actualizar los enlaces que apunten
+  a `docs/api-EN.md` o `docs/luxafor-EN.md`.
 - La documentación XML de `TargetedLeds` ya no dice "the on/off or animation will also be sequential and
   could: it can cause a visual ripple effect".
 - La comprobación de metadatos de `build/Validate-Package.ps1` combinaba sus dos condiciones con `-and`, algo
