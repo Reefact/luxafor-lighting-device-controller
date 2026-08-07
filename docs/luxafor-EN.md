@@ -1,10 +1,10 @@
-_[Français](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor.md) - [Nederlands](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-NL.md) - [Svenska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-SE.md) - [Deutsch](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-DE.md) - [Español](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-ES.md) - [Ελληνικά](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-GR.md)_
+_[Français](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor.md) - [Nederlands](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-NL.md) - [Svenska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-SE.md) - [Deutsch](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-DE.md) - [Español](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-ES.md) - [Ελληνικά](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-GR.md) - [Polski](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-PL.md)_
 
-[← Back to the README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-EN.md)
+[← Back to the README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md)
 
 # Luxafor, the company and its devices
 
-This page is context: it describes the hardware, not the library. To use the library, the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-EN.md) and the [API reference](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-EN.md) are enough.
+This page is context: it describes the hardware, not the library. To use the library, the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md) and the [API reference](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-EN.md) are enough.
 
 ## The company
 
@@ -36,4 +36,4 @@ That is exactly the gap this library fills: driving the USB LED devices from you
 
 ## What the library drives
 
-Only the devices exposing the Luxafor USB HID protocol, identified by the vendor id `1240` (`0x04D8`) and the product id `62322` (`0xF372`), are concerned. The compatibility table is in the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-EN.md#compatible-devices).
+Only the devices exposing the Luxafor USB HID protocol, identified by the vendor id `1240` (`0x04D8`) and the product id `62322` (`0xF372`), are concerned. The compatibility table is in the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md#compatible-devices).

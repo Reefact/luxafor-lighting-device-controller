@@ -1,7 +1,7 @@
 # Contributing
 
 Thanks for taking the time. This page is about building the library and about what the CI checks;
-the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-EN.md)
+the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md)
 is about using it.
 
 ## Building and testing
@@ -71,12 +71,20 @@ the readme, the icon, the expected dependencies (and only those), the license ex
 Link commit, and the portable PDBs in the `.snupkg`.
 
 `Test-PackageConsumption.ps1` looks at the package *from the outside*: it creates a throwaway project
-outside the repository, restores the freshly built package from a local feed into a private package
-cache, compiles the `samples` folder against it for `net472` and `net10.0`, checks that the right
-assets were picked (`lib/net462` and `lib/netstandard2.0`, XML documentation included) and that the
-`hidlibrary` dependency flowed through, then runs the resulting program on Windows. That is what
-catches a broken dependency, a missing asset or an example that no longer compiles for a consumer,
-none of which reading the archive can see.
+outside the repository, restores the freshly built package into a private package cache, compiles the
+`samples` folder against it for `net472` and `net10.0`, checks that the right assets were picked
+(`lib/net462` and `lib/netstandard2.0`, XML documentation included) and that the `hidlibrary`
+dependency flowed through, then runs the resulting program on Windows. That is what catches a broken
+dependency, a missing asset or an example that no longer compiles for a consumer, none of which
+reading the archive can see.
+
+Two sources are configured for that project — the local feed and nuget.org — so the package under test
+could otherwise be served by nuget.org as soon as the same version is published there, and the run
+would silently check the published package instead of the one just built. The generated `NuGet.config`
+therefore uses Package Source Mapping: the package id is pinned to the local feed, everything else
+falls through to nuget.org. The script then reads back the source NuGet recorded in `.nupkg.metadata`
+for both the package and its dependency, so weakening that mapping fails the run rather than quietly
+changing what is being tested.
 
 ## Releasing
 

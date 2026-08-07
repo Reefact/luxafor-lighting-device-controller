@@ -4,14 +4,20 @@
 
 .DESCRIPTION
     Validate-Package.ps1 reads the archive; this script uses it. It creates a throwaway project
-    outside the repository, restores the packed .nupkg from a local feed into a private package cache
-    (so that no copy from nuget.org and no previously cached copy of the same version can be picked
-    instead), compiles the public examples of the `samples` folder against it for net472 and net10.0,
-    and runs the resulting program on Windows.
+    outside the repository, restores the packed .nupkg into a private package cache, compiles the
+    public examples of the `samples` folder against it for net472 and net10.0, and runs the resulting
+    program on Windows.
 
-    It then checks what the restore actually resolved: the net472 consumer must get the lib/net462
-    assets and the net10.0 consumer the lib/netstandard2.0 ones, XML documentation included, and the
-    hidlibrary dependency must have flowed through to the output folder.
+    The package under test can only come from the local feed. A private cache is not enough for that:
+    the two sources are both configured, so a version already published on nuget.org could be picked
+    instead of the one just built. Package Source Mapping settles it — the package id is mapped to the
+    local feed, everything else to nuget.org — and the script then reads back the source NuGet
+    actually recorded for each package, so removing the mapping fails the run instead of silently
+    testing the published package.
+
+    It then checks what the restore resolved: the net472 consumer must get the lib/net462 assets and
+    the net10.0 consumer the lib/netstandard2.0 ones, XML documentation included, and the hidlibrary
+    dependency must have flowed through to the output folder.
 
     That covers what reading the archive cannot: a dependency that does not resolve, an asset that
     does not flow to the consumer, and an example of the READMEs that no longer compiles.
@@ -94,6 +100,25 @@ function ConvertTo-ShortTargetFramework([string] $assetsTarget) {
     return $withoutRuntime
 }
 
+<#
+    The source a package was actually restored from. NuGet writes it next to the extracted package,
+    in .nupkg.metadata, which makes the provenance verifiable instead of merely intended.
+#>
+function Get-RestoredSource([string] $packagesCache, [string] $id, [string] $version) {
+    $metadata = Join-Path $packagesCache (Join-Path $id.ToLowerInvariant() (Join-Path $version.ToLowerInvariant() '.nupkg.metadata'))
+    if (-not (Test-Path -Path $metadata)) { return $null }
+
+    return (Get-Content -Path $metadata -Raw | ConvertFrom-Json).source
+}
+
+function Test-SameLocation([string] $left, [string] $right) {
+    if ([string]::IsNullOrWhiteSpace($left) -or [string]::IsNullOrWhiteSpace($right)) { return $false }
+    $normalize = { [System.IO.Path]::GetFullPath($args[0]).TrimEnd([System.IO.Path]::DirectorySeparatorChar, '/') }
+    try { $left = & $normalize $left; $right = & $normalize $right } catch { return $false }
+
+    return [string]::Equals($left, $right, [System.StringComparison]::OrdinalIgnoreCase)
+}
+
 function Invoke-Dotnet([string] $description, [string[]] $dotnetArguments) {
     Write-Host ''
     Write-Host "$description : dotnet $($dotnetArguments -join ' ')"
@@ -134,6 +159,20 @@ try {
     <add key="local-artifacts" value="$resolvedArtifacts" />
     <add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" />
   </packageSources>
+  <!--
+    Both sources are configured, so without a mapping the package under test could be served by
+    nuget.org as soon as the same version is published there - and the run would then test the
+    published package instead of the one just built. The mapping pins the package id to the local
+    feed; its dependencies keep coming from nuget.org through the catch-all pattern.
+  -->
+  <packageSourceMapping>
+    <packageSource key="local-artifacts">
+      <package pattern="$($identity.Id)" />
+    </packageSource>
+    <packageSource key="nuget.org">
+      <package pattern="*" />
+    </packageSource>
+  </packageSourceMapping>
 </configuration>
 "@ | Set-Content -Path (Join-Path $WorkingDirectory 'NuGet.config') -Encoding utf8
 
@@ -203,9 +242,33 @@ namespace PackageConsumer {
     Invoke-Dotnet 'Build' @('build', $projectDirectory, '-c', 'Release', '--no-restore')
 
     Write-Host ''
-    Write-Host 'Validating what the consumer resolved'
+    Write-Host 'Validating where the packages came from'
 
     $assets = Get-Content -Path (Join-Path $projectDirectory 'obj/project.assets.json') -Raw | ConvertFrom-Json
+
+    # The package under test: the local feed and nothing else, whatever nuget.org happens to publish
+    # under the same version. This is what makes the Package Source Mapping above non-optional.
+    $restoredFrom = Get-RestoredSource $packagesCache $identity.Id $identity.Version
+    Assert-True (Test-SameLocation $restoredFrom $resolvedArtifacts) `
+                "$($identity.Id) was restored from the local feed" `
+                "$($identity.Id) was restored from '$restoredFrom' instead of '$resolvedArtifacts' - the package source mapping of the NuGet.config is missing or no longer covers the package id, so this run may have tested a published package rather than the one just built"
+
+    # ... and, symmetrically, its dependency must still come from nuget.org: mapping the package id
+    # to the local feed must not drag the rest of the graph with it.
+    $dependencyId = @($assets.libraries.PSObject.Properties.Name | Where-Object { $_ -like 'HidLibrary/*' }) | Select-Object -First 1
+    if ([string]::IsNullOrWhiteSpace($dependencyId)) {
+        Add-Error 'HidLibrary is not in the restored libraries.'
+    } else {
+        $name, $version = $dependencyId -split '/', 2
+        $dependencyFrom = Get-RestoredSource $packagesCache $name $version
+        Assert-True (-not (Test-SameLocation $dependencyFrom $resolvedArtifacts)) `
+                    "$dependencyId was restored from $dependencyFrom" `
+                    "$dependencyId was restored from the local feed, which only holds the package under test"
+    }
+
+    Write-Host ''
+    Write-Host 'Validating what the consumer resolved'
+
     foreach ($target in $consumerTargets) {
         $framework      = $target.TargetFramework
         $expectedFolder = $target.ExpectedAssetFolder

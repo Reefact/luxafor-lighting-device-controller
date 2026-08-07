@@ -11,21 +11,22 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>Reefact.LuxaforLightingDeviceController</PackageId>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <Title>Luxafor Lighting Device Controller</Title>
     <Authors>Sylvain AURAT</Authors>
     <Company>Reefact</Company>
     <Product>Reefact.LuxaforLightingDeviceController</Product>
-    <Description>A .NET library that provides a simple API to control Luxafor lighting devices.</Description>
+    <Description>Control Luxafor USB HID devices directly from .NET: colors, fades, strobes and built-in patterns, LED by LED. No Luxafor server, no webhook. Device control is Windows-only.</Description>
     <Copyright>©2026 Reefact</Copyright>
-    <PackageTags>luxafor;hid;usb;led;notification;availability;presence</PackageTags>
+    <PackageTags>luxafor;hid;usb;led;windows;notification;availability;presence</PackageTags>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Reefact/luxafor-lighting-device-controller</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Reefact/luxafor-lighting-device-controller.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>See the CHANGELOG.md file of the repository.</PackageReleaseNotes>
+    <!-- An absolute URL: on nuget.org, a bare file name is not something the reader can follow. -->
+    <PackageReleaseNotes>See https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Source Link, symbols and reproducible builds -->
@@ -47,7 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\README-EN.md" Pack="true" PackagePath="README.md" Visible="false" />
+    <!-- The English README is the one shipped in the package, under the name NuGet expects. -->
+    <None Include="..\README.md" Pack="true" PackagePath="README.md" Visible="false" />
     <None Include="..\icon.png" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-_[Version française](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md) - [English Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-EN.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-NL.md) - [Svensk version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-SE.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-ES.md)_
+_[English Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md) - [Version française](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-NL.md) - [Svensk version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-SE.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-ES.md) - [Wersja polska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-PL.md)_
 
 # Ελεγκτής συσκευής Luxafor
 
@@ -71,7 +71,7 @@ namespace MyApplication {
 
 - [Αναφορά του API](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-GR.md): όλες οι εντολές, οι παράμετροι και τα σφάλματά τους.
 - [Luxafor, η εταιρεία και οι συσκευές της](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-GR.md): σε τι χρησιμεύουν αυτοί οι δείκτες, και ποιες οδηγεί αυτή η βιβλιοθήκη.
-- [Ημερολόγιο αλλαγών](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) και [οδηγός συνεισφοράς](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
+- [Ημερολόγιο αλλαγών](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-GR.md) και [οδηγός συνεισφοράς](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
 
 ## Άδεια χρήσης
 

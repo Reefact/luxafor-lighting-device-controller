@@ -1,3 +1,5 @@
+_[Version française](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-FR.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-NL.md) - [Svensk version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-SE.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-ES.md) - [Ελληνική έκδοση](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-GR.md) - [Wersja polska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-PL.md)_
+
 # Changelog
 
 All notable changes to this project are documented in this file.
@@ -5,7 +7,9 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.1]
+
+Documentation, tooling and CI only: the library itself is unchanged since 2.0.0, and so is its public API.
 
 ### Added
 
@@ -20,6 +24,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
   in check mode, so an example can no longer drift away from the code it shows.
 - A `CONTRIBUTING.md` describing how to build, what the CI checks and how a release is published, and a pull
   request template.
+- This changelog is now translated into the seven languages of the README. `CHANGELOG.md` stays the English
+  one — the reference the translations follow — because the release notes of the package point at it and
+  because tooling expects the Keep a Changelog headings in English; the other languages are suffixed
+  (`CHANGELOG-FR.md`, `CHANGELOG-NL.md`, ...).
+- Polish joins the languages of the documentation: `README-PL.md`, `docs/api-PL.md`, `docs/luxafor-PL.md`
+  and `CHANGELOG-PL.md`.
+- The consumption test now pins the package under test to the local feed with NuGet Package Source
+  Mapping, and reads back the source recorded in `.nupkg.metadata` to prove it. Both the local feed and
+  nuget.org are configured for the throwaway project, so once a version is published the restore could
+  serve it instead of the freshly built one, and the run would check the wrong package. The dependency is
+  asserted to still come from nuget.org, so pinning the id cannot quietly drag the rest of the graph to
+  the local feed.
 
 ### Changed
 
@@ -27,6 +43,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
   a quick start, the compatible devices, the features, then where to read more. The presentation of the
   Luxafor company and its product catalogue moved to `docs/luxafor*.md`, and the command-by-command
   walkthrough became an API reference in `docs/api*.md`, both in the same seven languages.
+- `README.md` is now the English one: it is what GitHub shows on the repository home page and what the
+  package ships, and English is the language its international readers expect. The French version moved to
+  `README-FR.md`, and the other six keep their suffix. Any link pointing at `README-EN.md` has to be
+  updated.
 - The workflows moved to `actions/checkout@v5`, `actions/setup-dotnet@v5` and `actions/upload-artifact@v6`,
   the first major of each that runs on Node 24, Node 20 being deprecated on the runners.
 
