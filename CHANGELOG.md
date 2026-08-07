@@ -52,6 +52,10 @@ Documentation, tooling and CI only: the library itself is unchanged since 2.0.0,
 
 ### Fixed
 
+- `docs/api.md` and `docs/luxafor.md` are the English pages, the French ones moving to `docs/api-FR.md`
+  and `docs/luxafor-FR.md`. The repository now follows a single rule — the file without a suffix is the
+  English one — where `docs/` still had the French page unsuffixed while the READMEs and changelogs no
+  longer did. Links pointing at `docs/api-EN.md` or `docs/luxafor-EN.md` have to be updated.
 - The XML documentation of `TargetedLeds` no longer reads "the on/off or animation will also be sequential
   and could: it can cause a visual ripple effect".
 - The metadata check of `build/Validate-Package.ps1` combined its two conditions with `-and`, which no value

@@ -1,39 +1,39 @@
-_[English](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-EN.md) - [Nederlands](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-NL.md) - [Svenska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-SE.md) - [Deutsch](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-DE.md) - [Español](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-ES.md) - [Ελληνικά](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-GR.md) - [Polski](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-PL.md)_
+_[Français](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-FR.md) - [Nederlands](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-NL.md) - [Svenska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-SE.md) - [Deutsch](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-DE.md) - [Español](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-ES.md) - [Ελληνικά](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-GR.md) - [Polski](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-PL.md)_
 
-[← Retour au README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md)
+[← Back to the README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md)
 
-# Luxafor, la société et ses périphériques
+# Luxafor, the company and its devices
 
-Cette page est un contexte : elle décrit le matériel, pas la bibliothèque. Pour l'utiliser, le [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md) et la [référence de l'API](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api.md) suffisent.
+This page is context: it describes the hardware, not the library. To use the library, the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md) and the [API reference](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api.md) are enough.
 
-## La société
+## The company
 
-[Luxafor](https://luxafor.com) conçoit et vend des produits pour la productivité de bureau, tels que des indicateurs de disponibilité et des outils de notification.
+[Luxafor](https://luxafor.com) designs and sells products for office productivity, such as availability indicators and notification tools.
 
-Leur produit phare est un [indicateur de disponibilité LED](https://luxafor.com/product/flag) qui peut être programmé pour afficher différentes couleurs en fonction de l'état de disponibilité de l'utilisateur.
+Their flagship product is an [LED availability indicator](https://luxafor.com/product/flag) that can be programmed to display different colors depending on the user's availability status.
 
-L'objectif de Luxafor est de fournir aux utilisateurs un moyen simple et efficace de signaler leur disponibilité aux collègues de travail et d'améliorer la communication et la collaboration en entreprise.
+Luxafor's goal is to provide users with a simple and effective way to signal their availability to co-workers and improve communication and collaboration in the workplace.
 
-## Le catalogue
+## The catalogue
 
-Voici une liste non-exhaustive des [périphériques Luxafor](https://luxafor.com/products) :
+Here is a non-exhaustive list of [Luxafor devices](https://luxafor.com/products):
 
-- `Luxafor Flag` : un indicateur de disponibilité par LED qui affiche la disponibilité personnelle
-- `Luxafor Bluetooth` : un indicateur de disponibilité LED sans fil et contrôlé par logiciel qui affiche les notifications et la disponibilité personnelle
-- `Luxafor Switch` : un indicateur de disponibilité sans fil et télécommandé qui affiche la disponibilité des salles de réunion et des postes de travail en temps réel
-- `Luxafor Cube` : un indicateur de disponibilité LED autonome qui affiche la disponibilité des salles de réunion
-- `Luxafor Pomodoro-Timer` : un minuteur à affichage LED alimenté par USB, qui permet de répartir le travail en petits créneaux (voir [Pomodoro](https://reefact.net/craftsmanship/tools/pomodoro))
-- `Luxafor Orb` : un indicateur de disponibilité LED USB grand angle
-- `Luxafor CO2 Monitor` : un capteur qui analyse la qualité de l'air d'une pièce et vous avertit lorsqu'il faut la ventiler
-- `Luxafor Mute Button` : allumez/éteignez le micro d'une simple pression et indiquez si vous êtes disponible avec le rouge/vert
-- `Luxafor Colorblind Flag` : lumière de disponibilité - d'occupation LED USB monochrome qui élimine les distractions et stimule la productivité
+- `Luxafor Flag`: an LED availability indicator that displays personal availability
+- `Luxafor Bluetooth`: a wireless, software-controlled LED availability indicator that displays notifications and personal availability
+- `Luxafor Switch`: a wireless, remote-controlled availability indicator that displays the availability of meeting rooms and workstations in real time
+- `Luxafor Cube`: a standalone LED availability indicator that displays meeting room availability
+- `Luxafor Pomodoro-Timer`: a USB-powered LED timer that divides work into smaller time slots (see [Pomodoro](https://reefact.net/craftsmanship/tools/pomodoro))
+- `Luxafor Orb`: a wide angle USB LED availability indicator
+- `Luxafor CO2 Monitor`: a sensor that analyzes the air quality of a room and alerts you when it needs to be ventilated
+- `Luxafor Mute Button`: turn on/off the microphone with a single touch and indicate if you are available with the red/green
+- `Luxafor Colorblind Flag`: monochrome USB LED availability light eliminates distractions and boosts productivity
 
-## Les modes de pilotage
+## How they are driven
 
-Ces différents périphériques sont conçus pour être pilotés manuellement (« mécanique ») pour certains, de façon semi-automatique (pilotage manuel via [logiciel](https://luxaformanual.com)) ou automatique (intégration via [logiciels](https://luxaformanual.com) à des outils comme Teams, Skype, Cisco, Zappier, ou via Webhook) pour d'autres.
+These different devices are designed to be driven manually ("mechanical") for some, semi-automatically (manual driving via [software](https://luxaformanual.com)) or automatically (integration via [software](https://luxaformanual.com) to tools like Teams, Skype, Cisco, Zappier, or via Webhook) for others.
 
-C'est précisément le trou que comble cette bibliothèque : piloter les périphériques USB à LED depuis vos propres applications, sans passer par le serveur Luxafor (webhook) ni par un logiciel tiers. Elle s'appuie pour cela sur [HidLibrary](https://github.com/mikeobrien/HidLibrary), qui permet d'énumérer et de communiquer avec des périphériques USB compatibles HID en .NET.
+That is exactly the gap this library fills: driving the USB LED devices from your own applications, without going through the Luxafor server (webhook) nor through third-party software. It relies for that on [HidLibrary](https://github.com/mikeobrien/HidLibrary), which makes it possible to enumerate and communicate with HID-compatible USB devices in .NET.
 
-## Ce que la bibliothèque pilote
+## What the library drives
 
-Seuls les périphériques exposant le protocole USB HID de Luxafor, identifiés par le vendor id `1240` (`0x04D8`) et le product id `62322` (`0xF372`), sont concernés. Le tableau de compatibilité se trouve dans le [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md#périphériques-compatibles).
+Only the devices exposing the Luxafor USB HID protocol, identified by the vendor id `1240` (`0x04D8`) and the product id `62322` (`0xF372`), are concerned. The compatibility table is in the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md#compatible-devices).

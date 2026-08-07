@@ -56,6 +56,10 @@ ebenfalls.
 
 ### Behoben
 
+- `docs/api.md` und `docs/luxafor.md` sind die englischen Seiten; die französischen wandern nach
+  `docs/api-FR.md` und `docs/luxafor-FR.md`. Das Repository folgt jetzt einer einzigen Regel — die Datei
+  ohne Suffix ist die englische —, während `docs/` die französische Seite noch ohne Suffix führte. Links
+  auf `docs/api-EN.md` oder `docs/luxafor-EN.md` müssen angepasst werden.
 - Die XML-Dokumentation von `TargetedLeds` lautet nicht mehr "the on/off or animation will also be sequential
   and could: it can cause a visual ripple effect".
 - Die Metadatenprüfung in `build/Validate-Package.ps1` verknüpfte ihre beiden Bedingungen mit `-and`, was

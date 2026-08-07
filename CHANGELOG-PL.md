@@ -51,6 +51,10 @@ Wyłącznie dokumentacja, narzędzia i CI: sama biblioteka nie zmieniła się od
 
 ### Naprawione
 
+- `docs/api.md` i `docs/luxafor.md` to strony angielskie; francuskie przenoszą się do `docs/api-FR.md` i
+  `docs/luxafor-FR.md`. Repozytorium stosuje teraz jedną regułę — plik bez przyrostka jest angielski —
+  podczas gdy `docs/` wciąż miał francuską stronę bez przyrostka. Odnośniki do `docs/api-EN.md` lub
+  `docs/luxafor-EN.md` trzeba zaktualizować.
 - Dokumentacja XML `TargetedLeds` nie brzmi już "the on/off or animation will also be sequential and could:
   it can cause a visual ripple effect".
 - Sprawdzenie metadanych w `build/Validate-Package.ps1` łączyło swoje dwa warunki operatorem `-and`, czego

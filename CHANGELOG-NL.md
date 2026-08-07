@@ -54,6 +54,10 @@ publieke API eveneens.
 
 ### Opgelost
 
+- `docs/api.md` en `docs/luxafor.md` zijn de Engelse pagina's; de Franse verhuizen naar `docs/api-FR.md`
+  en `docs/luxafor-FR.md`. De repository volgt nu één regel — het bestand zonder achtervoegsel is het
+  Engelse — terwijl `docs/` de Franse pagina nog zonder achtervoegsel had. Verwijzingen naar
+  `docs/api-EN.md` of `docs/luxafor-EN.md` moeten worden bijgewerkt.
 - De XML-documentatie van `TargetedLeds` leest niet langer "the on/off or animation will also be sequential
   and could: it can cause a visual ripple effect".
 - De metadatacontrole van `build/Validate-Package.ps1` combineerde haar twee voorwaarden met `-and`, wat geen

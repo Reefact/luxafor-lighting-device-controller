@@ -56,6 +56,10 @@ API της.
 
 ### Διορθώθηκαν
 
+- Τα `docs/api.md` και `docs/luxafor.md` είναι οι αγγλικές σελίδες· οι γαλλικές μεταφέρονται στα
+  `docs/api-FR.md` και `docs/luxafor-FR.md`. Το αποθετήριο ακολουθεί πλέον έναν μόνο κανόνα — το αρχείο
+  χωρίς κατάληξη είναι το αγγλικό — ενώ ο φάκελος `docs/` κρατούσε ακόμη τη γαλλική σελίδα χωρίς
+  κατάληξη. Οι σύνδεσμοι προς `docs/api-EN.md` ή `docs/luxafor-EN.md` πρέπει να ενημερωθούν.
 - Η τεκμηρίωση XML του `TargetedLeds` δεν λέει πλέον "the on/off or animation will also be sequential and
   could: it can cause a visual ripple effect".
 - Ο έλεγχος μεταδεδομένων του `build/Validate-Package.ps1` συνδύαζε τις δύο συνθήκες του με `-and`, κάτι που
