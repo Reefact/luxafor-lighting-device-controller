@@ -1,10 +1,10 @@
 _[English](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-EN.md) - [Nederlands](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-NL.md) - [Svenska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-SE.md) - [Deutsch](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-DE.md) - [Español](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-ES.md) - [Ελληνικά](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-GR.md)_
 
-[← Retour au README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md)
+[← Retour au README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md)
 
 # Luxafor, la société et ses périphériques
 
-Cette page est un contexte : elle décrit le matériel, pas la bibliothèque. Pour l'utiliser, le [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md) et la [référence de l'API](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api.md) suffisent.
+Cette page est un contexte : elle décrit le matériel, pas la bibliothèque. Pour l'utiliser, le [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md) et la [référence de l'API](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api.md) suffisent.
 
 ## La société
 
@@ -36,4 +36,4 @@ C'est précisément le trou que comble cette bibliothèque : piloter les périph
 
 ## Ce que la bibliothèque pilote
 
-Seuls les périphériques exposant le protocole USB HID de Luxafor, identifiés par le vendor id `1240` (`0x04D8`) et le product id `62322` (`0xF372`), sont concernés. Le tableau de compatibilité se trouve dans le [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md#périphériques-compatibles).
+Seuls les périphériques exposant le protocole USB HID de Luxafor, identifiés par le vendor id `1240` (`0x04D8`) et le product id `62322` (`0xF372`), sont concernés. Le tableau de compatibilité se trouve dans le [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md#périphériques-compatibles).

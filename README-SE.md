@@ -1,4 +1,4 @@
-_[Version française](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md) - [English Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-EN.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-NL.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-ES.md) - [Ελληνική έκδοση](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-GR.md)_
+_[English Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md) - [Version française](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-NL.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-ES.md) - [Ελληνική έκδοση](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-GR.md)_
 
 # Luxafor Device Controller
 
@@ -71,7 +71,7 @@ Biblioteket styr, via deras USB HID-protokoll, de Luxafor-enheter som identifier
 
 - [API-referens](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-SE.md): alla kommandon, deras parametrar och deras fel.
 - [Luxafor, företaget och dess enheter](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-SE.md): vad dessa indikatorer är till för, och vilka det här biblioteket styr.
-- [Ändringslogg](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) och [bidragsguide](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
+- [Ändringslogg](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-SE.md) och [bidragsguide](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
 
 ## Licens
 

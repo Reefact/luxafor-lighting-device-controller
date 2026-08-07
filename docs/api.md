@@ -1,6 +1,6 @@
 _[English](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-EN.md) - [Nederlands](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-NL.md) - [Svenska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-SE.md) - [Deutsch](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-DE.md) - [Español](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-ES.md) - [Ελληνικά](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-GR.md)_
 
-[← Retour au README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md)
+[← Retour au README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md)
 
 # Référence de l'API
 

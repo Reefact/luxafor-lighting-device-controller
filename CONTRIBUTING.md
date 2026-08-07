@@ -1,7 +1,7 @@
 # Contributing
 
 Thanks for taking the time. This page is about building the library and about what the CI checks;
-the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-EN.md)
+the [README](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README.md)
 is about using it.
 
 ## Building and testing

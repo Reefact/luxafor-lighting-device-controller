@@ -1,12 +1,12 @@
-_[English Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-EN.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-NL.md) - [Svensk version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-SE.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-ES.md) - [Ελληνική έκδοση](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-GR.md)_
+_[Version française](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-FR.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-NL.md) - [Svensk version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-SE.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-ES.md) - [Ελληνική έκδοση](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/README-GR.md)_
 
-# Contrôleur de périphériques Luxafor
+# Luxafor Device Controller
 
-Pilotez vos indicateurs de disponibilité [Luxafor](https://luxafor.com) depuis vos propres applications .NET, en parlant directement leur protocole USB HID : ni serveur Luxafor, ni webhook, ni logiciel tiers à installer.
+Drive your [Luxafor](https://luxafor.com) availability indicators from your own .NET applications, speaking their USB HID protocol directly: no Luxafor server, no webhook, no third-party software to install.
 
-- Une API directe : `SetColor`, `FadeColor`, `Strobe`, `PlayPattern`, jusqu'au pilotage LED par LED.
-- `.NET Standard 2.0` et `.NET Framework 4.6.2`, pour une seule dépendance ([HidLibrary](https://github.com/mikeobrien/HidLibrary)).
-- **Windows uniquement** : les périphériques sont pilotés via la couche HID de Windows. Le package s'installe sur toutes les plateformes, mais l'énumération et le pilotage ne fonctionnent que sous Windows.
+- A direct API: `SetColor`, `FadeColor`, `Strobe`, `PlayPattern`, down to driving one LED at a time.
+- `.NET Standard 2.0` and `.NET Framework 4.6.2`, for a single dependency ([HidLibrary](https://github.com/mikeobrien/HidLibrary)).
+- **Windows only**: the devices are driven through the Windows HID stack. The package installs on any platform, but the devices can only be enumerated and controlled on Windows.
 
 ## Installation
 
@@ -14,7 +14,7 @@ Pilotez vos indicateurs de disponibilité [Luxafor](https://luxafor.com) depuis 
 dotnet add package Reefact.LuxaforLightingDeviceController
 ```
 
-## Démarrage rapide
+## Quick start
 
 <!-- snippet: quick-start -->
 ```csharp
@@ -42,37 +42,37 @@ namespace MyApplication {
 ```
 <!-- endSnippet -->
 
-`Luxafor.GetDevices()` énumère les périphériques Luxafor branchés sur les ports USB de la machine ; l'énumération est vide lorsqu'aucun n'est branché. `ILuxaforDevice` implémente `IDisposable` : le `using` libère le handle du périphérique à la fin du bloc. Chaque commande retourne un `bool` : `true` lorsque le périphérique a accepté la commande, `false` lorsque l'écriture a échoué.
+`Luxafor.GetDevices()` enumerates the Luxafor devices plugged into the USB ports of the machine; the enumeration is empty when none is plugged in. `ILuxaforDevice` implements `IDisposable`: the `using` statement releases the device handle at the end of the block. Every command returns a `bool`: `true` when the device accepted the command, `false` when the write failed.
 
-## Périphériques compatibles
+## Compatible devices
 
-La bibliothèque pilote, via leur protocole USB HID, les périphériques Luxafor identifiés par le vendor id `1240` (`0x04D8`) et le product id `62322` (`0xF372`).
+The library drives, through their USB HID protocol, the Luxafor devices identified by the vendor id `1240` (`0x04D8`) and the product id `62322` (`0xF372`).
 
-| Périphérique | Statut |
+| Device | Status |
 | --- | --- |
-| `Luxafor Orb` | **Testé** : le périphérique utilisé pour développer et valider la bibliothèque (6 LEDs adressables). |
-| `Luxafor Flag` | **Devrait fonctionner, non testé** : mêmes identifiants et même protocole d'éclairage (6 LEDs adressables). |
-| `Luxafor Mute Button`, `Luxafor Colorblind Flag` | **Devraient fonctionner, non testés** : les commandes d'éclairage sont les mêmes ; la disposition des LEDs, leur nombre et le rendu des couleurs peuvent différer. |
-| `Luxafor Bluetooth`, `Luxafor Switch`, `Luxafor Cube`, `Luxafor Pomodoro-Timer`, `Luxafor CO2 Monitor` | **Non supportés** : ces périphériques ne se pilotent pas via ce protocole USB HID. |
+| `Luxafor Orb` | **Tested**: the device used to develop and validate the library (6 addressable LEDs). |
+| `Luxafor Flag` | **Expected to work, not tested**: same identifiers and same lighting protocol (6 addressable LEDs). |
+| `Luxafor Mute Button`, `Luxafor Colorblind Flag` | **Expected to work, not tested**: the lighting commands are the same; the LED layout, the number of LEDs and the color rendering may differ. |
+| `Luxafor Bluetooth`, `Luxafor Switch`, `Luxafor Cube`, `Luxafor Pomodoro-Timer`, `Luxafor CO2 Monitor` | **Not supported**: these devices are not driven through this USB HID protocol. |
 
-Tout retour concernant un périphérique non testé est le bienvenu : n'hésitez pas à [ouvrir une issue](https://github.com/Reefact/luxafor-lighting-device-controller/issues).
+Feedback about an untested device is very welcome: please [open an issue](https://github.com/Reefact/luxafor-lighting-device-controller/issues).
 
-## Fonctionnalités
+## Features
 
-- **Couleur fixe** (`SetColor`) à partir d'une couleur nommée, d'un code hexadécimal ou de composantes rouge / verte / bleue.
-- **Fondu** (`FadeColor`) vers une couleur, sur une durée de transition choisie.
-- **Clignotement** (`Strobe`) à une vitesse et pour un nombre de répétitions choisis.
-- **Motifs** (`PlayPattern`) : vagues colorées, ou motifs intégrés au périphérique (`Police`, `Rainbow`, `TrafficLight`, ...).
-- **Extinction** (`TurnOff`), de toutes les LEDs ou d'une partie seulement.
-- **Ciblage des LEDs** : toutes, une face (`TabSide`, `BackSide`) ou une LED précise (`Led_1` à `Led_6`).
-- **Commandes réutilisables** : `LightingCommand` décrit une commande une fois pour la rejouer avec `Send`.
+- **Solid color** (`SetColor`) from a named color, a hexadecimal code or red / green / blue components.
+- **Fade** (`FadeColor`) to a color, over a chosen transition duration.
+- **Strobe** (`Strobe`) at a chosen speed and for a chosen number of repetitions.
+- **Patterns** (`PlayPattern`): colored waves, or patterns built into the device (`Police`, `Rainbow`, `TrafficLight`, ...).
+- **Turning off** (`TurnOff`), all the LEDs or only some of them.
+- **LED targeting**: all of them, one side (`TabSide`, `BackSide`) or a single LED (`Led_1` to `Led_6`).
+- **Reusable commands**: `LightingCommand` describes a command once, to replay it later with `Send`.
 
-## Documentation détaillée
+## Detailed documentation
 
-- [Référence de l'API](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api.md) : toutes les commandes, leurs paramètres et leurs erreurs.
-- [Luxafor, la société et ses périphériques](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor.md) : à quoi servent ces indicateurs et lesquelles cette bibliothèque pilote.
-- [Journal des modifications](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) et [guide de contribution](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
+- [API reference](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/api-EN.md): every command, its parameters and its errors.
+- [Luxafor, the company and its devices](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/docs/luxafor-EN.md): what these indicators are for, and which ones this library drives.
+- [Changelog](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) and [contributing guide](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CONTRIBUTING.md).
 
-## Licence
+## License
 
-Cette bibliothèque est distribuée sous licence [Apache-2.0](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/LICENSE).
+This library is distributed under the [Apache-2.0](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/LICENSE) license.
