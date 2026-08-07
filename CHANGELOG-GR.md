@@ -1,4 +1,4 @@
-_[Version française](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-FR.md) - [English Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-NL.md) - [Svensk version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-SE.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-ES.md)_
+_[English Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG.md) - [Version française](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-FR.md) - [Nederlandse versie](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-NL.md) - [Svensk version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-SE.md) - [Deutsche Version](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-DE.md) - [Versión española](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-ES.md) - [Wersja polska](https://github.com/Reefact/luxafor-lighting-device-controller/blob/main/CHANGELOG-PL.md)_
 
 # Ημερολόγιο αλλαγών
 
@@ -31,6 +31,8 @@ API της.
   παραμένει η αγγλική έκδοση — η αναφορά που ακολουθούν οι μεταφράσεις — επειδή οι σημειώσεις έκδοσης του
   πακέτου παραπέμπουν σε αυτήν και επειδή τα εργαλεία περιμένουν τις επικεφαλίδες του Keep a Changelog στα
   αγγλικά· οι υπόλοιπες γλώσσες φέρουν κατάληξη (`CHANGELOG-FR.md`, `CHANGELOG-NL.md`, ...).
+- Τα πολωνικά προστίθενται στις γλώσσες της τεκμηρίωσης: `README-PL.md`, `docs/api-PL.md`,
+  `docs/luxafor-PL.md` και `CHANGELOG-PL.md`.
 
 ### Άλλαξαν
 
