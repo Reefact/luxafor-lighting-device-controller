@@ -7,6 +7,26 @@ Alle noemenswaardige wijzigingen aan dit project worden in dit bestand vastgeleg
 De opmaak is gebaseerd op [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) en dit project volgt
 [semantisch versiebeheer](https://semver.org/lang/nl/spec/v2.0.0.html).
 
+## [2.1.0]
+
+Eén toevoeging aan de publieke API. Een minor-versie, al moet één soort code volgen: een klasse die
+`ILuxaforDevice` zelf implementeert — meestal een handgeschreven fake in een testproject — compileert niet
+meer zolang ze ook `IsConnected` niet implementeert (een al gecompileerde klasse faalt bij het laden met een
+`TypeLoadException`). De bibliotheek richt zich op `netstandard2.0` en `net462`, die geen
+standaardimplementaties in interfaces ondersteunen, dus de eigenschap kon er geen meebrengen. Code die alleen
+de apparaten gebruikt die `Luxafor` aanlevert, en mocks die door een bibliotheek als Moq of NSubstitute worden
+gegenereerd, worden niet geraakt.
+
+### Toegevoegd
+
+- `ILuxaforDevice.IsConnected` geeft aan of het apparaat nog is aangesloten. De eigenschap vraagt Windows of
+  het pad van het apparaat nog voorkomt tussen de aanwezige HID-apparaten, zonder iets te openen of te
+  schrijven, zodat ze regelmatig kan worden opgevraagd, en een verdwenen apparaat antwoordt `false` in plaats
+  van een uitzondering te gooien — anders dan `Luxafor.GetDevice`, tot nu toe de enige manier om het te weten,
+  die `LuxaforDeviceNotFoundException` gooit. Een apparaat dat wordt losgekoppeld en weer in dezelfde poort
+  wordt gestoken, antwoordt opnieuw `true`, maar de handle die de instantie vasthoudt overleeft het
+  loskoppelen niet: het apparaat moet opnieuw worden opgehaald om het aan te sturen.
+
 ## [2.0.1]
 
 Uitsluitend documentatie, gereedschap en CI: de bibliotheek zelf is sinds 2.0.0 onveranderd, en haar

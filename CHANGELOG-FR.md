@@ -7,6 +7,26 @@ Toutes les modifications notables de ce projet sont consignées dans ce fichier.
 Le format s'appuie sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et ce projet suit le
 [versionnage sémantique](https://semver.org/lang/fr/spec/v2.0.0.html).
 
+## [2.1.0]
+
+Un ajout à l'API publique. Une version mineure, même si un type de code doit suivre : une classe qui
+implémente elle-même `ILuxaforDevice` — typiquement un fake écrit à la main dans un projet de tests — ne
+compile plus tant qu'elle n'implémente pas aussi `IsConnected` (une classe déjà compilée échoue au chargement
+avec une `TypeLoadException`). La bibliothèque cible `netstandard2.0` et `net462`, qui ne prennent pas en
+charge les implémentations par défaut dans les interfaces : la propriété ne pouvait pas en apporter une. Le
+code qui se contente d'utiliser les périphériques fournis par `Luxafor`, et les mocks générés par une
+bibliothèque comme Moq ou NSubstitute, ne sont pas concernés.
+
+### Ajouté
+
+- `ILuxaforDevice.IsConnected` indique si le périphérique est toujours branché. La propriété demande à Windows
+  si le chemin du périphérique figure encore parmi les périphériques HID présents, sans rien ouvrir ni écrire,
+  si bien qu'on peut l'interroger régulièrement, et un périphérique disparu répond `false` au lieu de lever
+  une exception — contrairement à `Luxafor.GetDevice`, seul moyen de le savoir jusqu'ici, qui lève
+  `LuxaforDeviceNotFoundException`. Un périphérique débranché puis rebranché sur le même port répond de
+  nouveau `true`, mais le handle que détient l'instance ne survit pas au débranchement : il faut récupérer le
+  périphérique à nouveau pour le piloter.
+
 ## [2.0.1]
 
 Documentation, outillage et CI uniquement : la bibliothèque elle-même est inchangée depuis la 2.0.0, son API

@@ -126,6 +126,7 @@ enum Reefact.LuxaforLightingDeviceController.WavePattern
 interface Reefact.LuxaforLightingDeviceController.ILuxaforDevice : System.IDisposable
     Boolean FadeColor(Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.FadeDuration)
     Boolean FadeColor(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.FadeDuration)
+    Boolean IsConnected
     Boolean PlayPattern(Reefact.LuxaforLightingDeviceController.BuiltInPattern, Reefact.LuxaforLightingDeviceController.Repeat)
     Boolean PlayPattern(Reefact.LuxaforLightingDeviceController.WavePattern, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.Speed, Reefact.LuxaforLightingDeviceController.Repeat)
     Boolean Send(Reefact.LuxaforLightingDeviceController.LightingCommand)
@@ -135,6 +136,7 @@ interface Reefact.LuxaforLightingDeviceController.ILuxaforDevice : System.IDispo
     Boolean Strobe(Reefact.LuxaforLightingDeviceController.TargetedLeds, Reefact.LuxaforLightingDeviceController.BrightColor, Reefact.LuxaforLightingDeviceController.Speed, Reefact.LuxaforLightingDeviceController.Repeat)
     Boolean TurnOff()
     Boolean TurnOff(Reefact.LuxaforLightingDeviceController.TargetedLeds)
+    Boolean get_IsConnected()
     System.String Description
     System.String Path
     System.String get_Description()

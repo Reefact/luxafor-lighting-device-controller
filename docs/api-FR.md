@@ -53,6 +53,20 @@ if (!device.SetColor(BrightColor.Red)) {
 ```
 <!-- endSnippet -->
 
+## Vérifier qu'un périphérique est toujours branché
+
+`bool IsConnected` indique si le périphérique est toujours branché. La propriété demande à Windows si le chemin du périphérique figure encore parmi les périphériques HID présents : rien n'est ouvert ni écrit, si bien qu'on peut l'interroger régulièrement sans perturber le périphérique, et un périphérique disparu répond `false` au lieu de lever une exception, contrairement à `Luxafor.GetDevice`.
+
+<!-- snippet: is-connected -->
+```csharp
+if (!device.IsConnected) {
+    Console.Error.WriteLine(device.Path + " has been unplugged.");
+}
+```
+<!-- endSnippet -->
+
+Un périphérique débranché puis rebranché sur le même port USB est de nouveau présent, et `IsConnected` repasse donc à `true`, mais le handle que détient l'instance ne survit pas au débranchement : ses commandes continuent de renvoyer `false`. Pour piloter à nouveau le périphérique, il faut le récupérer avec `Luxafor.GetDevice(device.Path)`.
+
 ## Éteindre
 
 | Signature | Description |

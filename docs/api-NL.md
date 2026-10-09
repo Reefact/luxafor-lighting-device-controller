@@ -53,6 +53,20 @@ if (!device.SetColor(BrightColor.Red)) {
 ```
 <!-- endSnippet -->
 
+## Controleren of een apparaat nog is aangesloten
+
+`bool IsConnected` geeft aan of het apparaat nog is aangesloten. De eigenschap vraagt Windows of het pad van het apparaat nog voorkomt tussen de aanwezige HID-apparaten: er wordt niets geopend en niets geschreven, zodat ze regelmatig kan worden opgevraagd zonder het apparaat te storen, en een verdwenen apparaat antwoordt `false` in plaats van een uitzondering te gooien, anders dan `Luxafor.GetDevice`.
+
+<!-- snippet: is-connected -->
+```csharp
+if (!device.IsConnected) {
+    Console.Error.WriteLine(device.Path + " has been unplugged.");
+}
+```
+<!-- endSnippet -->
+
+Een apparaat dat wordt losgekoppeld en weer in dezelfde USB-poort wordt gestoken, is opnieuw aanwezig, dus `IsConnected` wordt weer `true`, maar de handle die de instantie vasthoudt overleeft het loskoppelen niet: de commando's ervan blijven `false` teruggeven. Om het apparaat opnieuw aan te sturen, moet het opnieuw worden opgehaald met `Luxafor.GetDevice(device.Path)`.
+
 ## Uitschakelen
 
 | Signatuur | Beschrijving |

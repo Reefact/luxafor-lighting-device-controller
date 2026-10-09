@@ -53,6 +53,20 @@ if (!device.SetColor(BrightColor.Red)) {
 ```
 <!-- endSnippet -->
 
+## Checking that a device is still plugged in
+
+`bool IsConnected` tells whether the device is still plugged in. It asks Windows whether the path of the device is still among the HID devices present: nothing is opened and nothing is written, so it can be polled without disturbing the device, and a device that is gone answers `false` instead of throwing, unlike `Luxafor.GetDevice`.
+
+<!-- snippet: is-connected -->
+```csharp
+if (!device.IsConnected) {
+    Console.Error.WriteLine(device.Path + " has been unplugged.");
+}
+```
+<!-- endSnippet -->
+
+A device unplugged and plugged back into the same USB port is present again, so `IsConnected` goes back to `true`, but the handle the instance holds does not survive the removal: its commands keep returning `false`. To drive the device again, get it anew with `Luxafor.GetDevice(device.Path)`.
+
 ## Turning off
 
 | Signature | Description |
