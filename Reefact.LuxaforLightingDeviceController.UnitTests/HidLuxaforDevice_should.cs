@@ -46,6 +46,33 @@ public class HidLuxaforDevice_should {
         Check.That(device.Description).IsEqualTo("Luxafor Orb");
     }
 
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void report_whether_the_hid_device_is_still_connected(bool connected) {
+        // Setup
+        FakeHidDeviceHandle handle = FakeHidDeviceHandle.ALuxaforDevice();
+        handle.IsConnected = connected;
+        using ILuxaforDevice device = new HidLuxaforDevice(handle);
+        // Verify
+        Check.That(device.IsConnected).IsEqualTo(connected);
+    }
+
+    [Fact]
+    public void follow_the_hid_device_when_it_is_unplugged_without_writing_to_it() {
+        // Setup
+        FakeHidDeviceHandle handle = FakeHidDeviceHandle.ALuxaforDevice();
+        using ILuxaforDevice device = new HidLuxaforDevice(handle);
+        // Exercise
+        bool before = device.IsConnected;
+        handle.IsConnected = false;
+        bool after = device.IsConnected;
+        // Verify
+        Check.That(before).IsTrue();
+        Check.That(after).IsFalse();
+        Check.That(handle.WrittenBuffers).IsEmpty();
+    }
+
     [Fact]
     public void write_the_command_buffer_to_the_hid_device() {
         // Setup

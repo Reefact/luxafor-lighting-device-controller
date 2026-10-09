@@ -36,6 +36,9 @@ namespace Reefact.LuxaforLightingDeviceController {
         public string Description => _target.Description;
 
         /// <inheritdoc />
+        public bool IsConnected => _target.IsConnected;
+
+        /// <inheritdoc />
         public void Dispose() {
             _target.Dispose();
         }

@@ -53,6 +53,20 @@ if (!device.SetColor(BrightColor.Red)) {
 ```
 <!-- endSnippet -->
 
+## Sprawdzanie, czy urządzenie jest nadal podłączone
+
+`bool IsConnected` informuje, czy urządzenie jest nadal podłączone. Właściwość pyta Windows, czy ścieżka urządzenia wciąż figuruje wśród obecnych urządzeń HID: nic nie jest otwierane ani zapisywane, więc można ją regularnie odpytywać bez zakłócania pracy urządzenia, a urządzenie, które zniknęło, odpowiada `false` zamiast rzucać wyjątek, w odróżnieniu od `Luxafor.GetDevice`.
+
+<!-- snippet: is-connected -->
+```csharp
+if (!device.IsConnected) {
+    Console.Error.WriteLine(device.Path + " has been unplugged.");
+}
+```
+<!-- endSnippet -->
+
+Urządzenie odłączone i ponownie podłączone do tego samego portu USB jest znów obecne, więc `IsConnected` wraca do `true`, ale uchwyt przechowywany przez instancję nie przetrwa odłączenia: jej polecenia nadal zwracają `false`. Aby znów sterować urządzeniem, trzeba je pobrać ponownie za pomocą `Luxafor.GetDevice(device.Path)`.
+
 ## Wygaszanie
 
 | Sygnatura | Opis |

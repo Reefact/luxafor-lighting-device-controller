@@ -40,6 +40,14 @@ namespace MyApplication {
             // end-snippet
         }
 
+        public static void CheckTheDeviceIsStillConnected(ILuxaforDevice device) {
+            // begin-snippet: is-connected
+            if (!device.IsConnected) {
+                Console.Error.WriteLine(device.Path + " has been unplugged.");
+            }
+            // end-snippet
+        }
+
         public static void TurnOff(ILuxaforDevice device) {
             // begin-snippet: turn-off
             device.TurnOff();

@@ -22,6 +22,24 @@ namespace Reefact.LuxaforLightingDeviceController {
         string Description { get; }
 
         /// <summary>
+        ///     Gets whether the <see cref="ILuxaforDevice">Luxafor device</see> is still plugged in.
+        /// </summary>
+        /// <remarks>
+        ///     <para>
+        ///         Asks Windows whether the <see cref="Path">path</see> of the device is still among the HID
+        ///         devices present. Nothing is opened and nothing is written, so the device can be polled
+        ///         without being disturbed, and a device that is gone reports <c>false</c> rather than
+        ///         throwing, unlike <see cref="Luxafor.GetDevice(string)" />.
+        ///     </para>
+        ///     <para>
+        ///         A device unplugged and plugged back into the same USB port is present again, so this
+        ///         property goes back to <c>true</c>, but the handle this instance holds does not survive the
+        ///         removal: its commands keep returning <c>false</c>. Get the device again to drive it.
+        ///     </para>
+        /// </remarks>
+        bool IsConnected { get; }
+
+        /// <summary>
         ///     Sends a <see cref="LightingCommand">lighting command</see> to the
         ///     <see cref="ILuxaforDevice">Luxafor device</see>.
         /// </summary>

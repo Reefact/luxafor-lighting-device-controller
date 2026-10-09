@@ -53,6 +53,20 @@ if (!device.SetColor(BrightColor.Red)) {
 ```
 <!-- endSnippet -->
 
+## Prüfen, ob ein Gerät noch angeschlossen ist
+
+`bool IsConnected` gibt an, ob das Gerät noch angeschlossen ist. Die Eigenschaft fragt Windows, ob der Pfad des Geräts noch unter den vorhandenen HID-Geräten ist: Es wird nichts geöffnet und nichts geschrieben, sodass sie regelmäßig abgefragt werden kann, ohne das Gerät zu stören, und ein verschwundenes Gerät antwortet mit `false`, statt eine Ausnahme auszulösen – anders als `Luxafor.GetDevice`.
+
+<!-- snippet: is-connected -->
+```csharp
+if (!device.IsConnected) {
+    Console.Error.WriteLine(device.Path + " has been unplugged.");
+}
+```
+<!-- endSnippet -->
+
+Ein Gerät, das abgezogen und wieder in denselben USB-Anschluss gesteckt wird, ist wieder vorhanden, `IsConnected` wird also wieder `true`, aber das Handle, das die Instanz hält, übersteht das Abziehen nicht: Ihre Befehle geben weiterhin `false` zurück. Um das Gerät wieder anzusteuern, muss es mit `Luxafor.GetDevice(device.Path)` erneut geholt werden.
+
 ## Ausschalten
 
 | Signatur | Beschreibung |

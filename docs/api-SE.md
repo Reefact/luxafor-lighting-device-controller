@@ -53,6 +53,20 @@ if (!device.SetColor(BrightColor.Red)) {
 ```
 <!-- endSnippet -->
 
+## Kontrollera att en enhet fortfarande är ansluten
+
+`bool IsConnected` anger om enheten fortfarande är ansluten. Egenskapen frågar Windows om enhetens sökväg fortfarande finns bland de närvarande HID-enheterna: ingenting öppnas och ingenting skrivs, så den kan avfrågas regelbundet utan att störa enheten, och en enhet som har försvunnit svarar `false` i stället för att kasta ett undantag, till skillnad från `Luxafor.GetDevice`.
+
+<!-- snippet: is-connected -->
+```csharp
+if (!device.IsConnected) {
+    Console.Error.WriteLine(device.Path + " has been unplugged.");
+}
+```
+<!-- endSnippet -->
+
+En enhet som kopplas ur och sätts tillbaka i samma USB-port finns där igen, så `IsConnected` blir `true` igen, men handtaget som instansen håller överlever inte urkopplingen: dess kommandon fortsätter att returnera `false`. För att styra enheten igen måste den hämtas på nytt med `Luxafor.GetDevice(device.Path)`.
+
 ## Släcka
 
 | Signatur | Beskrivning |

@@ -7,6 +7,26 @@ Todos los cambios notables de este proyecto quedan documentados en este archivo.
 El formato se basa en [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) y este proyecto sigue el
 [versionado semántico](https://semver.org/lang/es/spec/v2.0.0.html).
 
+## [2.1.0]
+
+Una incorporación a la API pública. Una versión menor, aunque un tipo de código tiene que adaptarse: una clase
+que implementa `ILuxaforDevice` por sí misma —normalmente un fake escrito a mano en un proyecto de pruebas—
+deja de compilar hasta que implemente también `IsConnected` (una clase ya compilada falla al cargarse con una
+`TypeLoadException`). La biblioteca apunta a `netstandard2.0` y `net462`, que no admiten implementaciones
+predeterminadas en las interfaces, así que la propiedad no podía traer una. El código que solo usa los
+dispositivos que entrega `Luxafor`, y los mocks generados por una biblioteca como Moq o NSubstitute, no se ven
+afectados.
+
+### Añadido
+
+- `ILuxaforDevice.IsConnected` indica si el dispositivo sigue conectado. La propiedad pregunta a Windows si la
+  ruta del dispositivo sigue figurando entre los dispositivos HID presentes, sin abrir ni escribir nada, así
+  que se puede consultar periódicamente, y un dispositivo que ha desaparecido responde `false` en lugar de
+  lanzar una excepción, a diferencia de `Luxafor.GetDevice`, hasta ahora la única forma de saberlo, que lanza
+  `LuxaforDeviceNotFoundException`. Un dispositivo desconectado y vuelto a conectar en el mismo puerto
+  responde de nuevo `true`, pero el descriptor que mantiene la instancia no sobrevive a la desconexión: hay
+  que obtener el dispositivo de nuevo para controlarlo.
+
 ## [2.0.1]
 
 Sólo documentación, herramientas y CI: la biblioteca en sí no ha cambiado desde la 2.0.0, ni tampoco su API
